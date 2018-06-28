@@ -1,28 +1,39 @@
 # Node JS API
 
-This repository holds the source code for the **template** for the development of an **Node js api** written mainly in typescript
+This repository holds the source code of a **template** for the development of a **Node js api** written mainly in typescript
+
+## Before start ##
+
+### Demo ###
+
+This template uses a Pet CRUD example to explain the API flux. Each example file has an underscore prefix, *e.g. _Pet.ts* 
+
+### Cascade explanation ###
+
+Each directory contains a README&#46;md file with specific explanation about each module of the arquitecture (e.g. /http/controllers)
 
 ## Architecture design
 
-The template uses a architecure based on "uncle bob clean architecture" (https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html). and a Generic Model View Controller pattern
+The template uses a architecure based on [Uncle Bob Clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html). and a Generic Model View Controller pattern
 
-## Overview
-![alt text](/assets/dev/architecture.png)
-
-
-* **Based on express.js:** For handle common server actions, Linkbox Hana care uses the express.js template which is organized in the following way:
+### Overview ### 
+For handle common server actions, the templates use the following structure:
   - /src: business logic source
-  - /routes: Endpoints representation (POSTs, GETs, etc)
-  - /controllers: Represent the link between /routes and /datasources
-  - /public: Public resources such as stylesheets, images and scripts
+  - /http: Handle http resources such as endpoints, controllers and websockets
+  - /assets: Project resources such as scripts, images and files
 
-* **Business logic:** For the business logic, Linkbox Hana use the following structure
-  - /models: Store the system model (Patient, doctor, etc)
-  - /repositories: Represent abstraction of system actions grouped by source (e.g sql, cache, facebook-api, etc)
-  - /datasource: Are the implementations of the repository methods.
-  - /mappers: Represents classes that convert external data (e.g json queries) to business models (e.g Patient)
+### Business logic ###
+For the business logic, the template use the following structure
+  - /models: Store the system model, *e.g. Car, Agency, etc*
+  - /repositories: Represent abstraction (interfaces) of system actions grouped by source, *e.g. sql, gmail, etc*
+  - /datasource: Are the implementations of the repository methods. Each datasouce includes commons patterns such as mappers and executors
 
-### Pre-requisites:
+### Http resources ###
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs)
+  - /extensions: Are auxiliary classes in case of complex use case *e.g AI, ML, third party syncs*
+  - /tests: Are jMeter files for endpoint testing
+
+## Pre-requisites:
 
  * Download & install [**Node js**](https://nodejs.org/en/download/) or an equivalent
  * Download & install [**Visual Studio code**](https://code.visualstudio.com/) or an equivalent (optional)
@@ -30,6 +41,7 @@ The template uses a architecure based on "uncle bob clean architecture" (https:/
 ### To start coding and build:
 
  * Clone this repository
+ * Create an .env file with the project credentials (See [example](./.env.example))
  * Install dependencies
  ```bash
  $ npm install

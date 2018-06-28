@@ -21,6 +21,9 @@
 			],
 			"@models/*": [
 				"src/models/*"
+			],
+			"@sql/*": [
+				"src/sources/sql/*"
 			]
 		}
 	},

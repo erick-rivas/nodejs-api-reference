@@ -4,7 +4,6 @@ enum Lang
   ES = "ES"
 };
 
-
 const getEnum = (data, val: string, def) =>
 {
   if (val) val = val.toUpperCase();

@@ -8,8 +8,6 @@ import * as cors from "cors";
 import * as dotenv from "dotenv";
 import { Router } from "express";
 
-import Routes from "@http/routes";
-
 
 class App
 {
@@ -56,6 +54,12 @@ class App
 
 //v1
 
+
+import Dev from "@http/dev";
+import Routes from "@http/routes";
+import Resources from "@http/resources";
+
+
 class v1
 {
   private router: Router;
@@ -67,6 +71,8 @@ class v1
 
   public init()
   {
+    this.router.use("/resources", new Resources().init());
+    this.router.use("/dev", new Dev().init());
     this.router.use("/", new Routes().init());
     return this.router;
   }
