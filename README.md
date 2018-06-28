@@ -23,7 +23,6 @@ For handle common server actions, the templates use the following structure:
   - /assets: Project resources such as scripts, images and files
 
 ### Business logic ###
-For the business logic, the template use the following structure
   - /models: Store the system model, *e.g. Car, Agency, etc*
   - /repositories: Represent abstraction (interfaces) of system actions grouped by source, *e.g. sql, gmail, etc*
   - /datasource: Are the implementations of the repository methods. Each datasouce includes commons patterns such as mappers and executors
@@ -32,6 +31,10 @@ For the business logic, the template use the following structure
   - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs)
   - /extensions: Are auxiliary classes in case of complex use case *e.g AI, ML, third party syncs*
   - /tests: Are jMeter files for endpoint testing
+
+## Assets ###
+  - /dev: Resources related to the development of the project *e.g db.sql*
+  - /public: Resources that are public via /resources *e.g profile_image.png, doc.pdf*
 
 ## Pre-requisites:
 
@@ -67,5 +70,5 @@ For the business logic, the template use the following structure
  ```
  * Generate docs
  ```bash
- $ apidoc -i http/ -o docs/ -t docs/template/
+ $ apidoc -i http/ -o docs/ -t assets/dev/docs_template/
  ```

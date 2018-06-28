@@ -12,9 +12,9 @@ abstract class Mapper<T>
       data.push(this.transform(q));
     return data;
   }
-
   abstract transform(query): T;
 }
+
 
 class PetMapper extends Mapper<Pet>
 {

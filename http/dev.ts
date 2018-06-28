@@ -1,5 +1,5 @@
 require("module-alias/register");
-const fs = require('fs');
+const fs = require("fs");
 import * as path from "path";
 import * as mysql from "mysql";
 import SqlExc from "@sql/Executor";
@@ -48,8 +48,8 @@ class DevSql extends SqlExc
     return new Promise(resolve =>
     {
       const dirname = path.dirname(require.main.filename) + "/../";
-      const dbPath = "assets/db.sql";
-      fs.readFile(dirname + dbPath, 'utf8', (err, content) =>
+      const dbPath = "assets/dev/db.sql";
+      fs.readFile(dirname + dbPath, "utf8", (err, content) =>
       {
         const DATABASE = process.env.SQL_DATABASE;
         const query = `DROP DATABASE IF EXISTS ${DATABASE}; ${content}`;
