@@ -1,4 +1,3 @@
-require("module-alias/register");
 import Pet from "@models/_Pet";
 import Toy from "@models/_Toy";
 

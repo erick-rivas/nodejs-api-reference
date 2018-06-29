@@ -1,4 +1,3 @@
-require("module-alias/register");
 import { Response } from "express";
 
 import Model from "@models/Model";

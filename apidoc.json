@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "Pet example",
   "version": "1.0.0",
-  "description": "",
-  "title": "",
+  "description": "Example api for node.js template ",
+  "title": "Pet API",
   "order": [
     "get",
     "post",

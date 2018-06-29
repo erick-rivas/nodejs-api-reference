@@ -1,4 +1,3 @@
-require("module-alias/register");
 import * as mysql from "mysql";
 import { Pair } from "@models/Util";
 import { Mapper } from "./_Mappers";

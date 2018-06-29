@@ -6,7 +6,6 @@ import Util from "./controllers/util";
 
 export class Resources
 {
-
   private router: Router;
 
   constructor()
@@ -23,7 +22,6 @@ export class Resources
     * @apiGroup Resources
     * 
     * @apiParam {Object} image Image data.
-    * 
     * @apiSuccess {String} url Image path.
     */
 

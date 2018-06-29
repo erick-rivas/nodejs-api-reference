@@ -1,5 +1,5 @@
-require("module-alias/register");
 import { Router } from "express";
+import _Routes from "./_routes";
 
 class Routes
 {
@@ -12,6 +12,8 @@ class Routes
 
   init(): Router
   {
+    let mockRouter = new _Routes().init();
+    this.router = mockRouter;
     return this.router;
   }
 

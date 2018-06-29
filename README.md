@@ -1,6 +1,7 @@
-# Node JS API
+# Node.js API
 
-This repository holds the source code of a **template** for the development of a **Node js api** written mainly in typescript
+This repository holds the source code of a **template** for the development of a **Node.js api** written mainly in typescript
+<br/><br/><br/>
 
 ## Before start ##
 
@@ -11,6 +12,7 @@ This template uses a Pet CRUD example to explain the API flux. Each example file
 ### Cascade explanation ###
 
 Each directory contains a README&#46;md file with specific explanation about each module of the arquitecture (e.g. /http/controllers)
+<br/><br/>
 
 ## Architecture design
 
@@ -32,14 +34,15 @@ For handle common server actions, the templates use the following structure:
   - /extensions: Are auxiliary classes in case of complex use case *e.g AI, ML, third party syncs*
   - /tests: Are jMeter files for endpoint testing
 
-## Assets ###
+### Assets ###
   - /dev: Resources related to the development of the project *e.g db.sql*
   - /public: Resources that are public via /resources *e.g profile_image.png, doc.pdf*
+<br/><br/>
 
 ## Pre-requisites:
 
- * Download & install [**Node js**](https://nodejs.org/en/download/) or an equivalent
- * Download & install [**Visual Studio code**](https://code.visualstudio.com/) or an equivalent (optional)
+ * Download & install [Node js](https://nodejs.org/en/download/) or an equivalent
+ * Download & install [Visual Studio code](https://code.visualstudio.com/) or an equivalent (optional)
 
 ### To start coding and build:
 
@@ -72,3 +75,16 @@ For handle common server actions, the templates use the following structure:
  ```bash
  $ apidoc -i http/ -o docs/ -t assets/dev/docs_template/
  ```
+
+  ### Examples *Pets CRUD*
+
+ * Example docs
+ ```bash
+ http://localhost:4000/docs
+ ```
+  * Example requests 
+ ```bash
+ GET http://localhost:4000/v1/toys
+ ```
+
+
