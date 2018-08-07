@@ -1,15 +1,13 @@
 import { Request, Response } from "express";
 import Mocks from "@models/_Mocks"
 
-import Util from "./util";
+import Res from "./responses";
 
 class Pets
 {
-  constructor() { }
-
-  async getToys(req: Request, res: Response)
+  async getList(req: Request, res: Response)
   {
-    return Util.sendList(res, Mocks.Toys());
+    return Res.sendList(res, Mocks.Toys());
   }
 }
 

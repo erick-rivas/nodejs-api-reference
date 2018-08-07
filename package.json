@@ -1,8 +1,18 @@
 {
-  "name": "hana-api",
+  "name": "nodejs-template",
   "version": "0.1.0",
-  "homepage": "http://linkboxapp.com/hana/",
+  "description": "Template for the development of Node.js APIs",
   "private": true,
+  "apidoc": {
+    "title": "Node.js Template",
+    "sampleUrl": "http://localhost:4000/v1",
+    "order": [
+      "get",
+      "post",
+      "put",
+      "delete"
+    ]
+  },
   "scripts": {
     "start": "tsc && node ./bin/www"
   },

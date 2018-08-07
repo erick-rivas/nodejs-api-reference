@@ -12,8 +12,10 @@ class Routes
 
   init(): Router
   {
+    //TODO remove
     let mockRouter = new _Routes().init();
     this.router = mockRouter;
+    
     return this.router;
   }
 

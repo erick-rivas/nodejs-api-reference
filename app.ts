@@ -1,5 +1,4 @@
 require("module-alias/register");
-
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as logger from "morgan";
@@ -52,13 +51,11 @@ class App
 }
 
 
-//v1
-
+//v1 settings
 
 import Dev from "@http/dev";
 import Routes from "@http/routes";
 import Resources from "@http/resources";
-
 
 class v1
 {

@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { Generator } from "@models/Util";
 
 import Sql from "@sql/_Source";
-
-import Util from "./util";
+import Res from "./responses";
 
 
 class Pets
@@ -15,32 +14,32 @@ class Pets
     this.sql = Sql.getInstance();
   }
 
-  async getPet(req: Request, res: Response)
+  async getDetails(req: Request, res: Response)
   {
     const id = req.params.id;
     const pet = await this.sql.getPetDetails(id);
-    return Util.sendModel(res, pet);
+    return Res.sendModel(res, pet);
   }
 
-  async getPets(req: Request, res: Response)
+  async getList(req: Request, res: Response)
   {
     const pets = await this.sql.getPetList();
-    return Util.sendList(res, pets);
+    return Res.sendList(res, pets);
   }
 
-  async savePet(req: Request, res: Response)
+  async save(req: Request, res: Response)
   {
-    return Util.sendModel(res, null);
+    return Res.sendModel(res, null);
   }
 
-  async updatePet(req: Request, res: Response)
+  async update(req: Request, res: Response)
   {
-    return Util.sendModel(res, null);
+    return Res.sendModel(res, null);
   }
 
-  async deletePet(req: Request, res: Response)
+  async delete(req: Request, res: Response)
   {
-    return Util.sendOk(res);
+    return Res.sendOk(res);
   }
 }
 

@@ -30,7 +30,8 @@ For handle common server actions, the templates use the following structure:
   - /datasource: Are the implementations of the repository methods. Each datasouce includes commons patterns such as mappers and executors
 
 ### Http resources ###
-  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs)
+  - routes.ts: Handle the endpoints representations. [Details](/http/.md)
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/http/controllers/.md)
   - /extensions: Are auxiliary classes in case of complex use case *e.g AI, ML, third party syncs*
   - /tests: Are jMeter files for endpoint testing
 

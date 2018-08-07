@@ -4,7 +4,7 @@ import * as mysql from "mysql";
 import SqlExc from "@sql/Executor";
 import { Router } from "express";
 
-import Util from "./controllers/util";
+import Util from "./controllers/responses";
 
 class Dev
 {
@@ -30,7 +30,6 @@ class Dev
 
 class DevSql extends SqlExc
 {
-
   constructor()
   {
     super();

@@ -1,18 +1,18 @@
 import { Router } from "express";
-import PetCtrl from "@controllers/_pets";
-import ToyCtrl from "@controllers/_toys";
+import Pets from "@controllers/_pets";
+import Toys from "@controllers/_toys";
 
 class Routes
 {
   private router: Router;
-  private petCtrl: PetCtrl;
-  private toyCtrl: ToyCtrl;
+  private pets: Pets;
+  private toys: Toys;
 
   constructor()
   {
     this.router = Router();
-    this.petCtrl = new PetCtrl();
-    this.toyCtrl = new ToyCtrl();
+    this.pets = new Pets();
+    this.toys = new Toys();
   }
 
   init(): Router
@@ -22,7 +22,7 @@ class Routes
    * @api {get} /pets/:id Get pet details
    * @apiName GetPetDetails
    * @apiGroup Pets
-   * @apiVersion 1.0.0
+   * @apiVersion 0.1.0
    *
    * @apiParam {Number} id Pet identifier.
    * @apiSuccessExample {json} Success-Response:
@@ -36,22 +36,22 @@ class Routes
       }
     */
 
-    this.router.get("/pets/:id", (req, res) => this.petCtrl.getPet(req, res));
+    this.router.get("/pets/:id", (req, res) => this.pets.getDetails(req, res));
 
     /**
      * @api {get} /pets Get pet list
      * @apiName GetPetList
      * @apiGroup Pets
-     * @apiVersion 1.0.0
+     * @apiVersion 0.1.0
     */
 
-    this.router.get("/pets", (req, res) => this.petCtrl.getPets(req, res));
+    this.router.get("/pets", (req, res) => this.pets.getList(req, res));
 
     /**
      * @api {post} /pets Save a pet
      * @apiName SavePet
      * @apiGroup Pets
-     * @apiVersion 1.0.0
+     * @apiVersion 0.1.0
      *
      * @apiParam {String} name Pet name.
      * @apiParam {String} animal Animal name (Dog, Cat, etc).
@@ -61,13 +61,13 @@ class Routes
      * @apiSuccess {Pet} pet Pet object.
     */
 
-    this.router.post("/pets", (req, res) => this.petCtrl.savePet(req, res));
+    this.router.post("/pets", (req, res) => this.pets.save(req, res));
 
     /**
      * @api {put} /pets/:id Update a pet
      * @apiName UpdatePet
      * @apiGroup Pets
-     * @apiVersion 1.0.0
+     * @apiVersion 0.1.0
      *
      * @apiParam {Number} id Pet identifier.
      * @apiParam {String} [name] name Pet name.
@@ -77,30 +77,30 @@ class Routes
      * @apiSuccess {Pet} pet Pet object.
     */
 
-    this.router.put("/pets/:id", (req, res) => this.petCtrl.updatePet(req, res));
+    this.router.put("/pets/:id", (req, res) => this.pets.update(req, res));
 
     /**
      * @api {delete} /pets/:id Delete a pet
      * @apiName DeletePet
      * @apiGroup Pets
-     * @apiVersion 1.0.0
+     * @apiVersion 0.1.0
      * 
      * @apiParam {Number} id Pet identifier.
     */
 
-    this.router.delete("/pets/:id", (req, res) => this.petCtrl.deletePet(req, res));
+    this.router.delete("/pets/:id", (req, res) => this.pets.delete(req, res));
 
 
     /**
      * @api {get} /toys Get toys list
      * @apiName GetToyList
      * @apiGroup Toys
-     * @apiVersion 1.0.0
+     * @apiVersion 0.1.0
      * 
      * @apiParam {number} [pet_id] Pet identifier of toys.
     */
 
-    this.router.get("/toys", (req, res) => this.toyCtrl.getToys(req, res));
+    this.router.get("/toys", (req, res) => this.toys.getList(req, res));
 
 
     return this.router;

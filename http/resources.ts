@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as multer from "multer"
 
-import Util from "./controllers/util";
+import Util from "./controllers/responses";
 
 
 export class Resources
@@ -17,19 +17,21 @@ export class Resources
   {
 
     /**
-    * @api {post} /resource/image Save an image
-    * @apiName SaveImage
+    * @api {post} /resource/file Save a file
+    * @apiName SaveFile
     * @apiGroup Resources
+    * @apiVersion 0.1.0
     * 
-    * @apiParam {Object} image Image data.
-    * @apiSuccess {String} url Image path.
+    * @apiParam {Object} file File data.
+    * @apiSampleRequest off
+    * @apiSuccess {String} url File path.
     */
 
     var upload = multer({
       dest: "assets/public",
-    }).single("image");
+    }).single("file");
 
-    this.router.post("/image", (req, res) =>
+    this.router.post("/file", (req, res) =>
     {
       upload(req, res, () =>
       {
