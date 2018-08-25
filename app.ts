@@ -34,7 +34,7 @@ class App
     this.app.use('/docs', express.static(rootDir + 'docs'));
     this.app.use("/v1", new v1().init());
 
-    const port = this.normalizePort(process.env.PORT || "4000");
+    const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);
     console.log("Listening port: " + port);
   }

@@ -81,11 +81,11 @@ For handle common server actions, the templates use the following structure:
 
  * Example docs
  ```bash
- http://localhost:4000/docs
+ http://localhost:4004/docs
  ```
   * Example requests 
  ```bash
- GET http://localhost:4000/v1/toys
+ GET http://localhost:4004/v1/toys
  ```
 
 
