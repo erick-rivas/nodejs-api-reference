@@ -9,18 +9,6 @@ import * as Mapper from "./_Mappers";
 
 class Source extends Executor implements Repository
 {
-  private static instance: Source;
-
-  private constructor()
-  {
-    super();
-  }
-
-  static getInstance(): Source
-  {
-    return this.instance || (this.instance = new this());
-  }
-
   async getPetList(): Promise<Pet[]>
   {
     const query = "SELECT p.* FROM pets p";
@@ -74,6 +62,10 @@ class Source extends Executor implements Repository
   {
     return null;
   }
+
+  private static instance: Source;
+  private constructor() { super(); }
+  static getInstance(): Source { return this.instance || (this.instance = new this()); }
 }
 
 export default Source;
