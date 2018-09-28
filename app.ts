@@ -30,7 +30,7 @@ class App
     dotenv.config();
 
     const rootDir = path.dirname(require.main.filename) + "/../";
-    this.app.use('/resources', express.static(rootDir + 'assets/public'));
+    this.app.use('/', express.static(rootDir + 'assets/public'));
     this.app.use('/docs', express.static(rootDir + 'docs'));
     this.app.use("/v1", new v1().init());
 

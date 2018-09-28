@@ -61,15 +61,6 @@ class Generator
   {
     return Math.floor(Math.random() * max);
   }
-
-  static getMessageId(): string
-  {
-    let res = "";
-    for (let i = 0; i < 50; i++)
-      res += this.getNum(10) + "";
-    res += "@local.gmail.com"
-    return res;
-  }
 }
 
 export { Pair, LString, Generator };

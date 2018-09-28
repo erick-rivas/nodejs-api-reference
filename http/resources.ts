@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as multer from "multer"
 
 import Util from "./controllers/responses";
+import { Generator } from "@models/Util";
 
 
 export class Resources
@@ -27,9 +28,19 @@ export class Resources
     * @apiSuccess {String} url File path.
     */
 
-    var upload = multer({
-      dest: "assets/public",
-    }).single("file");
+    var storage = multer.diskStorage(
+      {
+        destination: 'assets/public/resources',
+        filename: function (req, file, cb)
+        {
+          let extension = "";
+          if (file.originalname)
+            extension = "." + file.originalname.split('.').pop();
+          cb(null, Generator.getId() + extension);
+        }
+      }
+    );
+    var upload = multer({ storage: storage }).single("file");
 
     this.router.post("/file", (req, res) =>
     {
