@@ -3,16 +3,31 @@ import Model from "@models/Model";
 
 class Responses
 {
+
+  /**
+   * Send a simple 200 response.
+   */
+
   static sendOk(res: Response)
   {
-    res.send();
+    res.send("Ok");
   }
 
-  static sendObject(res: Response, result: any)
+  /**
+   * Send a json response with the information defined in the 
+   * toJSON() method of a Model.
+   */
+
+  static sendModel(res: Response, result: Model)
   {
     res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify(result ? result : {}));
+    res.send(JSON.stringify(result ? result.toJSON() : {}));
   }
+
+  /**
+   * Send a json response with the information defined in the 
+   * toJSON() method of a Model collection.
+   */
 
   static sendList(res: Response, result: Model[])
   {
@@ -23,10 +38,14 @@ class Responses
     res.send(JSON.stringify(out ? out : []));
   }
 
-  static sendModel(res: Response, result: Model)
+  /**
+  * Send a json response with the information of any object.
+  */
+
+  static sendObject(res: Response, result: any)
   {
     res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify(result ? result.toJSON() : {}));
+    res.send(JSON.stringify(result ? result : {}));
   }
 }
 

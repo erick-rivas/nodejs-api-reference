@@ -1,5 +1,7 @@
-import Pet from "@models/_Pet";
-import Toy from "@models/_Toy";
+
+/**
+ * Base class to handle mapper operations
+ */
 
 abstract class Mapper<T>
 {

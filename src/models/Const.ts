@@ -4,7 +4,14 @@ enum Lang
   ES = "ES"
 };
 
-const getEnum = (data, val: string, def) =>
+/**
+ * Get enum value base on their respective value
+ * @param  {any} data Enum collection
+ * @param  {string} val Enum value
+ * @param  {any} def Default response (item)
+ */
+
+const getEnum = (data: any, val: string, def: any) =>
 {
   if (val) val = val.toUpperCase();
   for (let d in data)

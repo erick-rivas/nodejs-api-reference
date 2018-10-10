@@ -1,5 +1,9 @@
 import { Lang, getEnum } from "@models/Const";
 
+/**
+ * Representation of a basic tuple (key, value).
+ */
+
 class Pair
 {
   key: string;
@@ -11,6 +15,10 @@ class Pair
     this.value = value;
   }
 }
+
+/**
+ * Representation of string class with lang support.
+ */
 
 class LString
 {
@@ -25,6 +33,11 @@ class LString
     this.val = val;
   }
 }
+
+
+/**
+ * Helper class for generation of common data.
+ */
 
 class Generator
 {
@@ -41,10 +54,19 @@ class Generator
     "#f-7-5-", "#f-8-8-", "#f-8-6-", "#f-9-1-", "#f-9-3-", "#f-9-5-", "#f-9-7-",
     "#f-9-9-", "#f-9-9-", "#f-a-8-", "#f-a-a-", "#f-b-8-"];
 
+
+  /**
+   * Get a numeric identifier between 1 and 10000000.
+   */
+
   static getId(): number
   {
     return this.getNum(10000000) + 1
   }
+  /**
+   * Get a random color with pre-defined balance of color.
+   */
+
   static getColor(): string
   {
     let base = this.baseColors[this.getNum(this.baseColors.length)];
@@ -56,6 +78,11 @@ class Generator
     base = base.replace("-", C);
     return base;
   }
+
+  /**
+   * Get a random number between 0 and max.
+   * @param  {number} max Max number.
+   */
 
   static getNum(max: number): number
   {

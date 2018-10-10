@@ -8,16 +8,30 @@ enum Code
 
 class Responses
 {
+
+  /**
+   * Call next() method to continue to following handlers, 
+   * In other words it is an equivalent to success response.
+   */
+
   static next(next: Next)
   {
     next();
   }
 
-  static sendError(res: Response, code: number)
+  /**
+   * Send an error message based on response code.
+   */
+
+  static sendError(res: Response, code: Code)
   {
-    res.status(code);
+    res.status(Code[code]);
     res.send(code.toLocaleString());
   }
+
+  /**
+   * Send a custom error message based on response code.
+   */
 
   static sendErrorMessage(res: Response, code: Code, message: string)
   {

@@ -28,7 +28,7 @@ class Source extends Executor implements Repository
 
   async getPetDetails(petId: number): Promise<Pet>
   {
-    const query = "SELECT p.* from pets p WHERE p.pet_id = ?";
+    const query = "SELECT p.* FROM pets p WHERE p.pet_id = ?";
     const params = [petId];
     const res = await this.getDetails(query, params, new Mapper.PetMapper());
     const fetch = await this.fetchPets(res);
@@ -37,7 +37,7 @@ class Source extends Executor implements Repository
 
   async getToyDetails(toyId: number): Promise<Toy>
   {
-    const query = "SELECT t.* from toys t WHERE t.toy_id = ?";
+    const query = "SELECT t.* FROM toys t WHERE t.toy_id = ?";
     const params = [toyId];
     const res = await this.getDetails(query, params, new Mapper.ToyMapper());
     return res[0];
