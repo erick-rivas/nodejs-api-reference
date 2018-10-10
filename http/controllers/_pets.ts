@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Sql from "@sql/_Source";
+import Sql from "@repositories/_sql";
 import Res from "@controllers/responses";
 
 
@@ -7,9 +7,9 @@ class Pets
 {
   private sql: Sql;
 
-  constructor()
+  constructor(sql: Sql)
   {
-    this.sql = Sql.getInstance();
+    this.sql = sql;
   }
 
   async getDetails(req: Request, res: Response)

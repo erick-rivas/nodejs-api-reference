@@ -4,6 +4,8 @@ import Res from "@controllers/responses";
 
 class Toys
 {
+  constructor() { }
+
   async getList(req: Request, res: Response)
   {
     return Res.sendList(res, Mocks.Toys());

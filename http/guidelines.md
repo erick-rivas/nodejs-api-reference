@@ -5,6 +5,7 @@
   - middlewares.ts: Handle all the middlewares definitions.
   - resources.ts: Handle the upload of files.
   - dev.ts: Handle dev operations  *e.g DB restart*.
+  - /factories: Handle the creation of controllers and middlewares (Dependencies injection)
 
 
 ## Code Guidelines

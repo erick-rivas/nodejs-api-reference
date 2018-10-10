@@ -1,4 +1,5 @@
 import { Router } from "express";
+import Factory from "@http/factories/_controllers";
 import Pets from "@controllers/_pets";
 import Toys from "@controllers/_toys";
 
@@ -11,8 +12,8 @@ class Routes
   constructor()
   {
     this.router = Router();
-    this.pets = new Pets();
-    this.toys = new Toys();
+    this.pets = Factory.createPets();
+    this.toys = Factory.createToys();
   }
 
   init(): Router

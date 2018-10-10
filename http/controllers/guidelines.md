@@ -23,7 +23,7 @@ delete();
 
 ### Quality checklist
 
-- [ ] All controllers only imports @models, @repositoies & @sources modules.
+- [ ] All controllers only imports @models & @repositoies modules.
 - [ ] All controllers only uses the CRUD methods indicated.
 - [ ] All the attributes of controllers are from @repositories modules.
 - [ ] The responses.ts is the only class for handle data sending.
