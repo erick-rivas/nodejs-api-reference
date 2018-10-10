@@ -1,15 +1,10 @@
 # HTTP controllers
 
-## Files description
+## Overview
   - *.ts: Handles the link between business logic and routes.
   - extensions/*.ts: Extra classes for complex controllers.
   - util.ts: Commons methods for controllers.
 <br/><br/>
-
-## *.ts files
-
-### Description
-This classes handle the link between business logic (@source modules) and routes (endpoints)
 
 ### Code Guidelines
 
@@ -26,6 +21,7 @@ delete();
 
 
 ### Quality checklist
+
 - [ ] Only imports models & sources modules.
 - [ ] Only uses the CRUD methods indicated.
 - [ ] Only uses responses.ts class for handle data sending.

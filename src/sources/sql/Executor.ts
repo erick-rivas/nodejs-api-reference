@@ -1,6 +1,6 @@
 import * as mysql from "mysql";
 import { Pair } from "@models/Util";
-import { Mapper } from "./_Mappers";
+import { Mapper } from "./Mapper";
 
 class Controller
 {

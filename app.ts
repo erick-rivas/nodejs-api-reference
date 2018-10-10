@@ -51,7 +51,7 @@ class App
 }
 
 
-//v1 settings
+//v1
 
 import Dev from "@http/dev";
 import Routes from "@http/routes";

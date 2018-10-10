@@ -1,17 +1,12 @@
 # HTTP resources
 
-## Files description
+## Overview
   - routes.ts: Handles all the **endpoints definitions**
   - resources.ts: Handle the upload of files
-  - dev.ts: Handle dev operations  *e.g DB restart*
-<br/><br/>
+  - dev.ts: Handle dev operations  *e.g DB restart*.
 
-## Routes.ts
 
-### Description
-This file handle the definition of HTTP endpoints (POSTs, GETs, PUTs and DELETEs).
-
-### Code Guidelines
+## Code Guidelines
 
 - Each endpoint must follow the following structure
 ```typescript
@@ -32,7 +27,8 @@ this.router ...
 ```
 
 
-### Quality checklist
+## Quality checklist
+
 - [ ] Only imports express & controllers modules
 - [ ] All the routes includes @api comments
 - [ ] All GET details endpoints includes json example
