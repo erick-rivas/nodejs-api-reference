@@ -4,12 +4,13 @@
   - *.ts: Handles the link between business logic and routes.
   - extensions/*.ts: Extra classes for complex controllers.
   - util.ts: Commons methods for controllers.
-<br/><br/>
 
 ### Code Guidelines
 
-- Each class must be associated with a model or group of endpoints *e.g toys, pets*
-- Each class **can only implement the following methods**
+- Each controller must be associated with a model or group of endpoints *e.g toys, pets*
+- Each controller can only have repositories attributes.
+- Each controller only use responses.ts methods to handle responses *e.g sendModel(), sendOk()*
+- Each controller **can only implement the following methods**
 ```
 getList();
 getDetails();
@@ -22,9 +23,10 @@ delete();
 
 ### Quality checklist
 
-- [ ] Only imports models & sources modules.
-- [ ] Only uses the CRUD methods indicated.
-- [ ] Only uses responses.ts class for handle data sending.
+- [ ] All controllers only imports @models, @repositoies & @sources modules.
+- [ ] All controllers only uses the CRUD methods indicated.
+- [ ] All the attributes of controllers are from @repositories modules.
+- [ ] The responses.ts is the only class for handle data sending.
 
 
 

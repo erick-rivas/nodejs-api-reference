@@ -3,15 +3,15 @@ import Toy from "@models/_Toy";
 
 abstract class Mapper<T>
 {
-  transformList(query: any): T[]
+  transformList(dataSet: any): T[]
   {
-    if (!query) return [];
-    const data = [];
-    for (let q of query)
-      data.push(this.transform(q));
-    return data;
+    if (!dataSet) return [];
+    const result = [];
+    for (let data of dataSet)
+      result.push(this.transform(data));
+    return result;
   }
-  abstract transform(query): T;
+  abstract transform(data): T;
 }
 
 

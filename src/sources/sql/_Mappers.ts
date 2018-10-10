@@ -5,24 +5,24 @@ import { Mapper } from "./Mapper";
 
 class PetMapper extends Mapper<Pet>
 {
-  transform(query: any): Pet
+  transform(data: any): Pet
   {
-    return new Pet(query.pet_id)
+    return new Pet(data.pet_id)
       .build(
-        query.name,
-        Pet.getAnimal(query.animal),
-        query.photo,
+        data.name,
+        Pet.getAnimal(data.animal),
+        data.photo,
         []);
   }
 }
 
 class ToyMapper extends Mapper<Toy>
 {
-  transform(query: any): Toy  
+  transform(data: any): Toy  
   {
-    return new Toy(query.toy_id)
+    return new Toy(data.toy_id)
       .build(
-        query.name
+        data.name
       );
   }
 }

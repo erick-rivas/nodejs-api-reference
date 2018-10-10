@@ -10,8 +10,6 @@
 
 - Each model must follow the following structure
 ```typescript
-//imports
-
 class XModel extends Model
 {
   //Attributes ...
@@ -36,7 +34,7 @@ export default XModel;
     this.id = id;
   }
 ```
-- Each model **must have** a build() method to initialize all the variables, and must follow the following structure
+- Each model **must have** a build() method to initialize all the variables, and must follow the following structure.
 ```typescript
   build(attr1: type1, attr2: type2): XModel
   {
@@ -55,12 +53,12 @@ export default XModel;
     };
   }
 ```
-> The toJSON() method must use a snake_case and **can omit** some attributes such as passwords and sensitive attributes
+> The toJSON() method must use a snake_case and **can omit** some attributes such as passwords and sensitive attributes.
 
 
 ## Quality checklist
 
-- [ ] Only imports @models modules,
+- [ ] All models, const & mocks only imports @models modules.
 - [ ] All the attributes in Const.ts are enums type.
 - [ ] All enums in Const.ts are written in uppercase.
 - [ ] All models have build() methods.
@@ -68,6 +66,6 @@ export default XModel;
 - [ ] All models only implement build() & toJSON() methods.
 - [ ] No models includes **sensitive content** in toJSON() method *e.g passwords,secret_keys*.
 - [ ] All models files only export one class.
-- [ ] Mocks.ts methods implement a method to generate **all** models with at least 3 mocks each one.
+- [ ] Mocks.ts implement a method to generate **all** models with at least 3 mocks each one.
 
 
