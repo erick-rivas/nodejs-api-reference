@@ -1,8 +1,9 @@
 # HTTP resources
 
 ## Overview
-  - routes.ts: Handles all the **endpoints definitions**
-  - resources.ts: Handle the upload of files
+  - routes.ts: Handles all the **endpoints definitions**.
+  - middlewares.ts: Handle all the middlewares definitions.
+  - resources.ts: Handle the upload of files.
   - dev.ts: Handle dev operations  *e.g DB restart*.
 
 
@@ -29,9 +30,10 @@ this.router ...
 
 ## Quality checklist
 
-- [ ] Only imports express & controllers modules
-- [ ] All the routes includes @api comments
-- [ ] All GET details endpoints includes json example
+- [ ] All the routes only imports express & @controllers modules.
+- [ ] All the middlewares only importes express & @middlewares modules.
+- [ ] All the routes includes @api comments.
+- [ ] All GET details endpoints includes json example.
 - [ ] The endpoints are organized by group *e.g CRUD pets then CRUD toys*
 - [ ] The endpoints (url) follow the following order and structure:
 ```

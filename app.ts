@@ -32,6 +32,8 @@ class App
     const rootDir = path.dirname(require.main.filename) + "/../";
     this.app.use('/', express.static(rootDir + 'assets/public'));
     this.app.use('/docs', express.static(rootDir + 'docs'));
+
+    //API version initialization
     this.app.use("/v1", new v1().init());
 
     const port = this.normalizePort(process.env.PORT || "4004");
@@ -56,6 +58,7 @@ class App
 import Dev from "@http/dev";
 import Routes from "@http/routes";
 import Resources from "@http/resources";
+import Middlewares from "@http/middlewares";
 
 class v1
 {
@@ -70,6 +73,7 @@ class v1
   {
     this.router.use("/resources", new Resources().init());
     this.router.use("/dev", new Dev().init());
+    this.router.use("/", new Middlewares().init());
     this.router.use("/", new Routes().init());
     return this.router;
   }

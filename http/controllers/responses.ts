@@ -1,9 +1,7 @@
 import { Response } from "express";
-
 import Model from "@models/Model";
 
-
-class Util
+class Responses
 {
   static sendOk(res: Response)
   {
@@ -32,4 +30,4 @@ class Util
   }
 }
 
-export default Util;
+export default Responses;

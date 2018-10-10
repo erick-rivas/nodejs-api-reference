@@ -16,6 +16,9 @@
 			"@controllers/*": [
 				"http/controllers/*"
 			],
+			"@middlewares/*": [
+				"http/middlewares/*"
+			],
 			"@repositories/*": [
 				"src/repositories/*"
 			],

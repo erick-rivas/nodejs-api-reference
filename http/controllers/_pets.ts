@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { Generator } from "@models/Util";
-
 import Sql from "@sql/_Source";
-import Res from "./responses";
+import Res from "@controllers/responses";
 
 
 class Pets

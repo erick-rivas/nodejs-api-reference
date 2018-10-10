@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import Mocks from "@models/_Mocks"
+import Res from "@controllers/responses";
 
-import Res from "./responses";
-
-class Pets
+class Toys
 {
   async getList(req: Request, res: Response)
   {
@@ -11,4 +10,4 @@ class Pets
   }
 }
 
-export default Pets;
+export default Toys;

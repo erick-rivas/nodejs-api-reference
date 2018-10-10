@@ -8,7 +8,7 @@
 
 ## Code Guidelines
 
-- Each model must follow the following structure
+- Each model must follow the following structure:
 ```typescript
 class XModel extends Model
 {
@@ -20,13 +20,13 @@ class XModel extends Model
 export default XModel;
 ```
 
-  > The models models can only implement two methods *build() & toJSON()*
+  > The models models can only implement two methods *build() & toJSON()*.
 
-- Each attribute must be defined public
+- Each attribute must be defined public.
 ```typescript
   name: string
 ```
-- The constructor only can have the identifier of the model as parameter
+- The constructor only can have the identifier of the model as parameter.
 ```typescript
   constructor(id: number)
   {

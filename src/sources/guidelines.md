@@ -2,7 +2,7 @@
 
 ## Overview
   - Source.ts:  Represent implementations of the repository methods.
-  - Mappers.ts: Handle the parsing of framework models to business models *e.g json > Car model*
+  - Mappers.ts: Handle the parsing of framework models to business models *e.g json > Car model*.
   - Executor: Handle commons framework actions such as connection initializations, common queries and transactions.
     > The main objective of this class is to uncouple as much as possible actions related to the framework and the repository.
 
@@ -22,7 +22,7 @@ export default XSource;
   > e.g getPetList() can't call getPetDetails() even though they share common functionality. To solve common funcitonality use **executor class**.
 
 - Each source **must not** handle promise functions handling.
-  > For this actions use an executor class
+  > For this actions use an executor class.
 
 - Each mapper must follow the following structure:
 

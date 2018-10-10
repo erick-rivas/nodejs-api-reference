@@ -39,6 +39,7 @@
   "_moduleAliases": {
     "@http": "dist/http/",
     "@controllers": "dist/http/controllers",
+    "@middlewares": "dist/http/middlewares",
     "@repositories": "dist/src/repositories",
     "@models": "dist/src/models",
     "@sql": "dist/src/sources/sql"
