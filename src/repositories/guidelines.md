@@ -6,7 +6,7 @@
 ### Code Guidelines
 
 - Each repository **must only** reference one datasource *e.g gmail, outlook, etc*.
-- Each model must follow the following structure.
+- Each model must follow the following structure:
 ```typescript
 interface XRepository
 {
