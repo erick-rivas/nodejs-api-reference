@@ -1,7 +1,6 @@
 # Node.js API
 
 This repository holds the source code of a **template** for the development of a **Node.js api** written mainly in typescript.
-<br/><br/><br/>
 
 ## Before start ##
 
