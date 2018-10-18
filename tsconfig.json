@@ -11,22 +11,22 @@
 		"baseUrl": ".",
 		"paths": {
 			"@http/*": [
-				"http/*"
+				"http/latest/*"
 			],
 			"@controllers/*": [
-				"http/controllers/*"
+				"http/latest/controllers/*"
 			],
 			"@middlewares/*": [
-				"http/middlewares/*"
+				"http/latest/middlewares/*"
 			],
 			"@repositories/*": [
-				"src/repositories/*"
+				"src/latest/repositories/*"
 			],
 			"@models/*": [
-				"src/models/*"
+				"src/latest/models/*"
 			],
 			"@sql/*": [
-				"src/sources/sql/*"
+				"src/latest/sources/sql/*"
 			]
 		}
 	},

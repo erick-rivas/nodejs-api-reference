@@ -34,7 +34,7 @@ class App
     this.app.use('/docs', express.static(rootDir + 'docs'));
 
     //API version initialization
-    this.app.use("/v1", new v1().init());
+    this.app.use("/v1", new v1_0().init());
 
     const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);
@@ -53,14 +53,14 @@ class App
 }
 
 
-//v1
+//Latest (v1.0)
 
 import Dev from "@http/dev";
 import Routes from "@http/routes";
 import Resources from "@http/resources";
 import Middlewares from "@http/middlewares";
 
-class v1
+class v1_0
 {
   private router: Router;
 

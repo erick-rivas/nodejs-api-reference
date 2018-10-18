@@ -11,7 +11,7 @@ class Source extends Executor implements Repository
 {
   async getPetList(): Promise<Pet[]>
   {
-    const query = "SELECT p.* FROM pets p";
+    const query = `SELECT p.* FROM pets p`;
     const filter = [];
     const res = await this.get(query, filter, new Mapper.PetMapper());
     return this.fetchPets(res);
@@ -19,7 +19,7 @@ class Source extends Executor implements Repository
 
   async getToyList(petId?: number): Promise<Toy[]>
   {
-    const query = "SELECT t.* FROM toys t";
+    const query = `SELECT t.* FROM toys t`;
     const filter = [];
     if (petId) filter.push(new Pair("t.pet_id", petId));
     const res = await this.get(query, filter, new Mapper.ToyMapper());
@@ -28,7 +28,7 @@ class Source extends Executor implements Repository
 
   async getPetDetails(petId: number): Promise<Pet>
   {
-    const query = "SELECT p.* FROM pets p WHERE p.pet_id = ?";
+    const query = `SELECT p.* FROM pets p WHERE p.pet_id = ?`;
     const params = [petId];
     const res = await this.getDetails(query, params, new Mapper.PetMapper());
     const fetch = await this.fetchPets(res);
@@ -37,7 +37,7 @@ class Source extends Executor implements Repository
 
   async getToyDetails(toyId: number): Promise<Toy>
   {
-    const query = "SELECT t.* FROM toys t WHERE t.toy_id = ?";
+    const query = `SELECT t.* FROM toys t WHERE t.toy_id = ?`;
     const params = [toyId];
     const res = await this.getDetails(query, params, new Mapper.ToyMapper());
     return res[0];
