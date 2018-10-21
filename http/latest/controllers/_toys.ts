@@ -8,7 +8,8 @@ class Toys
 
   async getList(req: Request, res: Response)
   {
-    return Res.sendList(res, Mocks.Toys());
+    const result = Mocks.Toys();
+    return Res.sendList(res, result);
   }
 }
 

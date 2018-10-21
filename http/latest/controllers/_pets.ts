@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Sql from "@repositories/_sql";
 import Res from "@controllers/responses";
+import Mocks from "@models/_Mocks";
 
 
 class Pets
@@ -15,24 +16,26 @@ class Pets
   async getDetails(req: Request, res: Response)
   {
     const id = req.params.id;
-    const pet = await this.sql.getPetDetails(id);
-    return Res.sendModel(res, pet);
+    const result = await this.sql.getPetDetails(id);
+    return Res.sendModel(res, result);
   }
 
   async getList(req: Request, res: Response)
   {
-    const pets = await this.sql.getPetList();
-    return Res.sendList(res, pets);
+    const result = await this.sql.getPetList();
+    return Res.sendList(res, result);
   }
 
   async save(req: Request, res: Response)
   {
-    return Res.sendModel(res, null);
+    const result = Mocks.Pets()[0];
+    return Res.sendModel(res, result);
   }
 
   async update(req: Request, res: Response)
   {
-    return Res.sendModel(res, null);
+    const result = Mocks.Pets()[0];
+    return Res.sendModel(res, result);
   }
 
   async delete(req: Request, res: Response)

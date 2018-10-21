@@ -18,6 +18,21 @@ save();
 update();
 delete();
 ```
+- All methods of the controller must return the following functions:
+```
+// Res.sendList();
+getList();
+
+// Res.sendModel()
+getDetails()
+save()
+update()
+
+//Res.sendOk()
+delete()
+```
+
+
 >In case of need extra funcions use /extensions classes.
 
 
