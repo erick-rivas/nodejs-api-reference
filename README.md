@@ -1,12 +1,12 @@
 # Node.js API
 
-This repository holds the source code of a **template** for the development of a **Node.js api** written mainly in typescript.
+This repository holds the source code of a **reference** for the development of a **Node.js api** written mainly in typescript.
 
 ## Before start ##
 
 ### Demo ###
 
-This template uses a Pet CRUD example to explain the API flux. 
+This reference uses a Pet CRUD example to explain the API flux. 
 > Each example file has an underscore prefix, *e.g. _Pet.ts*. 
 
 ### Cascade explanation ###
@@ -15,7 +15,7 @@ Each module of the architecture contains a **guidelines&#46;md** file with speci
 
 ## Architecture design
 
-The template uses a architecure based on [Uncle Bob Clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) and a Generic Model View Controller pattern.
+The reference uses a architecure based on [Uncle Bob Clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) and a Generic Model View Controller pattern.
 
 ### Overview 
 

@@ -1,5 +1,5 @@
 import * as mysql from "mysql";
-import { Pair } from "@models/Util";
+import { Pair } from "@models/helpers/Util";
 import { Mapper } from "./Mapper";
 
 /**

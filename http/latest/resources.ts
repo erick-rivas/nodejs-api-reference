@@ -1,8 +1,8 @@
 import { Router } from "express";
 import * as multer from "multer"
 
-import Util from "./controllers/responses";
-import { Generator } from "@models/Util";
+import Res from "@controllers/util";
+import { Generator } from "@models/helpers/Util";
 
 
 export class Resources
@@ -49,7 +49,7 @@ export class Resources
         let result = {
           url: `http://${req.get("host")}/resources/${req.file.filename}`
         }
-        Util.sendObject(res, result);
+        Res.sendObject(res, result);
       });
     });
 

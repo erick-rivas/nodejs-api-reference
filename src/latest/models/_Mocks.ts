@@ -1,7 +1,7 @@
-import { Generator } from "@models/Util";
+import { Generator } from "@models/helpers/Util";
 import Pet from "@models/_Pet";
 import Toy from "@models/_Toy";
-import { Animal } from "@models/_Const";
+import { Animal } from "@models/helpers/_Const";
 
 class Mocks
 {

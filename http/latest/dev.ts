@@ -4,7 +4,7 @@ import * as mysql from "mysql";
 import SqlExc from "@sql/Executor";
 import { Router } from "express";
 
-import Util from "./controllers/responses";
+import Res from "@controllers/util";
 
 class Dev
 {
@@ -21,7 +21,7 @@ class Dev
     {
       const sql = new DevSql();
       await sql.restartDb();
-      Util.sendOk(res);
+      return Res.sendOk(res);
     });
 
     return this.router;

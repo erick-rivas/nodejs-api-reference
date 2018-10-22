@@ -1,4 +1,4 @@
-import { Lang, getEnum } from "@models/Const";
+import { Lang, getEnum } from "@models/helpers/Const";
 
 /**
  * Representation of a basic tuple (key, value).

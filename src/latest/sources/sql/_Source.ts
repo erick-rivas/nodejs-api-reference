@@ -1,5 +1,5 @@
 import Repository from "@repositories/_Sql";
-import { Pair, Generator } from "@models/Util";
+import { Pair } from "@models/helpers/Util";
 import Pet from "@models/_Pet";
 import Toy from "@models/_Toy";
 

@@ -1,10 +1,10 @@
 {
-  "name": "nodejs-template",
+  "name": "nodejs-reference",
   "version": "0.1.0",
-  "description": "Template for the development of Node.js APIs",
+  "description": "Reference for the development of Node.js APIs",
   "private": true,
   "apidoc": {
-    "title": "Node.js Template",
+    "title": "Node.js Reference",
     "sampleUrl": "http://localhost:4004/v1",
     "order": [
       "get",

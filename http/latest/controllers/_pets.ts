@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Sql from "@repositories/_sql";
-import Res from "@controllers/responses";
+import Res from "@http/controllers/util";
 import Mocks from "@models/_Mocks";
 
 

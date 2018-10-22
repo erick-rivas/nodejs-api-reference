@@ -1,10 +1,10 @@
 # Business models
 
 ## Overview
-  - Const.ts: Store the project constants. *e.g: catalogs, enums*.
-  - Mocks.ts: Handle the creation of mock models.
   - *.ts: Represents business models *e.g Car, Agency, etc*.
-
+  - helpers/Const.ts: Store the project constants. *e.g: catalogs, enums*.
+  - helpers/Mocks.ts: Handle the creation of mock models.
+  
 
 ## Code Guidelines
 

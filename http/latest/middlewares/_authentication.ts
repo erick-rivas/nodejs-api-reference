@@ -1,5 +1,5 @@
 import { Request, Response, Next } from "express";
-import Res from "@middlewares/responses";
+import Res from "@http/middlewares/util";
 
 class Authentication
 {
