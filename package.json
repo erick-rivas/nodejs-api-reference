@@ -14,7 +14,8 @@
     ]
   },
   "scripts": {
-    "start": "tsc && node ./bin/www"
+    "start": "tsc && node ./bin/www",
+    "debug": "tsc && node dist/debug.js"
   },
   "dependencies": {
     "body-parser": "1.18.3",

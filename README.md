@@ -59,6 +59,7 @@ In general terms, the architecture uses the following structure:
 
 ### Configuration ###
   - app.ts: Handle server initialization and version managment of endpoints.
+  - debug.ts: Temp file to debug source methods.
   - package.json & tsconfig.json: Handle the project configuration such as dependencies, paths and module definition.
   - .env.example & .env: Define the environment variables which are mainly used to store secret_keys.
 
@@ -91,6 +92,14 @@ In general terms, the architecture uses the following structure:
  * Run server.
  ```bash
  $ npm start
+ ```
+
+ ### To debug modules
+
+ * Modify debug.ts
+ * Run script.
+ ```bash
+ $ npm run-scripts debug
  ```
 
  ### To generate documentation
