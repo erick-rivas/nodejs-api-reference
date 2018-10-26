@@ -70,7 +70,7 @@ In general terms, the architecture uses the following structure:
 ### To start coding and build:
 
  * Clone this repository.
-  * Create a database instance with the db.sql scheme (See [scheme](./assets/dev/db.sql)).
+ * Create a database instance with the db.sql scheme (See [scheme](./assets/dev/db.sql)).
  * Create an .env file with the project credentials based on *.env.example* file
  * Install dependencies.
  ```bash
@@ -91,6 +91,7 @@ In general terms, the architecture uses the following structure:
 
  ### To debug modules
 
+ * Create an debug.ts file with based on *.deb.example* file
  * Modify debug.ts
  * Run script.
  ```bash

@@ -1,8 +1,6 @@
 require("module-alias/register");
 import * as dotenv from "dotenv";
 
-import Sql from "@sql/Source";
-
 class Debug
 {
   constructor()
@@ -12,9 +10,7 @@ class Debug
 
   async main(): Promise<any>
   {
-    let sql = Sql.getInstance();
-    let result = await sql.getPetList();
-    console.log(result);
+    //TODO
   }
 }
 
