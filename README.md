@@ -4,11 +4,6 @@ This repository holds the source code of a **reference** for the development of 
 
 ## Before start ##
 
-### Demo ###
-
-This reference uses a Pet CRUD example to explain the API flux. 
-> Each example file has an underscore prefix, *e.g. _Pet.ts*. 
-
 ### Cascade explanation ###
 
 Each module of the architecture contains a **guidelines&#46;md** file with specific explanation about the details of each module. *e.g. /http/controllers*.

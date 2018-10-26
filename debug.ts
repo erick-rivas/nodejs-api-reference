@@ -1,7 +1,7 @@
 require("module-alias/register");
 import * as dotenv from "dotenv";
 
-import Sql from "@sql/_Source";
+import Sql from "@sql/Source";
 
 class Debug
 {

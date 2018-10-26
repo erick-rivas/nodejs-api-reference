@@ -1,21 +1,21 @@
 import { Router } from "express";
-import _Middlewares from "./_middlewares";
+import Factory from "@http/factories/middlewares";
+import Authentication from "@http/middlewares/authentication";
 
 class Middlewares
 {
   private router: Router;
+  private auth: Authentication;
 
   constructor()
   {
     this.router = Router();
+    this.auth = Factory.createAuthentication();
   }
 
-  init(): Middlewares
+  init(): Router
   {
-    //TODO remove
-    let mockMiddleware = new _Middlewares().init();
-    this.router = mockMiddleware;
-
+    this.router.get("*", (req, res, next) => this.auth.authenticate(req, res, next));
     return this.router;
   }
 

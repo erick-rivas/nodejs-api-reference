@@ -1,5 +1,5 @@
-import Pet from "@models/_Pet";
-import Toy from "@models/_Toy";
+import Pet from "@models/Pet";
+import Toy from "@models/Toy";
 
 interface Sql
 {

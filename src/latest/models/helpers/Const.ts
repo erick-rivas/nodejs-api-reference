@@ -1,3 +1,11 @@
+enum Animal
+{
+  DOG = "DOG",
+  CAT = "CAT",
+  TURTLE = "TURTLE",
+  OTHER = "OTHER"
+}
+
 enum Lang
 {
   EN = "EN",
@@ -20,4 +28,4 @@ const getEnum = (data: any, val: string, def: any) =>
   return def;
 }
 
-export { Lang, getEnum };
+export { Animal, Lang, getEnum };

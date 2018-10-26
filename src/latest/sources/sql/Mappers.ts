@@ -1,7 +1,19 @@
-import Pet from "@models/_Pet";
-import Toy from "@models/_Toy";
-import { Mapper } from "./Mapper";
+import Pet from "@models/Pet";
+import Toy from "@models/Toy";
 
+
+abstract class Mapper<T>
+{
+  transformList(dataSet: any): T[]
+  {
+    if (!dataSet) return [];
+    const result = [];
+    for (let data of dataSet)
+      result.push(this.transform(data));
+    return result;
+  }
+  abstract transform(data): T;
+}
 
 class PetMapper extends Mapper<Pet>
 {
@@ -27,4 +39,4 @@ class ToyMapper extends Mapper<Toy>
   }
 }
 
-export { PetMapper, ToyMapper };
+export { PetMapper, ToyMapper, Mapper };

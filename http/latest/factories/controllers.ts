@@ -1,6 +1,6 @@
-import Pets from "@controllers/_pets";
-import Toys from "@controllers/_toys";
-import Sql from "@sql/_Source";
+import Pets from "@http/controllers/pets";
+import Toys from "@http/controllers/toys";
+import Sql from "@sql/Source";
 
 
 class Controllers
