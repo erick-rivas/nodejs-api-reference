@@ -16,7 +16,7 @@ The reference uses a architecure based on [Uncle Bob Clean architecture](https:/
 
 ![alt architecture](./assets/dev/architecture.jpg)
 
-### General description ### 
+### General description
 
 In general terms, the architecture uses the following structure:
 
@@ -24,7 +24,7 @@ In general terms, the architecture uses the following structure:
   - /http: Http resources such as endpoints, controllers and websockets.
   - /assets: Project resources such as scripts, images and files.
 
-### Business logic ###
+### Business logic
 
   - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/src/models/guidelines.md)
 
@@ -35,7 +35,7 @@ In general terms, the architecture uses the following structure:
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
-### Http resources ###
+### Http resources
 
   - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/guidelines.md)
 
@@ -47,12 +47,14 @@ In general terms, the architecture uses the following structure:
 
   - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/http/middlewares/guidelines.md)
 
-### Assets ###
+### Assets
+
   - /dev: Resources related to the development of the project *e.g db.sql*.
   - /public: Resources that are publicly accessible *e.g profile_image.png, doc.pdf*.
 <br/><br/>
 
-### Configuration ###
+### Configuration
+
   - app.ts: Handle server initialization and version managment of endpoints.
   - debug.ts: Temp file to debug source methods.
   - package.json & tsconfig.json: Handle the project configuration such as dependencies, paths and module definition.
@@ -95,7 +97,7 @@ In general terms, the architecture uses the following structure:
  * Modify debug.ts
  * Run script.
  ```bash
- $ npm run-scripts debug
+ $ npm run-script debug
  ```
 
  ### To generate documentation
@@ -109,7 +111,7 @@ In general terms, the architecture uses the following structure:
  $ apidoc -i http/ -o docs/ -t assets/dev/docs_template/
  ```
 
-  ### Examples *Pets CRUD*
+  ### Examples
 
  * Example docs.
  ```bash

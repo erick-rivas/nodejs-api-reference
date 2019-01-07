@@ -1,9 +1,28 @@
 import { Router } from "express";
-import * as multer from "multer"
+import * as path from "path";
+import * as multer from "multer";
 
 import Res from "@controllers/util";
 import { Generator } from "@models/helpers/Util";
 
+var upload = multer({
+  storage: multer.diskStorage(
+    {
+      destination: function (req, file, cb)
+      {
+        const rootDir = path.dirname(require.main.filename) + "/../";
+        cb(null, rootDir + 'assets/public/resources')
+      },
+      filename: function (req, file, cb)
+      {
+        let extension = "";
+        if (file.originalname)
+          extension = "." + file.originalname.split('.').pop();
+        cb(null, Generator.getId() + extension);
+      }
+    }
+  )
+});
 
 export class Resources
 {
@@ -28,29 +47,12 @@ export class Resources
     * @apiSuccess {String} url File path.
     */
 
-    var storage = multer.diskStorage(
-      {
-        destination: 'assets/public/resources',
-        filename: function (req, file, cb)
-        {
-          let extension = "";
-          if (file.originalname)
-            extension = "." + file.originalname.split('.').pop();
-          cb(null, Generator.getId() + extension);
-        }
-      }
-    );
-    var upload = multer({ storage: storage }).single("file");
-
-    this.router.post("/file", (req, res) =>
+    this.router.post("/file", upload.single("file"), (req, res) =>
     {
-      upload(req, res, () =>
-      {
-        let result = {
-          url: `http://${req.get("host")}/resources/${req.file.filename}`
-        }
-        Res.sendObject(res, result);
-      });
+      let result = {
+        url: `http://${req.get("host")}/resources/${req.file.filename}`
+      }
+      return Res.sendObject(res, result);
     });
 
     return this.router;
