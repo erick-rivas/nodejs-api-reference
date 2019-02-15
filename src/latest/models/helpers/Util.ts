@@ -1,3 +1,4 @@
+import * as faker from 'faker';
 import { Lang, getEnum } from "@models/helpers/Const";
 
 /**
@@ -88,6 +89,27 @@ class Generator
   {
     return Math.floor(Math.random() * max);
   }
+
+  static getName(): string
+  {
+    return faker.name.findName();
+  }
+
+  static getEmail(): string
+  {
+    return faker.internet.email();
+  }
+
+  static getImageUrl(): string
+  {
+    return faker.image.imageUrl();
+  }
+
+  static getNoun(): string
+  {
+    return `${faker.hacker.adjective()} ${faker.hacker.noun()}`;
+  }
+
 }
 
 export { Pair, LString, Generator };

@@ -1,4 +1,4 @@
-import Model from "./Model";
+import Model from "@models/Model";
 
 class Toy extends Model
 {

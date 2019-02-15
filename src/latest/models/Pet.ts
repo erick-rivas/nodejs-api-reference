@@ -1,7 +1,7 @@
-import Model from "./Model";
-import Toy from "./Toy";
-import { Animal } from "./helpers/Const";
-import { getEnum } from "./helpers/Const"
+import Model from "@models/Model";
+import Toy from "@models/Toy";
+import { Animal } from "@models/helpers/Const";
+import { getEnum } from "@models/helpers/Const"
 
 class Puppy extends Model
 {

@@ -16,6 +16,9 @@
 			"@controllers/*": [
 				"http/latest/controllers/*"
 			],
+			"@extensions/*": [
+				"http/latest/controllers/extensions/*"
+			],
 			"@middlewares/*": [
 				"http/latest/middlewares/*"
 			],

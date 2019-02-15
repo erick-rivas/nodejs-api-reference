@@ -21,25 +21,29 @@
     "body-parser": "1.18.3",
     "cookie-parser": "1.4.3",
     "cors": "2.8.5",
+    "csv-parse": "4.3.1",
     "debug": "4.1.1",
     "dotenv": "6.2.0",
     "express": "4.16.4",
-    "mysql": "2.16.0",
+    "faker": "4.1.0",
+    "i": "0.3.6",
     "log": "3.2.0",
     "morgan": "1.9.1",
     "multer": "1.4.1",
+    "mysql": "2.16.0",
     "request": "2.88.0",
     "serve-favicon": "2.5.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.18",
+    "@types/node": "10.12.21",
     "@types/request": "2.48.1",
     "module-alias": "2.1.0",
-    "typescript": "3.2.2"
+    "typescript": "3.3.1"
   },
   "_moduleAliases": {
     "@http": "dist/http/latest",
     "@controllers": "dist/http/latest/controllers",
+    "@extensions": "dist/http/latest/controllers/extensions",
     "@middlewares": "dist/http/latest/middlewares",
     "@repositories": "dist/src/latest/repositories",
     "@models": "dist/src/latest/models",

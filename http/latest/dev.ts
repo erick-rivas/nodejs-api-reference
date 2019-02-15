@@ -1,59 +1,22 @@
-const fs = require("fs");
-import * as path from "path";
-import * as mysql from "mysql";
-import SqlExc from "@sql/Executor";
 import { Router } from "express";
-
-import Res from "@controllers/util";
+import DevCtrl from "@http/controllers/dev";
 
 class Dev
 {
   private router: Router;
+  private ctrl: DevCtrl;
 
   constructor()
   {
     this.router = Router();
+    this.ctrl = new DevCtrl();
   }
 
   init(): Router
   {
-    this.router.get("/restart", async (req, res) =>
-    {
-      const sql = new DevSql();
-      await sql.restartDb();
-      return Res.sendOk(res);
-    });
-
+    this.router.get("/restart", (req, res) => this.ctrl.restart(req, res));
+    this.router.get("/generate", (req, res) => this.ctrl.generate(req, res));
     return this.router;
-  }
-}
-
-class DevSql extends SqlExc
-{
-  constructor()
-  {
-    super();
-    this.sql = mysql.createConnection({
-      host: process.env.SQL_HOST,
-      user: process.env.SQL_USER,
-      password: process.env.SQL_PASSWORD,
-      multipleStatements: true
-    });
-  }
-
-  restartDb(): Promise<void>
-  {
-    return new Promise(resolve =>
-    {
-      const dirname = path.dirname(require.main.filename) + "/../";
-      const dbPath = "assets/dev/db.sql";
-      fs.readFile(dirname + dbPath, "utf8", (err, content) =>
-      {
-        const DATABASE = process.env.SQL_DATABASE;
-        const query = `DROP DATABASE IF EXISTS ${DATABASE}; ${content}`;
-        this.execute(query).then(() => resolve());
-      });
-    });
   }
 }
 
