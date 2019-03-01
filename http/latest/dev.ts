@@ -1,5 +1,5 @@
 import { Router } from "express";
-import DevCtrl from "@http/controllers/dev";
+import DevCtrl from "@controllers/dev";
 
 class Dev
 {
@@ -14,8 +14,8 @@ class Dev
 
   init(): Router
   {
-    this.router.get("/restart", (req, res) => this.ctrl.restart(req, res));
-    this.router.get("/generate", (req, res) => this.ctrl.generate(req, res));
+    this.router.get("/db/init", (req, res) => this.ctrl.initDb(req, res));
+    this.router.get("/models/generate", (req, res) => this.ctrl.generateModels(req, res));
     return this.router;
   }
 }

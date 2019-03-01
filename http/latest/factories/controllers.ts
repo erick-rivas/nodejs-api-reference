@@ -1,5 +1,5 @@
-import Pets from "@http/controllers/pets";
-import Toys from "@http/controllers/toys";
+import Pets from "@controllers/pets";
+import Toys from "@controllers/toys";
 import Sql from "@sql/Source";
 
 

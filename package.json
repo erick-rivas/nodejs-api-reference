@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "body-parser": "1.18.3",
-    "cookie-parser": "1.4.3",
+    "cookie-parser": "1.4.4",
     "cors": "2.8.5",
-    "csv-parse": "4.3.1",
+    "csv-parse": "4.3.3",
     "debug": "4.1.1",
     "dotenv": "6.2.0",
     "express": "4.16.4",
@@ -35,16 +35,15 @@
     "serve-favicon": "2.5.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.21",
+    "@types/node": "11.9.6",
     "@types/request": "2.48.1",
-    "module-alias": "2.1.0",
-    "typescript": "3.3.1"
+    "module-alias": "2.2.0",
+    "typescript": "3.3.3333"
   },
   "_moduleAliases": {
     "@http": "dist/http/latest",
-    "@controllers": "dist/http/latest/controllers",
-    "@extensions": "dist/http/latest/controllers/extensions",
     "@middlewares": "dist/http/latest/middlewares",
+    "@controllers": "dist/src/latest/controllers",
     "@repositories": "dist/src/latest/repositories",
     "@models": "dist/src/latest/models",
     "@sql": "dist/src/latest/sources/sql"

@@ -4,7 +4,7 @@ import * as mysql from "mysql";
 import SqlExec from "@sql/Executor";
 
 
-class RestartDb
+class InitDb
 {
   async execute(): Promise<any>
   {
@@ -44,4 +44,4 @@ class DevSql extends SqlExec
 }
 
 
-export default RestartDb;
+export default InitDb;

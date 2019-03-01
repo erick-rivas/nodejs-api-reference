@@ -2,7 +2,7 @@
 
 ## Overview
   - *.ts: Handles the link between business logic and routes.
-  - extensions/*.ts: Extra classes for complex controllers.
+  - moduleName/*.ts: Extra classes for complex controllers.
   - util.ts: Commons methods for controllers.
 
 ### Code Guidelines
@@ -33,7 +33,7 @@ delete()
 ```
 
 
->In case of need extra funcions use /extensions classes.
+>In case of need extra funcions use /moduleName classes.
 
 
 ### Quality checklist

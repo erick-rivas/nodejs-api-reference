@@ -26,26 +26,27 @@ In general terms, the architecture uses the following structure:
 
 ### Business logic
 
-  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/src/models/guidelines.md)
+  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/src/latest/models/guidelines.md)
 
-  - /repositories: Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/src/repositories/guidelines.md)
+  - /repositories: Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/src/latest/repositories/guidelines.md)
     > Each repository is grouped by datasource, *e.g. sql, gmail, aws, etc.*
 
-  - /sources: Are the implementations of the repository methods. [Details](/src/sources/guidelines.md)
+  - /sources: Are the implementations of the repository methods. [Details](/src/latest/sources/guidelines.md)
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
-### Http resources
-
-  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/guidelines.md)
-
-  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/http/controllers/guidelines.md)
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/src/latest/controllers/guidelines.md)
 
     > It is the most important module of the architecture because it is the responsable of linking the data requirements (repositories), with the business logic (use cases).
 
-  - /extensions: Are auxiliary classes of controllers in case of complex use cases *e.g Complex algorithms, AI, ML*.
+    > In case of complex use cases *e.g Complex algorithms, AI, ML*, it can be separated in module folders
 
-  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/http/middlewares/guidelines.md)
+### Http resources
+
+  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/latest/guidelines.md)
+
+  
+  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/http/latest/middlewares/guidelines.md)
 
 ### Assets
 
@@ -77,6 +78,10 @@ In general terms, the architecture uses the following structure:
  * Install dependencies.
  ```bash
  $ npm install
+ ```
+ * Init database 
+  ```bash
+ GET http://localhost:4004/v1/dev/db/init
  ```
  * Install typescript.
  ```bash

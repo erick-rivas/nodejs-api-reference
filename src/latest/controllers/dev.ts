@@ -1,20 +1,20 @@
 import { Request, Response } from "express";
 import Res from "@controllers/util";
 
-import GenerateModels from "@extensions/dev/generateModels";
-import RestartDb from "@extensions/dev/restartDb";
+import GenerateModels from "@controllers/dev/generateModels";
+import InitDb from "@controllers/dev/initDb";
 
 
 class Dev
 {
-  async restart(req: Request, res: Response)
+  async initDb(req: Request, res: Response)
   {
-    const restartDb = new RestartDb();
-    await restartDb.execute();
+    const initDb = new InitDb();
+    await initDb.execute();
     return Res.sendOk(res);
   }
 
-  async generate(req: Request, res: Response)
+  async generateModels(req: Request, res: Response)
   {
     const input = req.query.input;
     const type = req.query.type ? req.query.type : "ts";

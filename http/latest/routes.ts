@@ -1,7 +1,7 @@
 import { Router } from "express";
 import Factory from "@http/factories/controllers";
-import Pets from "@http/controllers/pets";
-import Toys from "@http/controllers/toys";
+import Pets from "@controllers/pets";
+import Toys from "@controllers/toys";
 
 class Routes
 {
