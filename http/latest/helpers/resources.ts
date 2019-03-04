@@ -2,7 +2,7 @@ import { Router } from "express";
 import * as path from "path";
 import * as multer from "multer";
 
-import Res from "@controllers/util";
+import Res from "@controllers/helpers/util";
 import { Generator } from "@models/helpers/Util";
 
 var upload = multer({

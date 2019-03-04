@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import Res from "@controllers/util";
+import Res from "@controllers/helpers/util";
 
-import GenerateModels from "@controllers/dev/generateModels";
-import InitDb from "@controllers/dev/initDb";
+import GenerateModels from "@controllers/helpers/dev/generateModels";
+import InitDb from "@controllers/helpers/dev/initDb";
 
 
 class Dev

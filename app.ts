@@ -25,7 +25,7 @@ class App
     this.app.use(logger("dev"));
     //Check cors
     //this.app.use(cors());
-    
+
     this.app.use(helmet());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({
@@ -59,9 +59,9 @@ class App
 
 //Latest (v1.0)
 
-import Dev from "@http/dev";
+import Dev from "@http/helpers/dev";
 import Routes from "@http/routes";
-import Resources from "@http/resources";
+import Resources from "@http/helpers/resources";
 import Middlewares from "@http/middlewares";
 
 class v1_0
@@ -76,7 +76,7 @@ class v1_0
   public init()
   {
     this.router.use("/resources", new Resources().init());
-    //Check disable in production
+    //Disable in production
     this.router.use("/dev", new Dev().init());
     this.router.use("/", new Middlewares().init());
     this.router.use("/", new Routes().init());
