@@ -1,6 +1,7 @@
 require("module-alias/register");
 import * as bodyParser from "body-parser";
 import * as express from "express";
+import * as helmet from "helmet"
 import * as logger from "morgan";
 import * as path from "path";
 import * as cors from "cors";
@@ -22,7 +23,10 @@ class App
   {
     this.app = express();
     this.app.use(logger("dev"));
-    this.app.use(cors());
+    //Check cors
+    //this.app.use(cors());
+    
+    this.app.use(helmet());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({
       extended: true
@@ -72,6 +76,7 @@ class v1_0
   public init()
   {
     this.router.use("/resources", new Resources().init());
+    //Check disable in production
     this.router.use("/dev", new Dev().init());
     this.router.use("/", new Middlewares().init());
     this.router.use("/", new Routes().init());
