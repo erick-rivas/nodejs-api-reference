@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import Res from "@controllers/helpers/util";
+import * as fs from 'fs';
+import * as path from "path";
 
 import GenerateModels from "@controllers/helpers/dev/generateModels";
 import InitDb from "@controllers/helpers/dev/initDb";
@@ -16,7 +18,11 @@ class Dev
 
   async generateModels(req: Request, res: Response)
   {
-    const input = req.query.input;
+    let input = req.query.input;
+    if (!input) {
+      let dir = `${path.dirname(require.main.filename)}/../assets/dev`;
+      input = fs.readFileSync(`${dir}/generator-template.csv`, 'utf8');
+    }
     const type = req.query.type ? req.query.type : "ts";
     const generateModels = new GenerateModels(input, type);
     await generateModels.execute();

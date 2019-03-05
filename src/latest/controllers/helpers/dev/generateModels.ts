@@ -97,7 +97,7 @@ class GenerateModels
         consts[data.class_name] = [];
       }
       attrs[data.class_name].push({
-        name: data.attribute,
+        name: this.snakeToCamel(data.attribute),
         type: data.type,
         description: data.description,
         collection: data.collection
@@ -112,6 +112,8 @@ class GenerateModels
       else if (data.description == "_CONST")
         consts[data.class_name][data.type] = data.collection;
     }
+
+    console.log(attrs);
 
     //Generate files
 
@@ -141,11 +143,12 @@ class GenerateModels
     let imports = "";
     let gets = "";
 
+    toJson += `      id: this.id,\n`;
     for (let a of attributes) {
       attrs += `  ${a.name}: ${a.type}\n`;
       args += `${a.name}: ${a.type},`;
       assigns += `    this.${a.name} = ${a.name};\n`;
-      toJson += `      ${this.camelToSnake(a.name)}: ${a.name}\n`;
+      toJson += `      ${this.camelToSnake(a.name)}: this.${a.name},\n`;
     }
 
     for (let m in models)
@@ -160,7 +163,7 @@ class GenerateModels
     attrs = attrs.trim();
     args = args.trim().slice(0, -1);
     assigns = assigns.trim();
-    toJson = toJson.trim();
+    toJson = toJson.trim().slice(0, -1);
     imports = imports.trim();
     gets = gets.trim();
 
@@ -259,6 +262,11 @@ class GenerateModels
   camelToSnake(s: string): string
   {
     return s.replace(/(?:^|\.?)([A-Z])/g, function (x, y) { return "_" + y.toLowerCase() }).replace(/^_/, "");
+  }
+
+  snakeToCamel(s: string): string
+  {
+    return s.replace(/_\w/g, (m) => m[1].toUpperCase());
   }
 }
 
