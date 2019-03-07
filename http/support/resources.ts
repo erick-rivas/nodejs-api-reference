@@ -2,8 +2,8 @@ import { Router } from "express";
 import * as path from "path";
 import * as multer from "multer";
 
-import Res from "@controllers/helpers/util";
-import { Generator } from "@models/helpers/Util";
+import Res from "@http-util/responses";
+import Generator from "@src-util/Generator";
 
 var upload = multer({
   storage: multer.diskStorage(

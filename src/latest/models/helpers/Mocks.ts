@@ -1,11 +1,10 @@
 import Pet from "@models/Pet";
 import Toy from "@models/Toy";
+import Generator from "@src-util/Generator";
 import { Animal } from "@models/helpers/Const";
-import { Generator } from "@models/helpers/Util";
 
 class Mocks
 {
-
   static Pets()
   {
     return [

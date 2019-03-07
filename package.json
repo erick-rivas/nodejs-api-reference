@@ -45,8 +45,11 @@
   },
   "_moduleAliases": {
     "@http": "dist/http/latest",
+    "@support": "dist/http/support",
+    "@http-util": "dist/http/util",
     "@middlewares": "dist/http/latest/middlewares",
     "@controllers": "dist/http/latest/controllers",
+    "@src-util": "dist/src/util",
     "@repositories": "dist/src/latest/repositories",
     "@models": "dist/src/latest/models",
     "@sql": "dist/src/latest/sources/sql"

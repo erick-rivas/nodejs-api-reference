@@ -1,5 +1,5 @@
 import { Router } from "express";
-import DevCtrl from "@controllers/helpers/dev/dev";
+import DevCtrl from "@support/controllers/dev";
 
 class Dev
 {

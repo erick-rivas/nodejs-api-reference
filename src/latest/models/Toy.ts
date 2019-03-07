@@ -2,7 +2,6 @@ import Model from "@models/helpers/Model";
 
 class Toy extends Model
 {
-
   id: number;
   name: string;
 

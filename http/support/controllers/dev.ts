@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import Res from "@controllers/helpers/util";
 import * as fs from 'fs';
 import * as path from "path";
 
-import GenerateModels from "@controllers/helpers/dev/generateModels";
-import InitDb from "@controllers/helpers/dev/initDb";
+import Res from "@http-util/responses";
+import GenerateModels from "@support/controllers/dev/generateModels";
+import InitDb from "@support/controllers/dev/initDb";
 
 
 class Dev

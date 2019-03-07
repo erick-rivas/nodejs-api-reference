@@ -40,6 +40,9 @@ class App
     //API version initialization
     this.app.use("/v1", new v1_0().init());
 
+    //Support endpoints
+    this.app.use("/support", new v1_0().init());
+
     const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);
     console.log("Listening port: " + port);
@@ -59,9 +62,7 @@ class App
 
 //Latest (v1.0)
 
-import Dev from "@http/dev";
 import Routes from "@http/routes";
-import Resources from "@http/resources";
 import Middlewares from "@http/middlewares";
 
 class v1_0
@@ -75,11 +76,31 @@ class v1_0
 
   public init()
   {
-    this.router.use("/resources", new Resources().init());
-    //Disable in production
-    this.router.use("/dev", new Dev().init());
     this.router.use("/", new Middlewares().init());
     this.router.use("/", new Routes().init());
+    return this.router;
+  }
+}
+
+//Support
+
+import Dev from "@support/dev";
+import Resources from "@support/resources";
+
+class Support
+{
+  private router: Router;
+
+  constructor()
+  {
+    this.router = Router();
+  }
+
+  public init()
+  {
+    this.router.use("/resources", new Resources().init());
+    //Disable on production
+    this.router.use("/dev", new Dev().init());
     return this.router;
   }
 }

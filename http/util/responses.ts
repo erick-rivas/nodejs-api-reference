@@ -3,7 +3,6 @@ import Model from "@models/helpers/Model";
 
 class Responses
 {
-
   /**
    * Send a simple 200 response.
    */

@@ -1,7 +1,6 @@
 import Pet from "@models/Pet";
 import Toy from "@models/Toy";
 
-
 abstract class Mapper<T>
 {
   transformList(dataSet: any): T[]

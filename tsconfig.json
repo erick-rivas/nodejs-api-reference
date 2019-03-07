@@ -13,11 +13,20 @@
 			"@http/*": [
 				"http/latest/*"
 			],
+			"@support/*": [
+				"http/support/*"
+			],
+			"@http-util/*": [
+				"http/util/*"
+			],
 			"@middlewares/*": [
 				"http/latest/middlewares/*"
 			],
 			"@controllers/*": [
 				"http/latest/controllers/*"
+			],
+			"@src-util/*": [
+				"src/util/*"
 			],
 			"@repositories/*": [
 				"src/latest/repositories/*"

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as parse from 'csv-parse/lib/sync';
 import * as path from "path";
-import { Generator } from "@models/helpers/Util";
+import Generator from "@src-util/Generator";
 
 
 const TS_CLASS_TEMPLATE = `
