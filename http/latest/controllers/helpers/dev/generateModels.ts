@@ -89,28 +89,31 @@ class GenerateModels
     });
 
     for (let data of dataSet) {
-      if (classes.indexOf(data.class_name) == -1) {
-        classes.push(data.class_name);
-        levels[data.class_name] = data.class_level;
-        attrs[data.class_name] = [];
-        models[data.class_name] = [];
-        consts[data.class_name] = [];
+      let className = this.snakeToCamel(data.class_name);
+      let attribute = this.snakeToCamel(data.attribute);
+      let type = this.snakeToCamel(data.type);
+      if (classes.indexOf(className) == -1) {
+        classes.push(className);
+        levels[className] = data.class_level;
+        attrs[className] = [];
+        models[className] = [];
+        consts[className] = [];
       }
-      attrs[data.class_name].push({
-        name: this.snakeToCamel(data.attribute),
-        type: data.type,
+      attrs[className].push({
+        name: attribute,
+        type: type,
         description: data.description,
         collection: data.collection
       });
       if (data.description == "_MODEL") {
-        if (data.type.endsWith("[]"))
-          models[data.class_name][data.type.slice(0, -2)] = 0;
+        if (type.endsWith("[]"))
+          models[className][type.slice(0, -2)] = 0;
         else
-          models[data.class_name][data.type] = 0;
+          models[className][type] = 0;
 
       }
       else if (data.description == "_CONST")
-        consts[data.class_name][data.type] = data.collection;
+        consts[className][type] = data.collection;
     }
 
     console.log(attrs);
@@ -145,7 +148,7 @@ class GenerateModels
 
     toJson += `      id: this.id,\n`;
     for (let a of attributes) {
-      attrs += `  ${a.name}: ${a.type}\n`;
+      attrs += `  ${a.name}: ${a.type};\n`;
       args += `${a.name}: ${a.type},`;
       assigns += `    this.${a.name} = ${a.name};\n`;
       toJson += `      ${this.camelToSnake(a.name)}: this.${a.name},\n`;

@@ -59,9 +59,9 @@ class App
 
 //Latest (v1.0)
 
-import Dev from "@http/helpers/dev";
+import Dev from "@http/dev";
 import Routes from "@http/routes";
-import Resources from "@http/helpers/resources";
+import Resources from "@http/resources";
 import Middlewares from "@http/middlewares";
 
 class v1_0

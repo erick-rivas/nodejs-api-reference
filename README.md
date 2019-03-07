@@ -35,17 +35,16 @@ In general terms, the architecture uses the following structure:
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
-  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/src/latest/controllers/guidelines.md)
+### Http resources
+
+  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/latest/guidelines.md)
+ 
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/http/latest/controllers/guidelines.md)
 
     > It is the most important module of the architecture because it is the responsable of linking the data requirements (repositories), with the business logic (use cases).
 
     > In case of complex use cases *e.g Complex algorithms, AI, ML*, it can be separated in module folders
 
-### Http resources
-
-  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/latest/guidelines.md)
-
-  
   - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/http/latest/middlewares/guidelines.md)
 
 ### Assets

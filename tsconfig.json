@@ -17,7 +17,7 @@
 				"http/latest/middlewares/*"
 			],
 			"@controllers/*": [
-				"src/latest/controllers/*"
+				"http/latest/controllers/*"
 			],
 			"@repositories/*": [
 				"src/latest/repositories/*"

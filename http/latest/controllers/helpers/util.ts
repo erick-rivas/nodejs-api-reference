@@ -1,5 +1,5 @@
 import { Response } from "express";
-import Model from "@models/Model";
+import Model from "@models/helpers/Model";
 
 class Responses
 {

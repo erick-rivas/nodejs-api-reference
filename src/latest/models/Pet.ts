@@ -1,4 +1,4 @@
-import Model from "@models/Model";
+import Model from "@models/helpers/Model";
 import Toy from "@models/Toy";
 import { Animal } from "@models/helpers/Const";
 import { getEnum } from "@models/helpers/Const"
