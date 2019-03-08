@@ -1,0 +1,6 @@
+class_name,attribute,type,description,class_level,collection
+Toy,name,string,noun,1,
+Pet,name,string,name,2,
+Pet,animal,Animal,_CONST,2,"[OTHER, DOG,CAT,TURTLE]"
+Pet,photo_url,string,imageUrl,2,
+Pet,toys,Toy[],_MODEL,2,

@@ -1,3 +1,5 @@
 credentials
 public/*
-dev/gen/*
+dev/gen_controllers/*
+dev/gen_mappers/*
+dev/gen_models/*

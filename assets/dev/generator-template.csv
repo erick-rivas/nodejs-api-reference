@@ -1,6 +1,0 @@
-class_name,class_level,attribute,type,description,collection
-Toy,1,name,string,noun,
-Pet,2,name,string,name,
-Pet,2,animal,Animal,_CONST,"[OTHER, DOG,CAT,TURTLE]"
-Pet,2,photo_url,string,imageUrl,
-Pet,2,toys,Toy[],_MODEL,

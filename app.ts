@@ -41,7 +41,7 @@ class App
     this.app.use("/v1", new v1_0().init());
 
     //Support endpoints
-    this.app.use("/support", new v1_0().init());
+    this.app.use("/support", new Support().init());
 
     const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);

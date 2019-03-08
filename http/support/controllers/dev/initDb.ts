@@ -1,6 +1,7 @@
-const fs = require("fs");
+import * as fs from 'fs';
 import * as path from "path";
 import * as mysql from "mysql";
+
 import SqlExec from "@sql/Executor";
 
 
@@ -12,7 +13,6 @@ class InitDb
     return sql.restartDb();
   }
 }
-
 
 class DevSql extends SqlExec
 {

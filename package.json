@@ -38,7 +38,7 @@
     "serve-favicon": "2.5.0"
   },
   "devDependencies": {
-    "@types/node": "11.10.4",
+    "@types/node": "11.10.5",
     "@types/request": "2.48.1",
     "module-alias": "2.2.0",
     "typescript": "3.3.3333"
