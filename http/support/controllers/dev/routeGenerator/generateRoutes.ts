@@ -59,8 +59,6 @@ class GenerateRoutes extends Executor
     endpoint = endpointData.split("|")[0];
     method = endpointData.split("|")[1].toLowerCase();
     group = super.snakeToCamel(resource);
-
-
     let groupU = group.charAt(0).toUpperCase() + group.slice(1)
 
     if (method == "get") {
@@ -73,7 +71,6 @@ class GenerateRoutes extends Executor
         name = `Get${groupU}List`;
         func = "getList";
       }
-
     } else if (method == "post") {
       description = `Save a ${group}`;
       name = `Save${groupU}`;

@@ -80,7 +80,7 @@ In general terms, the architecture uses the following structure:
  ```
  * Init database 
   ```bash
- GET http://localhost:4004/v1/dev/db/init
+ GET http://localhost:4004/support/dev/init_db
  ```
  * Install typescript.
  ```bash
