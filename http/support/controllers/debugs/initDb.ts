@@ -43,5 +43,4 @@ class DevSql extends SqlExec
   }
 }
 
-
 export default InitDb;

@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
+import Mocks from "@models/helpers/Mocks";
 import Sql from "@repositories/sql";
 import Res from "@http-util/Responses";
-import Mocks from "@models/helpers/Mocks";
-
 
 class Pets
 {

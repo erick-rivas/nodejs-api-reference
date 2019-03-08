@@ -48,7 +48,7 @@ class Responses
   }
 
   /**
-  *  Redirect to a relative url
+  * Redirect to a relative url
   */
 
   static redirect(res: Response, req: Request, url: String)

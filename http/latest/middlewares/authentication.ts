@@ -3,6 +3,7 @@ import Res from "@http-util/Errors";
 
 class Authentication
 {
+
   constructor() { }
 
   async authenticate(req: Request, res: Response, next: Next)

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Res from "@http-util/Responses";
-import InitDb from "@support/controllers/debugs/initDb";
+import InitDb from "@support/controllers/debugs/InitDb";
 
 class Debugs
 {

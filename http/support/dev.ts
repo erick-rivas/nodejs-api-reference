@@ -8,13 +8,11 @@ class Dev
   private debugs: Debugs;
   private generators: Generators;
 
-
   constructor()
   {
     this.router = Router();
     this.debugs = new Debugs();
     this.generators = new Generators();
-
   }
 
   init(): Router

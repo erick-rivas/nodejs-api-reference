@@ -37,7 +37,7 @@ export class Resources
   {
 
     /**
-    * @api {post} /resource/file Save a file
+    * @api {post} /support/resource/file Save a file
     * @apiName SaveFile
     * @apiGroup Resources
     * @apiVersion 0.1.0

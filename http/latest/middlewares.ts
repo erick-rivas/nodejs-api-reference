@@ -18,7 +18,6 @@ class Middlewares
     this.router.get("*", (req, res, next) => this.auth.authenticate(req, res, next));
     return this.router;
   }
-
 }
 
 export default Middlewares;

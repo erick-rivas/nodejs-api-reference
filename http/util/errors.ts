@@ -6,7 +6,7 @@ enum Code
   UNAUTHORIZED = 403
 }
 
-class Responses
+class Errors
 {
 
   /**
@@ -40,4 +40,4 @@ class Responses
   }
 }
 
-export default Responses;
+export default Errors;

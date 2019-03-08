@@ -1,5 +1,6 @@
 import Authentication from "@http/middlewares/Authentication";
 
+
 class Middlewares
 {
   static createAuthentication()

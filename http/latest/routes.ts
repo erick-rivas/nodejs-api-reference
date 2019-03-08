@@ -106,7 +106,6 @@ class Routes
 
     return this.router;
   }
-
 }
 
 export default Routes;
