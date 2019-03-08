@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Response, Request } from "express";
 import Model from "@models/helpers/Model";
 
 class Responses
@@ -45,6 +45,15 @@ class Responses
   {
     res.setHeader("Content-Type", "application/json");
     res.send(JSON.stringify(result ? result : {}));
+  }
+
+  /**
+  *  Redirect to a relative url
+  */
+
+  static redirect(res: Response, req: Request, url: String)
+  {
+    res.redirect(`${req.protocol}://${req.get('host')}${url}`);
   }
 }
 

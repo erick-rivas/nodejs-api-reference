@@ -5,16 +5,16 @@ import Executor from './executor';
 class GenerateMappers extends Executor
 {
 
-  async execute(): Promise<any>
+  async execute(): Promise<string[]>
   {
     await super.loadData();
     await super.extractData();
-    await this.generateTs();
+    return this.generateTs();
   }
 
-  async generateTs()
+  async generateTs(): Promise<string[]>
   {
-    let dir = `${path.dirname(require.main.filename)}/../assets/dev/gen_mappers`;
+    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources`;
     let res = this.MAPPERS_TEMPLATE.toString().trim();
     let imports = "";
     let content = "";
@@ -36,6 +36,7 @@ class GenerateMappers extends Executor
     res = res.replace(new RegExp('_defs', 'g'), defs);
 
     fs.writeFileSync(`${dir}/mappers.ts`, res);
+    return ["mappers.ts"];
   }
 
   getMapper(className: string, attributes: any[], models: any[], consts: any[]): string
@@ -49,13 +50,13 @@ class GenerateMappers extends Executor
       if (a.type.endsWith("[]"))
         attrs += `        [],\n`;
       else if (a.description == "_MODEL")
-        attrs += `        new ${a.type}(data.${super.camelToSnake(a.type.toLowerCase())}_id),\n`;
+        attrs += `        new ${a.type}(data.${super.camelToSnake(a.type).toLowerCase()}_id),\n`;
       else
         attrs += `        data.${super.camelToSnake(a.name)},\n`;
     }
 
     modelName = className;
-    id = `${super.camelToSnake(className.toLowerCase())}_id`;
+    id = `${super.camelToSnake(className).toLowerCase()}_id`;
     attrs = attrs.trim().slice(0, -1);
 
     res = res.replace(new RegExp('_modelName', 'g'), modelName);

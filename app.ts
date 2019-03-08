@@ -8,6 +8,9 @@ import * as cors from "cors";
 import * as dotenv from "dotenv";
 import { Router } from "express";
 
+import Dev from "@support/dev";
+import Resources from "@support/resources";
+
 
 class App
 {
@@ -23,8 +26,9 @@ class App
   {
     this.app = express();
     this.app.use(logger("dev"));
+
     //Check cors
-    //this.app.use(cors());
+    this.app.use(cors());
 
     this.app.use(helmet());
     this.app.use(bodyParser.json());
@@ -37,11 +41,13 @@ class App
     this.app.use('/', express.static(rootDir + 'assets/public'));
     this.app.use('/docs', express.static(rootDir + 'docs'));
 
+    //Check dev
+    this.app.use("/dev", new Dev().init());
+    this.app.use("/resources", new Resources().init());
+
     //API version initialization
     this.app.use("/v1", new v1_0().init());
-
-    //Support endpoints
-    this.app.use("/support", new Support().init());
+    
 
     const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);
@@ -78,29 +84,6 @@ class v1_0
   {
     this.router.use("/", new Middlewares().init());
     this.router.use("/", new Routes().init());
-    return this.router;
-  }
-}
-
-//Support
-
-import Dev from "@support/dev";
-import Resources from "@support/resources";
-
-class Support
-{
-  private router: Router;
-
-  constructor()
-  {
-    this.router = Router();
-  }
-
-  public init()
-  {
-    this.router.use("/resources", new Resources().init());
-    //Disable on production
-    this.router.use("/dev", new Dev().init());
     return this.router;
   }
 }

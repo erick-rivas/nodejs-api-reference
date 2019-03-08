@@ -1,25 +1,34 @@
 import * as fs from 'fs';
 import * as path from "path";
+import * as zip from "node-zip";
+
 import Executor from './executor';
 
 class GenerateControllers extends Executor
 {
 
-  async execute(): Promise<any>
+  async execute(): Promise<string[]>
   {
     await super.loadData();
     await super.extractData();
-    await this.generateTs();
+    return this.generateTs();
   }
 
-  async generateTs()
+  async generateTs(): Promise<string[]>
   {
-    let dir = `${path.dirname(require.main.filename)}/../assets/dev/gen_controllers`;
+    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources/controllers`;
+    let paths = [];
+    if (!fs.existsSync(dir))
+      fs.mkdirSync(dir);
+
     for (let r of this.resources) {
       let resName = super.snakeToCamel(r);
       let t = this.getTs(resName, this.endpoints[r], this.params[r]);
-      fs.writeFileSync(`${dir}/${resName}.ts`, t);
+      let fn = `${dir}/${resName}.ts`;
+      paths.push(`/controllers/${resName}.ts`)
+      fs.writeFileSync(fn, t);
     }
+    return paths;
   }
 
   getTs(resName: string, endpoints: any[], params: any[]): string
@@ -90,57 +99,70 @@ export default _className;
 
   private GET_DETAILS_TEMPLATE = `
 
-  async getDetails(req: Request, res: Response)
-  {
-    const id = req.params.id;
-    const result = await this.sql.get_resourceDetails(id);
-    return Res.sendModel(res, result);
-  }
-  `
+    async getDetails(req: Request, res: Response)
+    {
+      /*
+      const id = req.params.id;
+      const result = await this.sql.get_resourceDetails(id);
+      return Res.sendModel(res, result);
+      */
+      return null;
+    }
+    `
 
   private GET_LIST_TEMPLATE = `
-
-  async getList(req: Request, res: Response)
-  {
-    const { _params } = req.query;
-    //TODO CHECK QUERY ARGS
-    const result = await this.sql.get_resourceList();
-    return Res.sendModel(res, result);
-  }
-  `
+  
+    async getList(req: Request, res: Response)
+    {
+      /*
+      const { _params } = req.query;
+      //TODO CHECK QUERY ARGS
+      const result = await this.sql.get_resourceList();
+      return Res.sendModel(res, result);
+      */
+      return null;
+    }
+    `
   private SAVE_TEMPLATE = `
-
-  async save(req: Request, res: Response)
-  {
-    //TODO CHECK SAVE
-    const result = this.sql.save_resource();
-    return Res.sendModel(res, result);
-  }
-  `
+  
+    async save(req: Request, res: Response)
+    {
+      /*
+      //TODO CHECK SAVE
+      const result = this.sql.save_resource();
+      return Res.sendModel(res, result);
+      */
+     return null;
+    }
+    `
 
   private UPDATE_TEMPLATE = `
-  
-  async update(req: Request, res: Response)
-  {
-    const id = req.params.id;
-    const { _params } = req.body;
-    //TODO CHECK QUERY ARGS
-    const result = await this.sql.set_resource();
-    return Res.sendModel(res, result);
-  }
-  `
+    
+    async update(req: Request, res: Response)
+    {
+      /*
+      const id = req.params.id;
+      const { _params } = req.body;
+      //TODO CHECK QUERY ARGS
+      const result = await this.sql.set_resource();
+      return Res.sendModel(res, result);
+      */
+      return null;
+    }
+    `
 
   private DELETE_TEMPLATE = `
-  
-  async delete(req: Request, res: Response)
-  {
-    const id = req.params.id;
-    await this.sql.delete_resource(id);
-    return Res.sendOk(res);
-  }
-  `
-
-
+    
+    async delete(req: Request, res: Response)
+    {
+      /*
+      const id = req.params.id;
+      await this.sql.delete_resource(id);
+      return Res.sendOk(res);
+      */
+      return null;
+    }
+    `
 }
 
 export default GenerateControllers;

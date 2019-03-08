@@ -1,7 +1,2 @@
 credentials
 public/*
-dev/gen_controllers/*
-dev/gen_mappers/*
-dev/gen_models/*
-dev/gen_routes/*
-

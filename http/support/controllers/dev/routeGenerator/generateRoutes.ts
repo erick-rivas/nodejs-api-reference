@@ -5,16 +5,16 @@ import Executor from './executor';
 class GenerateRoutes extends Executor
 {
 
-  async execute(): Promise<any>
+  async execute(): Promise<string[]>
   {
     await super.loadData();
     await super.extractData();
-    await this.generateTs();
+    return await this.generateTs();
   }
 
-  async generateTs()
+  async generateTs(): Promise<string[]>
   {
-    let dir = `${path.dirname(require.main.filename)}/../assets/dev/gen_routes`;
+    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources`;
     let res = this.ROUTES_TEMPLATE.toString().trim();
     let imports = "";
     let attrs = "";
@@ -44,6 +44,7 @@ class GenerateRoutes extends Executor
     res = res.replace(new RegExp('_content', 'g'), content);
 
     fs.writeFileSync(`${dir}/routes.ts`, res);
+    return ["routes.ts"];
   }
 
   getRoute(resource: string, endpointData: string, params: any[]): string

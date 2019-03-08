@@ -1,24 +1,33 @@
 import * as fs from 'fs';
 import * as path from "path";
+import * as zip from "node-zip";
 import Executor from './executor';
 
 class GenerateModels extends Executor
 {
 
-  async execute(): Promise<any>
+  async execute(): Promise<string[]>
   {
     await super.loadData();
     await super.extractData();
-    await this.generateTs();
+    return this.generateTs();
   }
 
-  async generateTs()
+  async generateTs(): Promise<string[]>
   {
-    let dir = `${path.dirname(require.main.filename)}/../assets/dev/gen_models`;
+    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources/models`;
+    let paths = [];
+    if (!fs.existsSync(dir))
+      fs.mkdirSync(dir);
+
     for (let c of this.classes) {
       let t = this.getTs(c, this.attrs[c], this.models[c], this.consts[c]);
-      fs.writeFileSync(`${dir}/${c}.ts`, t);
+      let fn = `${dir}/${c}.ts`;
+      paths.push(`/models/${c}.ts`)
+      fs.writeFileSync(fn, t);
     }
+
+    return paths;
   }
 
   getTs(className: string, attributes: any[], models: any[], consts: any[]): string
