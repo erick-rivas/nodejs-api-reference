@@ -11,6 +11,13 @@ class Executor
   protected models = [];
   protected consts = [];
 
+  async execute()
+  {
+    await this.loadData();
+    await this.extractData();
+    await this.generateTs();
+  }
+
   async loadData()
   {
     let dir = `${path.dirname(require.main.filename)}/../assets/dev`;
@@ -51,6 +58,13 @@ class Executor
       else if (data.description == "_CONST")
         this.consts[className][type] = data.collection;
     }
+  }
+
+  async generateTs() { }
+
+  getDir()
+  {
+    return `${path.dirname(require.main.filename)}/../assets/dev/gen`;
   }
 
   camelToSnake(s: string): string

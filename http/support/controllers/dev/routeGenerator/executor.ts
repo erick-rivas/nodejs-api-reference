@@ -6,8 +6,16 @@ class Executor
 {
   protected input = "";
   protected resources = [];
+  protected classes = [];
   protected endpoints = [];
   protected params = [];
+
+  async execute()
+  {
+    await this.loadData();
+    await this.extractData();
+    await this.generateTs();
+  }
 
   async loadData()
   {
@@ -24,21 +32,29 @@ class Executor
     for (let data of dataSet) {
 
       let resource = `${data.name.split("/")[1]}`;
+      let className = data.class;
       let endpoint = `${data.name}|${data.method}`;
 
       if (this.resources.indexOf(resource) == -1) {
         this.resources.push(resource);
+        this.classes[resource] = className;
         this.endpoints[resource] = [];
       }
 
       if (this.endpoints[resource].indexOf(endpoint) == -1) {
         this.endpoints[resource].push(endpoint);
         this.params[endpoint] = [];
+        if (data.param)
+          this.params[endpoint] = data.param.split("\t");
       }
-
-      if (data.param)
-        this.params[endpoint].push(data.param);
     }
+  }
+
+  async generateTs() { }
+
+  getDir()
+  {
+    return `${path.dirname(require.main.filename)}/../assets/dev/gen`;
   }
 
   camelToSnake(s: string): string

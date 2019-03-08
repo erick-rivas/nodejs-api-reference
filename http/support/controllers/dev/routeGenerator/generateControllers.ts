@@ -1,41 +1,29 @@
 import * as fs from 'fs';
-import * as path from "path";
-import * as zip from "node-zip";
-
 import Executor from './executor';
 
 class GenerateControllers extends Executor
 {
-
-  async execute(): Promise<string[]>
+  async generateTs()
   {
-    await super.loadData();
-    await super.extractData();
-    return this.generateTs();
-  }
-
-  async generateTs(): Promise<string[]>
-  {
-    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources/controllers`;
-    let paths = [];
+    let dir = `${super.getDir()}/controllers`;
     if (!fs.existsSync(dir))
       fs.mkdirSync(dir);
 
     for (let r of this.resources) {
       let resName = super.snakeToCamel(r);
-      let t = this.getTs(resName, this.endpoints[r], this.params[r]);
+      let t = this.getTs(resName, this.classes[r], this.endpoints[r], this.params[r]);
       let fn = `${dir}/${resName}.ts`;
-      paths.push(`/controllers/${resName}.ts`)
       fs.writeFileSync(fn, t);
     }
-    return paths;
   }
 
-  getTs(resName: string, endpoints: any[], params: any[]): string
+  getTs(resName: string, className: string, endpoints: any[], params: any[]): string
   {
     let res = this.CONTROLLER_TEMPLATE;
     let resNameN = resName.charAt(0).toUpperCase() + resName.slice(1);
-    let className = "";
+    let fileName = "";
+    let cn = super.snakeToCamel(className);
+    let cN = cn.charAt(0).toUpperCase() + cn.slice(1);
     let content = "";
 
     for (let e of endpoints) {
@@ -56,21 +44,28 @@ class GenerateControllers extends Executor
         route = this.DELETE_TEMPLATE;
 
       let params = "";
-      for (let p of this.params[e])
+      let args = "";
+      for (let p of this.params[e]) {
         params += `${p},`;
+        args += `        ${p},\n`
+      }
 
       route = route.trim();
       params = params.slice(0, -1);
+      args = args.trim().slice(0, -1);
 
-      route = route.replace(new RegExp('_resource', 'g'), resNameN);
+      route = route.replace(new RegExp('_model', 'g'), cn);
+      route = route.replace(new RegExp('_Model', 'g'), cN);
       route = route.replace(new RegExp('_params', 'g'), params);
+      route = route.replace(new RegExp('_args', 'g'), args);
+
       content += `  ${route}\n\n`;
     }
 
-    className = resName.charAt(0).toUpperCase() + resName.slice(1);
+    fileName = resName.charAt(0).toUpperCase() + resName.slice(1);
     content = content.trim();
 
-    res = res.replace(new RegExp('_className', 'g'), className);
+    res = res.replace(new RegExp('_className', 'g'), fileName);
     res = res.replace(new RegExp('_content', 'g'), content);
     return res;
   }
@@ -81,6 +76,8 @@ class GenerateControllers extends Executor
 import { Request, Response } from "express";
 import Sql from "@repositories/sql";
 import Res from "@http-util/responses";
+
+import Generator from "@src-util/Generator"
 
 class _className
 {
@@ -95,7 +92,7 @@ class _className
 }
 
 export default _className;
-    `;
+  `;
 
   private GET_DETAILS_TEMPLATE = `
 
@@ -103,12 +100,12 @@ export default _className;
     {
       /*
       const id = req.params.id;
-      const result = await this.sql.get_resourceDetails(id);
+      const result = await this.sql.get_ModelDetails(id);
       return Res.sendModel(res, result);
       */
       return null;
     }
-    `
+  `;
 
   private GET_LIST_TEMPLATE = `
   
@@ -117,24 +114,29 @@ export default _className;
       /*
       const { _params } = req.query;
       //TODO CHECK QUERY ARGS
-      const result = await this.sql.get_resourceList();
+      const result = await this.sql.get_ModelList(_params
+);
       return Res.sendModel(res, result);
       */
       return null;
     }
-    `
+  `;
+
   private SAVE_TEMPLATE = `
   
     async save(req: Request, res: Response)
     {
       /*
       //TODO CHECK SAVE
-      const result = this.sql.save_resource();
+      const _model = new _Model(Generator.getId())
+        .build(
+        );
+      const result = this.sql.save_Model(_model);
       return Res.sendModel(res, result);
       */
      return null;
     }
-    `
+  `;
 
   private UPDATE_TEMPLATE = `
     
@@ -144,12 +146,15 @@ export default _className;
       const id = req.params.id;
       const { _params } = req.body;
       //TODO CHECK QUERY ARGS
-      const result = await this.sql.set_resource();
+      const result = await this.sql.set_Model(
+        id,
+        _args
+        );
       return Res.sendModel(res, result);
       */
       return null;
     }
-    `
+  `;
 
   private DELETE_TEMPLATE = `
     
@@ -157,12 +162,13 @@ export default _className;
     {
       /*
       const id = req.params.id;
-      await this.sql.delete_resource(id);
+      await this.sql.delete_Model(id);
       return Res.sendOk(res);
       */
       return null;
     }
-    `
+  `;
+
 }
 
 export default GenerateControllers;

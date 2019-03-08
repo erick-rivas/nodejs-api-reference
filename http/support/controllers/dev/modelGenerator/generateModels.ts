@@ -5,29 +5,17 @@ import Executor from './executor';
 
 class GenerateModels extends Executor
 {
-
-  async execute(): Promise<string[]>
+  async generateTs()
   {
-    await super.loadData();
-    await super.extractData();
-    return this.generateTs();
-  }
-
-  async generateTs(): Promise<string[]>
-  {
-    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources/models`;
-    let paths = [];
+    let dir = `${super.getDir()}/models`;
     if (!fs.existsSync(dir))
       fs.mkdirSync(dir);
 
     for (let c of this.classes) {
       let t = this.getTs(c, this.attrs[c], this.models[c], this.consts[c]);
       let fn = `${dir}/${c}.ts`;
-      paths.push(`/models/${c}.ts`)
       fs.writeFileSync(fn, t);
     }
-
-    return paths;
   }
 
   getTs(className: string, attributes: any[], models: any[], consts: any[]): string

@@ -1,20 +1,11 @@
 import * as fs from 'fs';
-import * as path from "path";
 import Executor from './executor';
 
 class GenerateRoutes extends Executor
 {
-
-  async execute(): Promise<string[]>
+  async generateTs()
   {
-    await super.loadData();
-    await super.extractData();
-    return await this.generateTs();
-  }
-
-  async generateTs(): Promise<string[]>
-  {
-    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources`;
+    let dir = `${super.getDir()}`;
     let res = this.ROUTES_TEMPLATE.toString().trim();
     let imports = "";
     let attrs = "";
@@ -44,7 +35,6 @@ class GenerateRoutes extends Executor
     res = res.replace(new RegExp('_content', 'g'), content);
 
     fs.writeFileSync(`${dir}/routes.ts`, res);
-    return ["routes.ts"];
   }
 
   getRoute(resource: string, endpointData: string, params: any[]): string
@@ -126,20 +116,20 @@ class Routes
 export default Routes;
   `;
 
+  private COMMENT_TEMPLATE =
+    `
+  /**
+   * @api {get} _endpoint _description
+   * @apiName _name
+   * @apiGroup _group
+   * @apiVersion 0.1.0
+  */
+  `;
+
   private ROUTE_TEMPLATE =
     `
-    /**
-     * @api {get} _endpoint _description
-     * @apiName _name
-     * @apiGroup _group
-     * @apiVersion 0.1.0
-    */
-
     this.router._method("_endpoint", (req, res) => this._res._func(req, res));
-
-`
-
-
+  `;
 }
 
 export default GenerateRoutes;

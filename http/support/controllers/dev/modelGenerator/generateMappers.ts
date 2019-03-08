@@ -4,17 +4,9 @@ import Executor from './executor';
 
 class GenerateMappers extends Executor
 {
-
-  async execute(): Promise<string[]>
+  async generateTs()
   {
-    await super.loadData();
-    await super.extractData();
-    return this.generateTs();
-  }
-
-  async generateTs(): Promise<string[]>
-  {
-    let dir = `${path.dirname(require.main.filename)}/../assets/public/resources`;
+    let dir = `${super.getDir()}`;
     let res = this.MAPPERS_TEMPLATE.toString().trim();
     let imports = "";
     let content = "";
@@ -36,7 +28,6 @@ class GenerateMappers extends Executor
     res = res.replace(new RegExp('_defs', 'g'), defs);
 
     fs.writeFileSync(`${dir}/mappers.ts`, res);
-    return ["mappers.ts"];
   }
 
   getMapper(className: string, attributes: any[], models: any[], consts: any[]): string

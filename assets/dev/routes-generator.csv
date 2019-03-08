@@ -1,10 +1,7 @@
-name,method,param
-/pets/:id,GET,
-/pets,GET,
-/pets,POST,name
-/pets,POST,animal
-/pets,POST,photo
-/pets/:id,PUT,name
-/pets/:id,PUT,photo
-/toys,GET,pet_id
-/toys/:id,DELETE,
+name,method,class,param
+/pets/:id,GET,pet,
+/pets,GET,pet,
+/pets,POST,pet,"name	animal	photo"
+/pets/:id,PUT,toy,"name	photo"
+/toys,GET,toy,pet_id
+/toys/:id,DELETE,toy,
