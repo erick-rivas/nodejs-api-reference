@@ -1,4 +1,4 @@
-import Authentication from "@http/middlewares/authentication";
+import Authentication from "@http/middlewares/Authentication";
 
 class Middlewares
 {

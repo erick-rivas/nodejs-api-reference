@@ -1,0 +1,7 @@
+name,method,class
+/pets/:id,GET,pet
+/pets,GET,pet
+/pets,POST,pet
+/pets/:id,PUT,toy
+/toys,GET,toy
+/toys/:id,DELETE,toy

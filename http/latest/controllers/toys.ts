@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Mocks from "@models/helpers/Mocks"
-import Res from "@http-util/responses";
+import Res from "@http-util/Responses";
 
 
 class Toys

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import Factory from "@http/factories/middlewares";
-import Authentication from "@http/middlewares/authentication";
+import Factory from "@http/factories/Middlewares";
+import Authentication from "@http/middlewares/Authentication";
 
 class Middlewares
 {

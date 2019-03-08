@@ -8,8 +8,8 @@ import * as cors from "cors";
 import * as dotenv from "dotenv";
 import { Router } from "express";
 
-import Dev from "@support/dev";
-import Resources from "@support/resources";
+import Dev from "@support/Dev";
+import Resources from "@support/Resources";
 
 
 class App
@@ -68,8 +68,8 @@ class App
 
 //Latest (v1.0)
 
-import Routes from "@http/routes";
-import Middlewares from "@http/middlewares";
+import Routes from "@http/Routes";
+import Middlewares from "@http/Middlewares";
 
 class v1_0
 {
