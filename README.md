@@ -2,12 +2,6 @@
 
 This repository holds the source code of a **reference** for the development of a **Node.js api** written mainly in typescript.
 
-## Before start ##
-
-### Cascade explanation ###
-
-Each module of the architecture contains a **&#46;guidelines&#46;md** file with specific explanation about the details of each module. *e.g. /http/controllers*.
-
 ## Architecture design
 
 The reference uses a architecure based on [Uncle Bob Clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) and a Generic Model View Controller pattern.
@@ -20,37 +14,44 @@ The reference uses a architecure based on [Uncle Bob Clean architecture](https:/
 
 In general terms, the architecture uses the following structure:
 
-  - /src: Business logic source.
-  - /http: Http resources such as endpoints, controllers and websockets.
+  - /src: Source code.
+    - /latest: Current version under development
+    - /stable: Last stable version
+    - /support: Support resources (*e.g debug & fileManagment*)
+    - /util: Common classes
+    - /vN: Previous versions
+  - /bin: Scripts & files related to deployment.
   - /assets: Project resources such as scripts, images and files.
 
 ### Business logic
 
-  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/src/latest/models/.guidelines.md)
+  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/guides/models.md)
 
-  - /repositories: Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/src/latest/repositories/.guidelines.md)
+  - /sources/*.ts (repositories): Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/guides/repositories.md)
     > Each repository is grouped by datasource, *e.g. sql, gmail, aws, etc.*
 
-  - /sources: Are the implementations of the repository methods. [Details](/src/latest/sources/.guidelines.md)
+  - /sources/**/: Are the implementations of repository methods. [Details](/guides/sources.md)
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
 ### Http resources
 
-  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/http/latest/.guidelines.md)
+  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/guides/routes.md)
  
-  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/http/latest/controllers/.guidelines.md)
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/guides/routes.md)
 
     > It is the most important module of the architecture because it is the responsable of linking the data requirements (repositories), with the business logic (use cases).
 
     > In case of complex use cases *e.g Complex algorithms, AI, ML*, it can be separated in module folders
 
-  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/http/latest/middlewares/.guidelines.md)
+  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/guides/middlewares.md)
 
 ### Assets
 
   - /dev: Resources related to the development of the project *e.g db.sql*.
   - /public: Resources that are publicly accessible *e.g profile_image.png, doc.pdf*.
+    > It includes /resources directory to store files uploaded
+
 <br/><br/>
 
 ### Configuration

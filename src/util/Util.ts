@@ -1,4 +1,4 @@
-import { Lang, getEnum } from "@src-util/Const";
+import { Lang, getEnum } from "@util/Const";
 
 /**
  * Representation of a basic tuple (key, value).

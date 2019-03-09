@@ -1,6 +1,6 @@
 import * as mysql from "mysql";
-import { Pair } from "@src-util/Util";
-import { Mapper } from "@sql/Mappers";
+import { Pair } from "@util/Util";
+import { Mapper } from "@lt/sources/sql/Mappers";
 
 /**
  * Base class to handle common database operations.

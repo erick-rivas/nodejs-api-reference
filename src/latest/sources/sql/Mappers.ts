@@ -1,5 +1,5 @@
-import Pet from "@models/Pet";
-import Toy from "@models/Toy";
+import Pet from "@lt/models/Pet";
+import Toy from "@lt/models/Toy";
 
 abstract class Mapper<T>
 {

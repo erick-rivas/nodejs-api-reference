@@ -46,8 +46,8 @@ class App
     this.app.use("/resources", new Resources().init());
 
     //API version initialization
-    this.app.use("/v1", new v1_0().init());
-    
+    this.app.use("/v1", new v1().init());
+
 
     const port = this.normalizePort(process.env.PORT || "4004");
     this.server = this.app.listen(port);
@@ -66,12 +66,12 @@ class App
 }
 
 
-//Latest (v1.0)
+//Latest (v1)
 
-import Routes from "@http/Routes";
-import Middlewares from "@http/Middlewares";
+import Routes from "@lt/Routes";
+import Middlewares from "@lt/Middlewares";
 
-class v1_0
+class v1
 {
   private router: Router;
 

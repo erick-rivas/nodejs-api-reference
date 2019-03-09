@@ -1,7 +1,7 @@
-import Pet from "@models/Pet";
-import Toy from "@models/Toy";
-import Generator from "@src-util/Generator";
-import { Animal } from "@models/helpers/Const";
+import Pet from "@lt/models/Pet";
+import Toy from "@lt/models/Toy";
+import Generator from "@util/Generator";
+import { Animal } from "@lt/models/helpers/Const";
 
 class Mocks
 {
@@ -21,7 +21,6 @@ class Mocks
       new Toy(Generator.getId()).build("Sausage with mustard")
     ]
   }
-
 }
 
 export default Mocks;

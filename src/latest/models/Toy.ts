@@ -1,4 +1,4 @@
-import Model from "@models/helpers/Model";
+import Model from "@util/Model";
 
 class Toy extends Model
 {

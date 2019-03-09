@@ -1,10 +1,10 @@
-import Repository from "@repositories/sql";
-import { Pair } from "@src-util/Util";
-import Pet from "@models/Pet";
-import Toy from "@models/Toy";
+import Repository from "@lt/sources/sql";
+import Pet from "@lt/models/Pet";
+import Toy from "@lt/models/Toy";
+import { Pair } from "@util/Util";
 
-import Executor from "@sql/Executor";
-import * as Mapper from "@sql/Mappers";
+import Executor from "@lt/sources/sql/Executor";
+import * as Mapper from "@lt/sources/sql/Mappers";
 
 
 class Source extends Executor implements Repository

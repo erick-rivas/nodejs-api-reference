@@ -1,6 +1,6 @@
 {
   "name": "nodejs-reference",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Reference for the development of Node.js APIs",
   "private": true,
   "apidoc": {
@@ -38,21 +38,15 @@
     "serve-favicon": "2.5.0"
   },
   "devDependencies": {
-    "@types/node": "11.10.5",
+    "@types/node": "11.11.0",
     "@types/request": "2.48.1",
     "module-alias": "2.2.0",
     "typescript": "3.3.3333"
   },
   "_moduleAliases": {
-    "@http": "dist/http/latest",
-    "@support": "dist/http/support",
-    "@http-util": "dist/http/util",
-    "@middlewares": "dist/http/latest/middlewares",
-    "@controllers": "dist/http/latest/controllers",
-    "@src-util": "dist/src/util",
-    "@repositories": "dist/src/latest/repositories",
-    "@models": "dist/src/latest/models",
-    "@sql": "dist/src/latest/sources/sql"
+    "@lt": "dist/src/latest",
+    "@support": "dist/src/support",
+    "@util": "dist/src/util"
   },
   "nodemonConfig": {
     "watch": [

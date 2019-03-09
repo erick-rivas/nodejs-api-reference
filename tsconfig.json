@@ -10,32 +10,14 @@
 		"sourceMap": true,
 		"baseUrl": ".",
 		"paths": {
-			"@http/*": [
-				"http/latest/*"
+			"@lt/*": [
+				"src/latest/*"
 			],
 			"@support/*": [
-				"http/support/*"
+				"src/support/*"
 			],
-			"@http-util/*": [
-				"http/util/*"
-			],
-			"@middlewares/*": [
-				"http/latest/middlewares/*"
-			],
-			"@controllers/*": [
-				"http/latest/controllers/*"
-			],
-			"@src-util/*": [
+			"@util/*": [
 				"src/util/*"
-			],
-			"@repositories/*": [
-				"src/latest/repositories/*"
-			],
-			"@models/*": [
-				"src/latest/models/*"
-			],
-			"@sql/*": [
-				"src/latest/sources/sql/*"
 			]
 		}
 	},
