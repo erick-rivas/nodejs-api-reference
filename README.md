@@ -25,26 +25,26 @@ In general terms, the architecture uses the following structure:
 
 ### Business logic
 
-  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/guides/models.md)
+  - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/.guides/models.md)
 
-  - /sources/*.ts (repositories): Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/guides/repositories.md)
+  - /sources/*.ts (repositories): Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/.guides/repositories.md)
     > Each repository is grouped by datasource, *e.g. sql, gmail, aws, etc.*
 
-  - /sources/**/: Are the implementations of repository methods. [Details](/guides/sources.md)
+  - /sources/**/: Are the implementations of repository methods. [Details](/.guides/sources.md)
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
 ### Http resources
 
-  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/guides/routes.md)
+  - routes.ts & middlewares.ts: Handle the endpoints & middlewares **definitions**. [Details](/.guides/routes.md)
  
-  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/guides/routes.md)
+  - /controllers: Are the link between the business logic and http routes (GETs, SETs, PUTs). [Details](/.guides/routes.md)
 
     > It is the most important module of the architecture because it is the responsable of linking the data requirements (repositories), with the business logic (use cases).
 
     > In case of complex use cases *e.g Complex algorithms, AI, ML*, it can be separated in module folders
 
-  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/guides/middlewares.md)
+  - /middlewares: Manage the handling of information before reaching the controllers. *e.g Validations & authentications*. [Details](/.guides/middlewares.md)
 
 ### Assets
 
