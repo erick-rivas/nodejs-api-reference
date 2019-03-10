@@ -100,7 +100,7 @@ static #Model#()
 const CTRL_TEMPLATE =
   `
 import { Request, Response } from "express";
-import Sql from "@lt/sources/Sql";
+import Sql from "@lt/repositories/Sql";
 import Res from "@util/http/responses";
 
 import #Model# from "@lt/models/#Model#";
@@ -292,7 +292,7 @@ const ROUTES_ITEM_TEMPLATE =
 
 const SRC_TEMPLATE =
   `
-import Repository from "@lt/sources/Sql";
+import Repository from "@lt/repositories/Sql";
 import { Pair } from "@util/Util";
 #imports#
 

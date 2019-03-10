@@ -1,7 +1,7 @@
 # Business repositories
 
 ## Overview
-  - /sources/*.ts:  Represent the abstractions (interfaces) of system actions.
+  - /repositories:  Represent the abstractions (interfaces) of system actions.
 
 ### Code Guidelines
 

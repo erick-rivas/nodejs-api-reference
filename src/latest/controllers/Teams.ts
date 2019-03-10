@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import Sql from "@lt/sources/Sql";
+import Sql from "@lt/repositories/Sql";
 import Res from "@util/http/responses";
 
 class Teams

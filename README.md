@@ -27,10 +27,10 @@ In general terms, the architecture uses the following structure:
 
   - /models: Store the system models, *e.g. Car, Agency, etc*. [Details](/.guides/models.md)
 
-  - /sources/*.ts (repositories): Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/.guides/repositories.md)
+  - /repositories: Represent the abstractions (interfaces) of system actions, e.g queries, transaction, etc. [Details](/.guides/repositories.md)
     > Each repository is grouped by datasource, *e.g. sql, gmail, aws, etc.*
 
-  - /sources/**/: Are the implementations of repository methods. [Details](/.guides/sources.md)
+  - /sources: Are the implementations of repository methods. [Details](/.guides/sources.md)
 
  > In other words the repositories handle what is going to be done. *e.g. getPetList()* and the sources implement that action e.g. *query_to_database*
 
