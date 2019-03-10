@@ -24,6 +24,7 @@ class MatchMapper extends Mapper<Match>
     return new Match(data.match_id)
       .build(
         data.date,
+        Match.getMType(data.type),
         new Team(data.team_id),
         new Team(data.team_id),
         []

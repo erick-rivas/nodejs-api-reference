@@ -1,5 +1,6 @@
 class_name,attribute,type,description,class_level,collection
 Match,date,Date,,2,
+Match,type,MType,_CONST,2,"[LEAGUE, CUP, FRIENDLY]"
 Match,visitor,Team,_MODEL,2,
 Match,local,Team,_MODEL,2,
 Match,scores,Score[],_MODEL,2,

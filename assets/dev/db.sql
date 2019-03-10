@@ -60,6 +60,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `playerdb`.`match` (
   `match_id` INT NOT NULL,
   `date` DATETIME NULL,
+  `type` VARCHAR(16) NULL,
   `visitor_id` INT NULL,
   `local_id` INT NULL,
   PRIMARY KEY (`match_id`),
@@ -177,16 +178,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `playerdb`;
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (1, '2019-01-01 12:00:00', 1, 2);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (2, '2019-01-01 14:00:00', 3, 4);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (3, '2019-01-07 12:00:00', 5, 1);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (4, '2019-01-08 14:00:00', 2, 3);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (5, '2019-01-14 15:00:00', 4, 5);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (6, '2019-01-14 17:00:00', 1, 3);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (7, '2019-01-21 11:00:00', 5, 2);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (8, '2019-01-21 11:00:00', 4, 1);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (9, '2019-01-28 20:00:00', 3, 5);
-INSERT INTO `playerdb`.`match` (`match_id`, `date`, `visitor_id`, `local_id`) VALUES (10, '2019-01-28 20:00:00', 2, 4);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (1, '2019-01-01 12:00:00', 'LEAGUE', 1, 2);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (2, '2019-01-01 14:00:00', 'LEAGUE', 3, 4);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (3, '2019-01-07 12:00:00', 'LEAGUE', 5, 1);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (4, '2019-01-08 14:00:00', 'LEAGUE', 2, 3);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (5, '2019-01-14 15:00:00', 'LEAGUE', 4, 5);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (6, '2019-01-14 17:00:00', 'LEAGUE', 1, 3);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (7, '2019-01-21 11:00:00', 'LEAGUE', 5, 2);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (8, '2019-01-21 11:00:00', 'LEAGUE', 4, 1);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (9, '2019-01-28 20:00:00', 'LEAGUE', 3, 5);
+INSERT INTO `playerdb`.`match` (`match_id`, `date`, `type`, `visitor_id`, `local_id`) VALUES (10, '2019-01-28 20:00:00', 'LEAGUE', 2, 4);
 
 COMMIT;
 

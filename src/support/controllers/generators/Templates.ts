@@ -68,9 +68,17 @@ class #Model# extends Model
 export default #Model#;
 `;
 
-const MOCK_TEMPLATE = `
-#imports#
+const CONST_TEMPLATE =
+  `
+#content#
+
+export { #defs#}
+`;
+
+const MOCK_TEMPLATE =
+  `
 import Generator from "@util/Generator";
+#imports#
 
 class Mocks
 {
@@ -79,7 +87,8 @@ class Mocks
 export default Mocks;
 `;
 
-const MOCK_ITEM_TEMPLATE = `
+const MOCK_ITEM_TEMPLATE =
+  `
 static #Model#()
   {
     return [
@@ -366,6 +375,7 @@ export
 {
   MAPPERS_TEMPLATE, MAPPER_TEMPLATE,
   MODEL_TEMPLATE,
+  CONST_TEMPLATE,
   MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE,
   CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_GET_DETAILS_TEMPLATE, CTRL_CUSTOM_TEMPLATE, CTRL_SAVE_TEMPLATE, CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE,
   FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE,

@@ -3,6 +3,7 @@ import Res from "@util/http/Responses";
 
 import GenerateModels from "@support/controllers/generators/modelGenerator/GenerateModels";
 import GenerateMocks from "@support/controllers/generators/modelGenerator/GenerateMocks";
+import GenerateConsts from "@support/controllers/generators/modelGenerator/GenerateConsts";
 import GenerateMappers from "@support/controllers/generators/modelGenerator/GenerateMappers";
 import GenerateRoutes from "@support/controllers/generators/routeGenerator/GenerateRoutes";
 import GenerateControllers from "@support/controllers/generators/routeGenerator/GenerateControllers";
@@ -17,6 +18,7 @@ class Generators
   {
     await new GenerateModels().execute();
     await new GenerateMocks().execute();
+    await new GenerateConsts().execute();
     await new GenerateMappers().execute();
     await new GenerateRoutes().execute();
     await new GenerateControllers().execute();

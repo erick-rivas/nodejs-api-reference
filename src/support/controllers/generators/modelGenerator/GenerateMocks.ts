@@ -17,6 +17,15 @@ class GenerateMocks extends Executor
     for (let c of this.classes)
       imports += `import ${c} from "@lt/models/${c}";\n`;
 
+    let hasConst = false;
+    for (let c of this.classes)
+      for (let co in this.consts[c]) {
+        imports += `import { ${co} } from "@lt/models/helpers/Const";\n`;
+        hasConst = true;
+      }
+    if (hasConst)
+      imports += `import { getEnum } from "@util/Const";\n`;
+
     content = content.trim();
     imports = imports.trim();
 
