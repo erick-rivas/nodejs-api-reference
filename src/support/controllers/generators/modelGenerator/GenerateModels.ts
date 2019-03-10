@@ -32,11 +32,11 @@ class GenerateModels extends Executor
     }
 
     for (let m in models)
-      imports += `import ${m} from "@models/${m}";\n`;
+      imports += `import ${m} from "@lt/models/${m}";\n`;
 
     for (let c in consts) {
       let collection = consts[c].slice(1, -1).split(",");
-      imports += `import { ${c} } from "@models/helpers/Const";\n`;
+      imports += `import { ${c} } from "@lt/models/helpers/Const";\n`;
       gets += `\n${Util.sp(2)}static get${c} = (val: string): ${c} => getEnum(${c}, val, ${c}.${collection[0]});\n`;
     }
 

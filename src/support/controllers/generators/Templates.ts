@@ -37,7 +37,7 @@ class #Model#Mapper extends Mapper<#Model#>
 
 const MODEL_TEMPLATE =
   `
-import Model from "@models/Model";
+import Model from "@util/Model";
 #imports#
 
 class #Model# extends Model
@@ -68,13 +68,33 @@ class #Model# extends Model
 export default #Model#;
 `;
 
+const MOCK_TEMPLATE = `
+#imports#
+import { Generator } from "@util/Generator";
+
+class Mocks
+{
+  #content#
+}
+export default Mocks;
+`;
+
+const MOCK_ITEM_TEMPLATE = `
+static #Model#()
+  {
+    return [
+      #data#
+    ];
+  }
+`;
+
 const CTRL_TEMPLATE =
   `
 import { Request, Response } from "express";
-import Sql from "@repositories/sql";
-import Res from "@http-util/responses";
+import Sql from "@lt/sources/sql";
+import Res from "@util/http/responses";
 
-import Generator from "@src-util/Generator"
+import Generator from "@util/Generator"
 
 class #ClassName#
 {
@@ -150,7 +170,7 @@ const CTRL_DELETE_TEMPLATE =
 
 const FACTORY_TEMPLATE =
   `
-import Sql from "@sql/Source";
+import Sql from "@lt/sources/sql/Source";
 #imports#
 
 class Controllers
@@ -211,7 +231,7 @@ const REPO_DELETE_TEMPLATE =
 const ROUTES_TEMPLATE =
   `
 import { Router } from "express";
-import Factory from "@http/factories/controllers";
+import Factory from "@lt/controllers/Factory";
 #imports#
 
 class Routes
@@ -242,7 +262,7 @@ const ROUTES_COMMENT_TEMPLATE =
    * @api {get} #endpoint# #description#
    * @apiName #name#
    * @apiGroup #group#
-   * @apiVersion 0.1.0
+   * @apiVersion 1.0.0
   */
 `;
 
@@ -253,12 +273,12 @@ const ROUTES_ITEM_TEMPLATE =
 
 const SRC_TEMPLATE =
   `
-import Repository from "@repositories/sql";
-import { Pair } from "@src-util/Util";
+import Repository from "@lt/sources/sql";
+import { Pair } from "@util/Util";
 #imports#
 
-import Executor from "@sql/Executor";
-import * as Mapper from "@sql/Mappers";
+import Executor from "@lt/sources/sql/Executor";
+import * as Mapper from "@lt/sources/sql/Mappers";
 
 class Source extends Executor implements Repository
 {
@@ -337,6 +357,7 @@ export
 {
   MAPPERS_TEMPLATE, MAPPER_TEMPLATE,
   MODEL_TEMPLATE,
+  MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE,
   CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_GET_DETAILS_TEMPLATE, CTRL_SAVE_TEMPLATE, CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE,
   FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE,
   REPO_TEMPLATE, REPO_GET_LIST_TEMPLATE, REPO_GET_DETAILS_TEMPLATE, REPO_SAVE_TEMPLATE, REPO_SET_TEMPLATE, REPO_DELETE_TEMPLATE,

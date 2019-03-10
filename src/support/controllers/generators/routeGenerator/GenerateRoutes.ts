@@ -15,7 +15,7 @@ class GenerateRoutes extends Executor
     for (let r of this.resources) {
       let rn = Util.snakeToCamel(r);
       let rN = Util.iniToUpper(rn);
-      imports += `import ${rN} from "@controllers/${rN}";\n`;
+      imports += `import ${rN} from "@lt/controllers/${rN}";\n`;
       attrs += `${Util.sp(2)}private ${rn}: ${rN};\n`;
       inits += `${Util.sp(4)}this.${rn} = Factory.create${rN}();\n`;
       for (let e of this.endpoints[r]) {

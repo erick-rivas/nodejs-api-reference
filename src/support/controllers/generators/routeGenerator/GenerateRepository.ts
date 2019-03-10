@@ -7,7 +7,7 @@ import
   REPO_SET_TEMPLATE, REPO_DELETE_TEMPLATE
 } from "@support/controllers/generators/Templates";
 
-class GenerateRoutes extends Executor
+class GenerateRepository extends Executor
 {
   async generateTs()
   {
@@ -18,7 +18,7 @@ class GenerateRoutes extends Executor
     for (let r of this.resources) {
       let cn = Util.snakeToCamel(this.classes[r]);
       let cN = Util.iniToUpper(cn);
-      imports += `import ${cN} from "@models/${cN}";\n`;
+      imports += `import ${cN} from "@lt/models/${cN}";\n`;
 
       for (let e of this.endpoints[r]) {
         let route = `${Util.sp(2)}${this.getQuery(cn, e)}\n`;
@@ -62,4 +62,4 @@ class GenerateRoutes extends Executor
   }
 }
 
-export default GenerateRoutes;
+export default GenerateRepository;

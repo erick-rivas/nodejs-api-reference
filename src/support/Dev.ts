@@ -28,14 +28,14 @@ class Dev
     this.router.get("/init_db", (req, res) => this.debugs.initDb(req, res));
 
     /**
-    * @api {get} /generate_files Generate architecture files
-    * @apiName GenerateFiles
+    * @api {get} /generate_files Generate architecture templates
+    * @apiName GenerateTemplates
     * @apiGroup Dev
     * @apiVersion 1.0.0
     * @apiSampleRequest off
     */
 
-    this.router.get("/generate_files", (req, res) => this.generators.generateFiles(req, res));
+    this.router.get("/generate_templates", (req, res) => this.generators.generateFiles(req, res));
     return this.router;
   }
 }

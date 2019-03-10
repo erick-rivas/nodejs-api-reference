@@ -12,7 +12,7 @@ class GenerateMappers extends Executor
     let defs = "";
 
     for (let c of this.classes) {
-      imports += `import ${c} from "@models/${c}";\n`;
+      imports += `import ${c} from "@lt/models/${c}";\n`;
       defs += `${Util.iniToUpper(c)}Mapper, `;
       let mapper = `${this.getMapper(c, this.attrs[c], this.models[c], this.consts[c])}\n\n`;
       content += mapper;
@@ -26,7 +26,7 @@ class GenerateMappers extends Executor
     res = res.replace(new RegExp('#content#', 'g'), content);
     res = res.replace(new RegExp('#defs#', 'g'), defs);
 
-    super.generateFile("", "mappers.ts", res);
+    super.generateFile("", "Mappers.ts", res);
   }
 
   getMapper(className: string, attributes: any[], models: any[], consts: any[]): string

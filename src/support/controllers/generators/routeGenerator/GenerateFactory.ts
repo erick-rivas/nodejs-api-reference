@@ -2,7 +2,7 @@ import Util from "@support/controllers/generators/Util"
 import Executor from './Executor';
 import { FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE } from "@support/controllers/generators/Templates"
 
-class GenerateRoutes extends Executor
+class GenerateFactory extends Executor
 {
   async generateTs()
   {
@@ -13,7 +13,7 @@ class GenerateRoutes extends Executor
     for (let r of this.resources) {
       let rn = Util.snakeToCamel(r);
       let rN = Util.iniToUpper(rn);
-      imports += `import ${rN} from "@controllers/${rN}";\n`;
+      imports += `import ${rN} from "@lt/controllers/${rN}";\n`;
 
       let create = FACTORY_ITEM_TEMPLATE.toString().trim();
       create = create.replace(new RegExp('#Resource#', 'g'), rN);
@@ -30,4 +30,4 @@ class GenerateRoutes extends Executor
   }
 }
 
-export default GenerateRoutes;
+export default GenerateFactory;
