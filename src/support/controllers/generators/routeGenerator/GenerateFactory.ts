@@ -26,7 +26,7 @@ class GenerateFactory extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("/", "Factory.ts", res);
+    super.generateFile("/controllers", "Factory.ts", res);
   }
 }
 

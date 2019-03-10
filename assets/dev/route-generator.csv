@@ -1,13 +1,13 @@
-name,method,class
-/matches,GET,match
-/matches,POST,match
-/matches/:id,PUT,match
-/matches/:id,DELETE,match
-/players/top,GET,player
-/players,GET,player
-/players/:id,PUT,player
-/scores,POST,score
-/teams/:id,GET,team
-/teams,GET,team
-/users/:id,GET,user
-/users/auth,GET,user
+name,method,class,params
+/matches,GET,match,team_id
+/matches,POST,match,"date	type	visitor_id	local_id"
+/matches/:id,PUT,match,type
+/matches/:id,DELETE,match,
+/players/top,GET,player,
+/players,GET,player,team_id
+/players/:id,PUT,player,team_id
+/scores,POST,score,"min	match_id	player_id"
+/teams/:id,GET,team,
+/teams,GET,team,user_id
+/users/:id,GET,user,
+/users/auth,GET,user,

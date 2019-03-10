@@ -6,6 +6,7 @@ abstract class Executor extends ExecutorP
   protected resources = [];
   protected classes = [];
   protected endpoints = [];
+  protected params = [];
   protected queries = [];
 
   async extractData()
@@ -25,8 +26,10 @@ abstract class Executor extends ExecutorP
         this.endpoints[resource] = [];
       }
 
-      if (this.endpoints[resource].indexOf(endpoint) == -1)
+      if (this.endpoints[resource].indexOf(endpoint) == -1) {
         this.endpoints[resource].push(endpoint);
+        this.params[endpoint] = data.params.split("\t");
+      }
 
       //QUERIES
 
@@ -40,11 +43,11 @@ abstract class Executor extends ExecutorP
       if (queryType) {
         if (!this.queries[queryType])
           this.queries[queryType] = [];
-
-        this.queries[queryType][className] = endpoint;
-
+        let params = [];
+        if (data.params) params = data.params.split("\t");
+        this.queries[queryType][className] = params;
         if (this.queries["GET"].indexOf(className) == -1)
-          this.queries["GET"][className] = endpoint;
+          this.queries["GET"][className] = params;
       }
     }
   }

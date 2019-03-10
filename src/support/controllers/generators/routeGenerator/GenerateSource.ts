@@ -33,7 +33,7 @@ class GenerateRoutes extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("", "Source.ts", res);
+    super.generateFile("/sources", "Source.ts", res);
   }
 
   getQueries(method: string, query: any[])
@@ -41,19 +41,23 @@ class GenerateRoutes extends Executor
     let res = "";
     for (let c in query) {
       let cn = Util.snakeToCamel(c);
-      let route = `${Util.sp(2)}${this.getQuery(method, cn)}\n`;
+      let params = this.queries[method][c];
+      let route = `${Util.sp(2)}${this.getQuery(method, cn, params)}\n`;
       res += route;
     }
     return res;
   }
 
-  getQuery(method: string, className: string)
+  getQuery(method: string, className: string, params: string[])
   {
+    let res = "";
     let cn = className;
     let cN = Util.iniToUpper(cn);
+    let c_n = Util.camelToSnake(cn);
     let ini = cn.charAt(0);
+    let filters = "";
+    let columns = "";
 
-    let res = "";
     if (method == "GET")
       res = SRC_GET_DETAILS_TEMPLATE;
     else if (method == "GET_LIST")
@@ -65,12 +69,22 @@ class GenerateRoutes extends Executor
     else if (method == "DELETE")
       res = SRC_DELETE_TEMPLATE;
 
+    for (let p of params) {
+      let pc = Util.snakeToCamel(p);
+      filters += `${Util.sp(4)}if (${pc}) filter.push(new Pair("${ini}.${p}", ${pc}));\n`;
+      columns += `${Util.sp(4)}if (${pc}) columns.push(new Pair("${p}", ${pc}));\n`;
+    }
+
+    filters = filters.trim();
+    columns = columns.trim();
 
     res = res.trim();
     res = res.replace(new RegExp('#i#', 'g'), ini);
     res = res.replace(new RegExp('#Model#', 'g'), cN);
     res = res.replace(new RegExp('#model#', 'g'), cn);
-    res = res.replace(new RegExp('#model_n#', 'g'), Util.camelToSnake(cn));
+    res = res.replace(new RegExp('#model_n#', 'g'), c_n);
+    res = res.replace(new RegExp('#filters#', 'g'), filters);
+    res = res.replace(new RegExp('#columns#', 'g'), columns);
 
     return res;
   }

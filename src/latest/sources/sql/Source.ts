@@ -15,7 +15,7 @@ class Source extends Executor implements Repository
   async getMatchDetails(matchId: number): Promise<Match>
   {
     const query =
-      `SELECT m.* FROM match m WHERE m.match_id = ?`;
+      `SELECT m.* FROM \`match\` m WHERE m.match_id = ?`;
     const params = [matchId];
     const res = await this.getDetails(query, params, new Mapper.MatchMapper());
     //TODO CHECK FETCH
@@ -62,8 +62,8 @@ class Source extends Executor implements Repository
   async getMatchList(teamId: number): Promise<Match[]>
   {
     const query =
-      `SELECT m.* FROM match m`;
-    const filter = [];
+      `SELECT m.* FROM \`match\` m`;
+    const filter: Pair[] = [];
     //TODO ADD FILTERS
     const res = await this.get(query, filter, new Mapper.MatchMapper());
     //TODO CHECK FETCH
@@ -73,8 +73,8 @@ class Source extends Executor implements Repository
   {
     const query =
       `SELECT p.* FROM player p`;
-    const filter = [];
-    //TODO ADD FILTERS
+    const filter: Pair[] = [];
+    if (teamId) filter.push(new Pair("p.team_id", teamId));
     const res = await this.get(query, filter, new Mapper.PlayerMapper());
     //TODO CHECK FETCH
     return res;
@@ -83,7 +83,7 @@ class Source extends Executor implements Repository
   {
     const query =
       `SELECT t.* FROM team t`;
-    const filter = [];
+    const filter: Pair[] = [];
     //TODO ADD FILTERS
     const res = await this.get(query, filter, new Mapper.TeamMapper());
     //TODO CHECK FETCH
@@ -93,29 +93,36 @@ class Source extends Executor implements Repository
 
   async saveMatch(match: Match): Promise<Match>
   {
-    //TODO
-    return null;
+    const query =
+      "INSERT INTO \`match\` (match_id, date, type, visitor_id, local_id)";
+    const params = [match.id, match.date, match.visitor.id, match.local.id];
+    await this.save(query, params);
+    return this.getMatchDetails(match.id);
   }
   async saveScore(score: Score): Promise<Score>
   {
-    //TODO
-    return null;
+    const query =
+      "INSERT INTO \`score\` (score_id, min, player_id, match_id)";
+    const params = [score.id, score.min, score.player.id, score.matchId];
+    await this.save(query, params);
+    return this.getScoreDetails(score.id);
   }
 
 
   async setMatch(matchId: number, type: MType): Promise<Match>
   {
-    const query = "UPDATE match";
-    const columns = [];
-    //TODO ADD COLUMNS
+    const query = "UPDATE \`match\`";
+    const columns: Pair[] = [];
+    if (type) columns.push(new Pair("type", type));
+    console.log(type);
     await this.set(query, columns, "match_id", matchId);
     return this.getMatchDetails(matchId);
   }
   async setPlayer(playerId: number, teamId: number): Promise<Player>
   {
     const query = "UPDATE player";
-    const columns = [];
-    //TODO ADD COLUMNS
+    const columns: Pair[] = [];
+    if (teamId) columns.push(new Pair("team_id", teamId));
     await this.set(query, columns, "player_id", playerId);
     return this.getPlayerDetails(playerId);
   }
@@ -123,10 +130,10 @@ class Source extends Executor implements Repository
 
   async deleteMatch(matchId: number): Promise<void>
   {
-    const query =
-      "DELETE FROM match WHERE match_id = ?;"
-    //TODO CHECK EXTRA DELETES
-    const params = [matchId];
+    const query = ` 
+      DELETE FROM score WHERE match_id = ?;
+      DELETE FROM \`match\` WHERE match_id = ?;`;
+    const params = [matchId, matchId];
     return this.delete(query, params);
   }
 

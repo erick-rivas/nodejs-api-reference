@@ -32,7 +32,7 @@ class GenerateMocks extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("", "Mocks.ts", res);
+    super.generateFile("/models/helpers", "Mocks.ts", res);
 
   }
 

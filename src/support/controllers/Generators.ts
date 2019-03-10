@@ -1,3 +1,7 @@
+import * as archiver from "archiver";
+import * as fs from 'fs';
+import * as path from "path";
+
 import { Request, Response } from "express";
 import Res from "@util/http/Responses";
 
@@ -14,7 +18,18 @@ import GenerateSource from "@support/controllers/generators/routeGenerator/Gener
 
 class Generators
 {
+
   async generateFiles(req: Request, res: Response)
+  {
+    await this.generate();
+    let root = `${path.dirname(require.main.filename)}/../assets`;
+    let source = `${root}/dev/gen`;
+    let output = `${root}/public/resources/gen.zip`
+    await this.zipDir(source, output);
+    return Res.redirect(res, req, "/resources/gen.zip");
+  }
+
+  async generate()
   {
     await new GenerateModels().execute();
     await new GenerateMocks().execute();
@@ -25,8 +40,23 @@ class Generators
     await new GenerateFactory().execute();
     await new GenerateRepository().execute();
     await new GenerateSource().execute();
-    return Res.sendOk(res);
   }
+
+  async zipDir(source, out): Promise<any>
+  {
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    const stream = fs.createWriteStream(out);
+    return new Promise((resolve, reject) =>
+    {
+      archive
+        .directory(source, false)
+        .on('error', err => reject(err))
+        .pipe(stream);
+      stream.on('close', () => resolve());
+      archive.finalize();
+    });
+  }
+
 }
 
 

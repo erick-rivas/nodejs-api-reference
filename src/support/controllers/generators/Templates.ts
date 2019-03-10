@@ -143,8 +143,8 @@ const CTRL_GET_LIST_TEMPLATE =
   `
   async getList(req: Request, res: Response)
   {
+    const { #args# } = req.query;
     // TODO CHECK FILTERS
-    const { } = req.query;
     const result = await this.sql.get#Model#List();
     return Res.sendList(res, result);
   }
@@ -154,8 +154,8 @@ const CTRL_SAVE_TEMPLATE =
   `
   async save(req: Request, res: Response)
   {
+    const { #args# } = req.body;
     // TODO CHECK BUILD
-    const { } = req.body;
     const #model# = new #Model#(Generator.getId());
 
     const result = await this.sql.save#Model#(#model#);
@@ -167,9 +167,9 @@ const CTRL_UPDATE_TEMPLATE =
   `  
   async update(req: Request, res: Response)
   {
-    //TODO CHECK ARGS
     const id = req.params.id;
-    const { } = req.body;
+    const { #args# } = req.body;
+    //TODO CHECK ARGS
     const result = await this.sql.set#Model#(
       id
     );
@@ -225,6 +225,11 @@ export default Sql;
 const REPO_GET_LIST_TEMPLATE =
   `
   get#Model#List(): Promise<#Model#[]>; //TODO CHECK FILTERS
+  //(Suggestion) -> get#Model#List(#args#): Promise<#Model#[]>; //CHECK ARGS TYPES
+  `;
+
+const REPO_SUG_GET_LIST_TEMPLATE =
+  `
 `;
 
 const REPO_GET_DETAILS_TEMPLATE =
@@ -240,6 +245,7 @@ const REPO_SAVE_TEMPLATE =
 const REPO_SET_TEMPLATE =
   `
   set#Model#(#model#Id: number): Promise<#Model#>; //TODO CHECK ARGS
+  //(Suggestion) -> set#Model#(#model#Id: number, #args#): Promise<#Model#[]>; //CHECK ARGS TYPES
 `;
 
 const REPO_DELETE_TEMPLATE =
@@ -317,8 +323,11 @@ const SRC_GET_LIST_TEMPLATE =
   {
     const query =
       \`SELECT #i#.* FROM #model_n# #i#\`;
-    const filter = [];
+    const filter: Pair[] = [];
     //TODO ADD FILTERS
+    /* (Suggestion)
+      #filters#
+    */
     const res = await this.get(query, filter, new Mapper.#Model#Mapper());
     //TODO CHECK FETCH
     return res; 
@@ -352,8 +361,11 @@ const SRC_SET_TEMPLATE =
   async set#Model#(#model#Id: number): Promise<#Model#>
   {
     const query = "UPDATE #model_n#";
-    const columns = [];
+    const columns: Pair[] = [];
     //TODO ADD COLUMNS
+    /* (Suggestion)
+      #columns#
+    */
     await this.set(query, columns, "#model_n#_id", #model#Id);
     return this.get#Model#Details(#model#Id);
   }
@@ -363,8 +375,8 @@ const SRC_DELETE_TEMPLATE =
   `
   async delete#Model#(#model#Id: number): Promise<void>
   {
-    const query =
-      "DELETE FROM #model_n# WHERE #model_n#_id = ?;"
+    const query = \`
+      DELETE FROM #model_n# WHERE #model_n#_id = ?;\`
     //TODO CHECK EXTRA DELETES
     const params = [#model#Id];
     return this.delete(query, params);

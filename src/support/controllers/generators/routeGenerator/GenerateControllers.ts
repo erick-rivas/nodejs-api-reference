@@ -49,9 +49,15 @@ class GenerateControllers extends Executor
       else if (method == "delete")
         route = CTRL_DELETE_TEMPLATE;
 
+      let args = "";
+      for (let p of this.params[e])
+        args += `${p}, `;
+      args = args.trim().slice(0, -1);
+
       route = route.trim();
       route = route.replace(new RegExp('#model#', 'g'), cn);
       route = route.replace(new RegExp('#Model#', 'g'), cN);
+      route = route.replace(new RegExp('#args#', 'g'), args);
 
       content += `  ${route}\n\n`;
     }

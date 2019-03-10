@@ -33,7 +33,7 @@ class GenerateRepository extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("", "Sql.ts", res);
+    super.generateFile("/repositories", "Sql.ts", res);
   }
 
   getQueries(method: string, query: any[])
@@ -41,18 +41,20 @@ class GenerateRepository extends Executor
     let res = "";
     for (let c in query) {
       let cn = Util.snakeToCamel(c);
-      let route = `${Util.sp(2)}${this.getQuery(method, cn)}\n`;
+      let params = this.queries[method][c];
+      let route = `${Util.sp(2)}${this.getQuery(method, cn, params)}\n`;
       res += route;
     }
     return res;
   }
 
-  getQuery(method: string, className: string)
+  getQuery(method: string, className: string, params: string[])
   {
+    let res = "";
     let cn = className;
     let cN = Util.iniToUpper(cn);
+    let args = "";
 
-    let res = "";
     if (method == "GET")
       res = REPO_GET_DETAILS_TEMPLATE;
     else if (method == "GET_LIST")
@@ -64,9 +66,14 @@ class GenerateRepository extends Executor
     else if (method == "DELETE")
       res = REPO_DELETE_TEMPLATE;
 
+    for (let p of params)
+      args += `${Util.snakeToCamel(p)}, `;
+    args = args.trim().slice(0, -1);
+
     res = res.trim();
     res = res.replace(new RegExp('#model#', 'g'), cn);
     res = res.replace(new RegExp('#Model#', 'g'), cN);
+    res = res.replace(new RegExp('#args#', 'g'), args);
     return res;
   }
 }

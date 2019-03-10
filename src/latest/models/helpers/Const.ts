@@ -1,7 +1,7 @@
 enum MType
 {
   LEAGUE = "LEAGUE",
-  CUP = "ES",
+  CUP = "CUP",
   FRIENDLY = "FRIENDLY"
 };
 
