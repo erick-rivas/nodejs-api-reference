@@ -3,9 +3,6 @@ import { Request, Response } from "express";
 import Sql from "@lt/sources/Sql";
 import Res from "@util/http/responses";
 
-import Team from "@lt/models/Team";
-import Generator from "@util/Generator";
-
 class Teams
 {
   private sql: Sql;
@@ -24,9 +21,8 @@ class Teams
 
   async getList(req: Request, res: Response)
   {
-    // TODO CHECK FILTERS
-    const { } = req.query;
-    const result = await this.sql.getTeamList();
+    const { user_id } = req.query;
+    const result = await this.sql.getTeamList(user_id);
     return Res.sendList(res, result);
   }
 }

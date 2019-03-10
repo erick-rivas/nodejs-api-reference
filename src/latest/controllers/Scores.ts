@@ -5,6 +5,7 @@ import Res from "@util/http/responses";
 
 import Score from "@lt/models/Score";
 import Generator from "@util/Generator";
+import Player from "@lt/models/Player";
 
 class Scores
 {
@@ -17,8 +18,13 @@ class Scores
 
   async save(req: Request, res: Response)
   {
-    // TODO CHECK BUILD
-    const score = new Score(Generator.getId());
+    const { min, match_id, player_id } = req.body;
+    const score = new Score(Generator.getId())
+      .build(
+        min,
+        match_id,
+        new Player(player_id)
+      );
 
     const result = await this.sql.saveScore(score);
     return Res.sendModel(res, result);

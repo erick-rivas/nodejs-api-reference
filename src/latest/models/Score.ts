@@ -2,9 +2,10 @@ import Model from "@util/Model";
 import Player from "@lt/models/Player";
 
 class Score extends Model
-{
+{ 
   id: number;
   min: number;
+  matchId: number;
   player: Player;
 
   constructor(id: number)
@@ -13,9 +14,10 @@ class Score extends Model
     this.id = id;
   }
 
-  build(min: number, player: Player): Score
+  build(min: number, matchId: number, player: Player): Score
   {
     this.min = min;
+    this.matchId = matchId;
     this.player = player;
     return this;
   }
@@ -25,6 +27,7 @@ class Score extends Model
     return {
       id: this.id,
       min: this.min,
+      match_id: this.matchId,
       player: this.player
     };
   }

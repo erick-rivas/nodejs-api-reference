@@ -52,6 +52,7 @@ class ScoreMapper extends Mapper<Score>
     return new Score(data.score_id)
       .build(
         data.min,
+        data.match_id,
         new Player(data.player_id)
       );
   }

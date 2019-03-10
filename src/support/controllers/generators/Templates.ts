@@ -155,6 +155,7 @@ const CTRL_SAVE_TEMPLATE =
   async save(req: Request, res: Response)
   {
     // TODO CHECK BUILD
+    const { } = req.body;
     const #model# = new #Model#(Generator.getId());
 
     const result = await this.sql.save#Model#(#model#);

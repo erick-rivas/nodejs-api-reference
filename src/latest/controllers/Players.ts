@@ -22,19 +22,18 @@ class Players
 
   async getList(req: Request, res: Response)
   {
-    // TODO CHECK FILTERS
-    const { } = req.query;
-    const result = await this.sql.getPlayerList();
+    const { team_id } = req.query;
+    const result = await this.sql.getPlayerList(team_id);
     return Res.sendList(res, result);
   }
 
   async update(req: Request, res: Response)
   {
-    //TODO CHECK ARGS
     const id = req.params.id;
-    const { } = req.body;
+    const { team_id } = req.body;
     const result = await this.sql.setPlayer(
-      id
+      id,
+      team_id
     );
     return Res.sendModel(res, result);
   }

@@ -5,6 +5,7 @@ import Res from "@util/http/responses";
 
 import Match from "@lt/models/Match";
 import Generator from "@util/Generator";
+import Team from "@lt/models/Team";
 
 class Matches
 {
@@ -17,28 +18,33 @@ class Matches
 
   async getList(req: Request, res: Response)
   {
-    // TODO CHECK FILTERS
-    const { } = req.query;
-    const result = await this.sql.getMatchList();
+    const { team_id } = req.query;
+    const result = await this.sql.getMatchList(team_id);
     return Res.sendList(res, result);
   }
 
   async save(req: Request, res: Response)
   {
-    // TODO CHECK BUILD
-    const match = new Match(Generator.getId());
-
+    const { date, type, visitor_id, local_id } = req.body;
+    const match = new Match(Generator.getId())
+      .build(
+        date,
+        Match.getMType(type),
+        new Team(visitor_id),
+        new Team(local_id),
+        []
+      );
     const result = await this.sql.saveMatch(match);
     return Res.sendModel(res, result);
   }
 
   async update(req: Request, res: Response)
   {
-    //TODO CHECK ARGS
     const id = req.params.id;
-    const { } = req.body;
+    const { type } = req.body;
     const result = await this.sql.setMatch(
-      id
+      id,
+      Match.getMType(type)
     );
     return Res.sendModel(res, result);
   }

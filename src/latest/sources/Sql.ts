@@ -3,6 +3,7 @@ import Player from "@lt/models/Player";
 import Score from "@lt/models/Score";
 import Team from "@lt/models/Team";
 import User from "@lt/models/User";
+import { MType } from "@lt/models/helpers/Const";
 
 interface Sql
 {
@@ -12,15 +13,15 @@ interface Sql
   getTeamDetails(teamId: number): Promise<Team>;
   getUserDetails(userId: number): Promise<User>;
 
-  getMatchList(): Promise<Match[]>; //TODO CHECK FILTERS
-  getPlayerList(): Promise<Player[]>; //TODO CHECK FILTERS
-  getTeamList(): Promise<Team[]>; //TODO CHECK FILTERS
-
+  getMatchList(teamId: number): Promise<Match[]>;
+  getPlayerList(teamId: number): Promise<Player[]>;
+  getTeamList(userId: number): Promise<Team[]>; 
+  
   saveMatch(match: Match): Promise<Match>;
   saveScore(score: Score): Promise<Score>;
 
-  setMatch(matchId: number): Promise<Match>; //TODO CHECK ARGS
-  setPlayer(playerId: number): Promise<Player>; //TODO CHECK ARGS
+  setMatch(matchId: number, type: MType): Promise<Match>; 
+  setPlayer(playerId: number, teamId: number): Promise<Player>;
 
   deleteMatch(matchId: number): Promise<void>;
 }

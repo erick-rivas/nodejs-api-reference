@@ -5,6 +5,7 @@ import Player from "@lt/models/Player";
 import Score from "@lt/models/Score";
 import Team from "@lt/models/Team";
 import User from "@lt/models/User";
+import { MType } from "@lt/models/helpers/Const";
 
 import Executor from "@lt/sources/sql/Executor";
 import * as Mapper from "@lt/sources/sql/Mappers";
@@ -58,7 +59,7 @@ class Source extends Executor implements Repository
   }
 
 
-  async getMatchList(): Promise<Match[]>
+  async getMatchList(teamId: number): Promise<Match[]>
   {
     const query =
       `SELECT m.* FROM match m`;
@@ -66,9 +67,9 @@ class Source extends Executor implements Repository
     //TODO ADD FILTERS
     const res = await this.get(query, filter, new Mapper.MatchMapper());
     //TODO CHECK FETCH
-    return res; 
+    return res;
   }
-  async getPlayerList(): Promise<Player[]>
+  async getPlayerList(teamId: number): Promise<Player[]>
   {
     const query =
       `SELECT p.* FROM player p`;
@@ -76,9 +77,9 @@ class Source extends Executor implements Repository
     //TODO ADD FILTERS
     const res = await this.get(query, filter, new Mapper.PlayerMapper());
     //TODO CHECK FETCH
-    return res; 
+    return res;
   }
-  async getTeamList(): Promise<Team[]>
+  async getTeamList(userId: number): Promise<Team[]>
   {
     const query =
       `SELECT t.* FROM team t`;
@@ -86,7 +87,7 @@ class Source extends Executor implements Repository
     //TODO ADD FILTERS
     const res = await this.get(query, filter, new Mapper.TeamMapper());
     //TODO CHECK FETCH
-    return res; 
+    return res;
   }
 
 
@@ -102,7 +103,7 @@ class Source extends Executor implements Repository
   }
 
 
-  async setMatch(matchId: number): Promise<Match>
+  async setMatch(matchId: number, type: MType): Promise<Match>
   {
     const query = "UPDATE match";
     const columns = [];
@@ -110,7 +111,7 @@ class Source extends Executor implements Repository
     await this.set(query, columns, "match_id", matchId);
     return this.getMatchDetails(matchId);
   }
-  async setPlayer(playerId: number): Promise<Player>
+  async setPlayer(playerId: number, teamId: number): Promise<Player>
   {
     const query = "UPDATE player";
     const columns = [];
