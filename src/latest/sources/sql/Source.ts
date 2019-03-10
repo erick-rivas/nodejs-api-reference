@@ -1,70 +1,132 @@
-import Repository from "@lt/sources/sql";
-import Pet from "@lt/models/Pet";
-import Toy from "@lt/models/Toy";
+import Repository from "@lt/sources/Sql";
 import { Pair } from "@util/Util";
+import Match from "@lt/models/Match";
+import Player from "@lt/models/Player";
+import Score from "@lt/models/Score";
+import Team from "@lt/models/Team";
+import User from "@lt/models/User";
 
 import Executor from "@lt/sources/sql/Executor";
 import * as Mapper from "@lt/sources/sql/Mappers";
 
-
 class Source extends Executor implements Repository
 {
-  async getPetList(): Promise<Pet[]>
+  async getMatchDetails(matchId: number): Promise<Match>
   {
     const query =
-      `SELECT p.* FROM pet p`;
-    const filter = [];
-    const res = await this.get(query, filter, new Mapper.PetMapper());
-    return this.fetchPets(res);
+      `SELECT m.* FROM match m WHERE m.match_id = ?`;
+    const params = [matchId];
+    const res = await this.getDetails(query, params, new Mapper.MatchMapper());
+    //TODO CHECK FETCH
+    return res[0];
   }
-
-  async getToyList(petId?: number): Promise<Toy[]>
+  async getPlayerDetails(playerId: number): Promise<Player>
   {
     const query =
-      `SELECT t.* FROM toy t`;
-    const filter = [];
-    if (petId) filter.push(new Pair("t.pet_id", petId));
-    const res = await this.get(query, filter, new Mapper.ToyMapper());
-    return res;
+      `SELECT p.* FROM player p WHERE p.player_id = ?`;
+    const params = [playerId];
+    const res = await this.getDetails(query, params, new Mapper.PlayerMapper());
+    //TODO CHECK FETCH
+    return res[0];
   }
-
-  async getPetDetails(petId: number): Promise<Pet>
+  async getScoreDetails(scoreId: number): Promise<Score>
   {
     const query =
-      `SELECT p.* FROM pet p WHERE p.pet_id = ?`;
-    const params = [petId];
-    const res = await this.getDetails(query, params, new Mapper.PetMapper());
-    const fetch = await this.fetchPets(res);
-    return fetch[0];
+      `SELECT s.* FROM score s WHERE s.score_id = ?`;
+    const params = [scoreId];
+    const res = await this.getDetails(query, params, new Mapper.ScoreMapper());
+    //TODO CHECK FETCH
+    return res[0];
   }
-
-  async getToyDetails(toyId: number): Promise<Toy>
+  async getTeamDetails(teamId: number): Promise<Team>
   {
     const query =
-      `SELECT t.* FROM toy t WHERE t.toy_id = ?`;
-    const params = [toyId];
-    const res = await this.getDetails(query, params, new Mapper.ToyMapper());
+      `SELECT t.* FROM team t WHERE t.team_id = ?`;
+    const params = [teamId];
+    const res = await this.getDetails(query, params, new Mapper.TeamMapper());
+    //TODO CHECK FETCH
+    return res[0];
+  }
+  async getUserDetails(userId: number): Promise<User>
+  {
+    const query =
+      `SELECT u.* FROM user u WHERE u.user_id = ?`;
+    const params = [userId];
+    const res = await this.getDetails(query, params, new Mapper.UserMapper());
+    //TODO CHECK FETCH
     return res[0];
   }
 
-  async fetchPets(pets: Pet[]): Promise<Pet[]>
+
+  async getMatchList(): Promise<Match[]>
   {
-    return pets;
+    const query =
+      `SELECT m.* FROM match m`;
+    const filter = [];
+    //TODO ADD FILTERS
+    const res = await this.get(query, filter, new Mapper.MatchMapper());
+    //TODO CHECK FETCH
+    return res; 
+  }
+  async getPlayerList(): Promise<Player[]>
+  {
+    const query =
+      `SELECT p.* FROM player p`;
+    const filter = [];
+    //TODO ADD FILTERS
+    const res = await this.get(query, filter, new Mapper.PlayerMapper());
+    //TODO CHECK FETCH
+    return res; 
+  }
+  async getTeamList(): Promise<Team[]>
+  {
+    const query =
+      `SELECT t.* FROM team t`;
+    const filter = [];
+    //TODO ADD FILTERS
+    const res = await this.get(query, filter, new Mapper.TeamMapper());
+    //TODO CHECK FETCH
+    return res; 
   }
 
-  async savePet(pet: Pet): Promise<Pet>
+
+  async saveMatch(match: Match): Promise<Match>
   {
+    //TODO
+    return null;
+  }
+  async saveScore(score: Score): Promise<Score>
+  {
+    //TODO
     return null;
   }
 
-  async setPet(petId: number): Promise<Pet>
+
+  async setMatch(matchId: number): Promise<Match>
   {
-    return null;
+    const query = "UPDATE match";
+    const columns = [];
+    //TODO ADD COLUMNS
+    await this.set(query, columns, "match_id", matchId);
+    return this.getMatchDetails(matchId);
+  }
+  async setPlayer(playerId: number): Promise<Player>
+  {
+    const query = "UPDATE player";
+    const columns = [];
+    //TODO ADD COLUMNS
+    await this.set(query, columns, "player_id", playerId);
+    return this.getPlayerDetails(playerId);
   }
 
-  async deletePet(petId: number): Promise<void>
+
+  async deleteMatch(matchId: number): Promise<void>
   {
-    return null;
+    const query =
+      "DELETE FROM match WHERE match_id = ?;"
+    //TODO CHECK EXTRA DELETES
+    const params = [matchId];
+    return this.delete(query, params);
   }
 
   private static instance: Source;

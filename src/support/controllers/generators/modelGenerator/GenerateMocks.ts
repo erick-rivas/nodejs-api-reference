@@ -60,26 +60,39 @@ class GenerateMocks extends Executor
             attrs += "[";
             let numEle = Generator.getNum(2) + 1;
             for (let j = 0; j < numEle; j++)
-              attrs += `this.${type}()[${Generator.getNum(typeIts)}],`;
-            attrs = attrs.slice(0, -1);
-            attrs += "],";
+              attrs += `this.${type}()[${Generator.getNum(typeIts)}], `;
+            attrs = attrs.trim().slice(0, -1);
+            attrs += "], ";
           } else
-            attrs += `this.${type}()[${Generator.getNum(typeIts)}],`;
+            attrs += `this.${type}()[${Generator.getNum(typeIts)}], `;
         }
 
-        //Other
+        //Description
+
+        else if (a.description) {
+          if (a.description == "name")
+            attrs += `"${Generator.getName()}", `;
+          else if (a.description == "noun")
+            attrs += `"${Generator.getNoun()}", `;
+          else if (a.description == "email")
+            attrs += `"${Generator.getEmail()}", `;
+          else if (a.description == "imageUrl")
+            attrs += `"${Generator.getImageUrl()}", `;
+        }
+
+        //Types (default)
 
         else {
-          if (a.description == "name")
-            attrs += `"${Generator.getName()}",`;
-          else if (a.description == "noun")
-            attrs += `"${Generator.getNoun()}",`;
-          else if (a.description == "imageUrl")
-            attrs += `"${Generator.getImageUrl()}",`;
+          if (a.type == "string")
+            attrs += `"${Generator.getWord()}", `;
+          else if (a.type == "number")
+            attrs += `${Generator.getNum(100)}, `;
+          else if (a.type == "Date")
+            attrs += `new Date("${Generator.getDate()}"), `;
         }
       }
 
-      attrs = attrs.slice(0, -1);
+      attrs = attrs.trim().slice(0, -1);
       data += `${attrs}),\n`;
     }
 

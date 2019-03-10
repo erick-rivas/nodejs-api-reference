@@ -2,7 +2,7 @@ import Util from "@support/controllers/generators/Util"
 import Executor from './Executor';
 import
 {
-  CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE,
+  CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_CUSTOM_TEMPLATE,
   CTRL_GET_DETAILS_TEMPLATE, CTRL_SAVE_TEMPLATE,
   CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE
 } from "@support/controllers/generators/Templates"
@@ -32,10 +32,16 @@ class GenerateControllers extends Executor
       let method = e.split("|")[1].toLowerCase();
 
       if (method == "get") {
-        if (endpoint.endsWith("/:id"))
-          route = CTRL_GET_DETAILS_TEMPLATE;
-        else
+        let args = endpoint.split("/")[2];
+        if (!args)
           route = CTRL_GET_LIST_TEMPLATE;
+        else if (args == ":id")
+          route = CTRL_GET_DETAILS_TEMPLATE;
+        else {
+          route = CTRL_CUSTOM_TEMPLATE;
+          let func = Util.snakeToCamel(args);
+          route = route.replace(new RegExp('#func#', 'g'), func);
+        }
       } else if (method == "post")
         route = CTRL_SAVE_TEMPLATE;
       else if (method == "put")
@@ -53,6 +59,7 @@ class GenerateControllers extends Executor
     className = Util.iniToUpper(resName);
     content = content.trim();
 
+    res = res.replace(new RegExp('#Model#', 'g'), cN);
     res = res.replace(new RegExp('#ClassName#', 'g'), className);
     res = res.replace(new RegExp('#content#', 'g'), content);
     return res;

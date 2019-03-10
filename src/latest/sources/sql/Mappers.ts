@@ -1,5 +1,8 @@
-import Pet from "@lt/models/Pet";
-import Toy from "@lt/models/Toy";
+import Match from "@lt/models/Match";
+import Player from "@lt/models/Player";
+import Score from "@lt/models/Score";
+import Team from "@lt/models/Team";
+import User from "@lt/models/User";
 
 abstract class Mapper<T>
 {
@@ -14,28 +17,68 @@ abstract class Mapper<T>
   abstract transform(data): T;
 }
 
-class PetMapper extends Mapper<Pet>
+class MatchMapper extends Mapper<Match>
 {
-  transform(data: any): Pet
+  transform(data: any): Match  
   {
-    return new Pet(data.pet_id)
+    return new Match(data.match_id)
       .build(
-        data.name,
-        Pet.getAnimal(data.animal),
-        data.photo,
-        []);
-  }
-}
-
-class ToyMapper extends Mapper<Toy>
-{
-  transform(data: any): Toy  
-  {
-    return new Toy(data.toy_id)
-      .build(
-        data.name
+        data.date,
+        new Team(data.team_id),
+        new Team(data.team_id),
+        []
       );
   }
 }
 
-export { PetMapper, ToyMapper, Mapper };
+class PlayerMapper extends Mapper<Player>
+{
+  transform(data: any): Player  
+  {
+    return new Player(data.player_id)
+      .build(
+        data.name,
+        data.photo_url,
+        data.team_id
+      );
+  }
+}
+
+class ScoreMapper extends Mapper<Score>
+{
+  transform(data: any): Score  
+  {
+    return new Score(data.score_id)
+      .build(
+        data.min,
+        new Player(data.player_id)
+      );
+  }
+}
+
+class TeamMapper extends Mapper<Team>
+{
+  transform(data: any): Team  
+  {
+    return new Team(data.team_id)
+      .build(
+        data.name,
+        data.logo_url,
+        []
+      );
+  }
+}
+
+class UserMapper extends Mapper<User>
+{
+  transform(data: any): User  
+  {
+    return new User(data.user_id)
+      .build(
+        data.email,
+        data.password
+      );
+  }
+}
+
+export { Mapper, MatchMapper, PlayerMapper, ScoreMapper, TeamMapper, UserMapper }

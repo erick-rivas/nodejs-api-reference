@@ -74,6 +74,31 @@ class Generator
     return `${faker.hacker.adjective()} ${faker.hacker.noun()}`;
   }
 
+  static getBoolean(): string
+  {
+    return faker.random.boolean();
+  }
+
+  static getDate(): string
+  {
+    return faker.date.recent();
+  }
+
+  static getWord(): string
+  {
+    return faker.lorem.word()
+  }
+
+  static getSentence(): string
+  {
+    return faker.lorem.sentence()
+  }
+
+  static getParagraph(): string
+  {
+    return faker.lorem.paragraph()
+  }
+
 }
 
 export default Generator;

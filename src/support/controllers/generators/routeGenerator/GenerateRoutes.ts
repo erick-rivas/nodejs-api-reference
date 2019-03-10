@@ -58,14 +58,19 @@ class GenerateRoutes extends Executor
     groupU = Util.iniToUpper(group);
 
     if (method == "get") {
-      if (endpoint.endsWith("/:id")) {
-        description = `Get ${group} details`;
-        name = `Get${groupU}Details`
-        func = "getDetails"
-      } else {
+      let args = endpoint.split("/")[2];
+      if (!args) {
         description = `Get ${group} list`;
         name = `Get${groupU}List`;
         func = "getList";
+      } else if (args == ":id") {
+        description = `Get ${group} details`;
+        name = `Get${groupU}Details`;
+        func = "getDetails"
+      } else {
+        description = ``;
+        name = ``;
+        func = Util.snakeToCamel(args);
       }
     } else if (method == "post") {
       description = `Save a ${group}`;

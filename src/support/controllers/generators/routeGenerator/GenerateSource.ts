@@ -19,12 +19,13 @@ class GenerateRoutes extends Executor
       let cn = Util.snakeToCamel(this.classes[r]);
       let cN = Util.iniToUpper(cn);
       imports += `import ${cN} from "@lt/models/${cN}";\n`;
-
-      for (let e of this.endpoints[r]) {
-        let route = `${Util.sp(2)}${this.getQuery(cn, e)}\n\n`;
-        content += route;
-      }
     }
+
+    content += `${this.getQueries("GET", this.queries["GET"])}\n\n`;
+    content += `${this.getQueries("GET_LIST", this.queries["GET_LIST"])}\n\n`;
+    content += `${this.getQueries("POST", this.queries["POST"])}\n\n`;
+    content += `${this.getQueries("PUT", this.queries["PUT"])}\n\n`;
+    content += `${this.getQueries("DELETE", this.queries["DELETE"])}\n\n`;
 
     imports = imports.trim();
     content = content.trim();
@@ -35,25 +36,33 @@ class GenerateRoutes extends Executor
     super.generateFile("", "Source.ts", res);
   }
 
-  getQuery(className: string, endpointData: string)
+  getQueries(method: string, query: any[])
   {
-    let endpoint = endpointData.split("|")[0];
-    let method = endpointData.split("|")[1].toLowerCase();
+    let res = "";
+    for (let c in query) {
+      let cn = Util.snakeToCamel(c);
+      let route = `${Util.sp(2)}${this.getQuery(method, cn)}\n`;
+      res += route;
+    }
+    return res;
+  }
+
+  getQuery(method: string, className: string)
+  {
     let cn = className;
     let cN = Util.iniToUpper(cn);
     let ini = cn.charAt(0);
 
     let res = "";
-    if (method == "get") {
-      if (endpoint.endsWith("/:id"))
-        res = SRC_GET_DETAILS_TEMPLATE;
-      else
-        res = SRC_GET_LIST_TEMPLATE;
-    } else if (method == "post")
+    if (method == "GET")
+      res = SRC_GET_DETAILS_TEMPLATE;
+    else if (method == "GET_LIST")
+      res = SRC_GET_LIST_TEMPLATE;
+    else if (method == "POST")
       res = SRC_SAVE_TEMPLATE;
-    else if (method == "put")
+    else if (method == "PUT")
       res = SRC_SET_TEMPLATE;
-    else if (method == "delete")
+    else if (method == "DELETE")
       res = SRC_DELETE_TEMPLATE;
 
 

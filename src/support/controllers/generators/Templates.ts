@@ -18,7 +18,7 @@ abstract class Mapper<T>
   
 #content#
   
-export default {Mapper, #defs#}
+export { Mapper, #defs#}
 `;
 
 const MAPPER_TEMPLATE =
@@ -70,7 +70,7 @@ export default #Model#;
 
 const MOCK_TEMPLATE = `
 #imports#
-import { Generator } from "@util/Generator";
+import Generator from "@util/Generator";
 
 class Mocks
 {
@@ -91,10 +91,11 @@ static #Model#()
 const CTRL_TEMPLATE =
   `
 import { Request, Response } from "express";
-import Sql from "@lt/sources/sql";
+import Sql from "@lt/sources/Sql";
 import Res from "@util/http/responses";
 
-import Generator from "@util/Generator"
+import #Model# from "@lt/models/#Model#";
+import Generator from "@util/Generator";
 
 class #ClassName#
 {
@@ -121,6 +122,14 @@ const CTRL_GET_DETAILS_TEMPLATE =
   }
 `;
 
+const CTRL_CUSTOM_TEMPLATE =
+  `
+  async #func#(req: Request, res: Response)
+  {
+    return null;
+  }
+`;
+
 const CTRL_GET_LIST_TEMPLATE =
   `
   async getList(req: Request, res: Response)
@@ -139,7 +148,7 @@ const CTRL_SAVE_TEMPLATE =
     // TODO CHECK BUILD
     const #model# = new #Model#(Generator.getId());
 
-    const result = this.sql.save#Model#(#model#);
+    const result = await this.sql.save#Model#(#model#);
     return Res.sendModel(res, result);
   }
 `;
@@ -273,7 +282,7 @@ const ROUTES_ITEM_TEMPLATE =
 
 const SRC_TEMPLATE =
   `
-import Repository from "@lt/sources/sql";
+import Repository from "@lt/sources/Sql";
 import { Pair } from "@util/Util";
 #imports#
 
@@ -358,7 +367,7 @@ export
   MAPPERS_TEMPLATE, MAPPER_TEMPLATE,
   MODEL_TEMPLATE,
   MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE,
-  CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_GET_DETAILS_TEMPLATE, CTRL_SAVE_TEMPLATE, CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE,
+  CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_GET_DETAILS_TEMPLATE, CTRL_CUSTOM_TEMPLATE, CTRL_SAVE_TEMPLATE, CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE,
   FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE,
   REPO_TEMPLATE, REPO_GET_LIST_TEMPLATE, REPO_GET_DETAILS_TEMPLATE, REPO_SAVE_TEMPLATE, REPO_SET_TEMPLATE, REPO_DELETE_TEMPLATE,
   ROUTES_TEMPLATE, ROUTES_COMMENT_TEMPLATE, ROUTES_ITEM_TEMPLATE,

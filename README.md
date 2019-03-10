@@ -124,7 +124,7 @@ In general terms, the architecture uses the following structure:
  ```
   * Example requests. 
  ```bash
- GET http://localhost:4004/v1/toys
+ GET http://localhost:4004/v1/players
  ```
 
  ### To deploy to server (aws):

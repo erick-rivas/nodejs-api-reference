@@ -19,12 +19,13 @@ class GenerateRepository extends Executor
       let cn = Util.snakeToCamel(this.classes[r]);
       let cN = Util.iniToUpper(cn);
       imports += `import ${cN} from "@lt/models/${cN}";\n`;
-
-      for (let e of this.endpoints[r]) {
-        let route = `${Util.sp(2)}${this.getQuery(cn, e)}\n`;
-        content += route;
-      }
     }
+
+    content += `${this.getQueries("GET", this.queries["GET"])}\n`;
+    content += `${this.getQueries("GET_LIST", this.queries["GET_LIST"])}\n`;
+    content += `${this.getQueries("POST", this.queries["POST"])}\n`;
+    content += `${this.getQueries("PUT", this.queries["PUT"])}\n`;
+    content += `${this.getQueries("DELETE", this.queries["DELETE"])}\n`;
 
     imports = imports.trim();
     content = content.trim();
@@ -35,24 +36,32 @@ class GenerateRepository extends Executor
     super.generateFile("", "Sql.ts", res);
   }
 
-  getQuery(className: string, endpointData: string)
+  getQueries(method: string, query: any[])
   {
-    let endpoint = endpointData.split("|")[0];
-    let method = endpointData.split("|")[1].toLowerCase();
+    let res = "";
+    for (let c in query) {
+      let cn = Util.snakeToCamel(c);
+      let route = `${Util.sp(2)}${this.getQuery(method, cn)}\n`;
+      res += route;
+    }
+    return res;
+  }
+
+  getQuery(method: string, className: string)
+  {
     let cn = className;
     let cN = Util.iniToUpper(cn);
 
     let res = "";
-    if (method == "get") {
-      if (endpoint.endsWith("/:id"))
-        res = REPO_GET_DETAILS_TEMPLATE;
-      else
-        res = REPO_GET_LIST_TEMPLATE;
-    } else if (method == "post")
+    if (method == "GET")
+      res = REPO_GET_DETAILS_TEMPLATE;
+    else if (method == "GET_LIST")
+      res = REPO_GET_LIST_TEMPLATE;
+    else if (method == "POST")
       res = REPO_SAVE_TEMPLATE;
-    else if (method == "put")
+    else if (method == "PUT")
       res = REPO_SET_TEMPLATE;
-    else if (method == "delete")
+    else if (method == "DELETE")
       res = REPO_DELETE_TEMPLATE;
 
     res = res.trim();
