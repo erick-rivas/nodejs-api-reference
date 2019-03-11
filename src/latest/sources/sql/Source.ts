@@ -12,62 +12,6 @@ import * as Mapper from "@lt/sources/sql/Mappers";
 
 class Source extends Executor implements Repository
 {
-  async getMatchDetails(matchId: number): Promise<Match>
-  {
-    const query =
-      `SELECT m.* FROM \`match\` m WHERE m.match_id = ?`;
-    const params = [matchId];
-    const res = await this.getDetails(query, params, new Mapper.MatchMapper());
-    const fetch = await this.fetch(res, r => this.fetchMatch(r));
-    return fetch[0];
-  }
-  async getPlayerDetails(playerId: number): Promise<Player>
-  {
-    const query =
-      `SELECT p.* FROM player p WHERE p.player_id = ?`;
-    const params = [playerId];
-    const res = await this.getDetails(query, params, new Mapper.PlayerMapper());
-    return res[0];
-  }
-  async getScoreDetails(scoreId: number): Promise<Score>
-  {
-    const query =
-      `SELECT s.* FROM score s WHERE s.score_id = ?`;
-    const params = [scoreId];
-    const res = await this.getDetails(query, params, new Mapper.ScoreMapper());
-    const fetch = await this.fetch(res, r => this.fetchScore(r));
-    return fetch[0];
-  }
-  async getTeamDetails(teamId: number): Promise<Team>
-  {
-    const query =
-      `SELECT t.* FROM team t WHERE t.team_id = ?`;
-    const params = [teamId];
-    const res = await this.getDetails(query, params, new Mapper.TeamMapper());
-    const fetch = await this.fetch(res, r => this.fetchTeam(r));
-    return fetch[0];
-  }
-
-  async getUserAuth(email: string, password: string): Promise<User>
-  {
-    const query = `
-      SELECT u.* FROM user u 
-      WHERE u.email = ? AND u.password = ?`;
-    const params = [email, password];
-    const res = await this.getDetails(query, params, new Mapper.UserMapper());
-    return res[0];
-  }
-
-  async getUserDetails(userId: number): Promise<User>
-  {
-    const query =
-      `SELECT u.* FROM user u WHERE u.user_id = ?`;
-    const params = [userId];
-    const res = await this.getDetails(query, params, new Mapper.UserMapper());
-    return res[0];
-  }
-
-
   async getMatchList(teamId: number): Promise<Match[]>
   {
     const query =
@@ -97,6 +41,65 @@ class Source extends Executor implements Repository
     if (userId) filter.push(new Pair("ut.user_id", userId));
     const res = await this.get(query, filter, new Mapper.TeamMapper());
     return this.fetch(res, r => this.fetchTeam(r));
+  }
+
+
+  async getMatchDetails(matchId: number): Promise<Match>
+  {
+    const query =
+      `SELECT m.* FROM \`match\` m WHERE m.match_id = ?`;
+    const params = [matchId];
+    const res = await this.getDetails(query, params, new Mapper.MatchMapper());
+    const fetch = await this.fetch(res, r => this.fetchMatch(r));
+    return fetch[0];
+  }
+
+  async getPlayerDetails(playerId: number): Promise<Player>
+  {
+    const query =
+      `SELECT p.* FROM player p WHERE p.player_id = ?`;
+    const params = [playerId];
+    const res = await this.getDetails(query, params, new Mapper.PlayerMapper());
+    return res[0];
+  }
+
+  async getScoreDetails(scoreId: number): Promise<Score>
+  {
+    const query =
+      `SELECT s.* FROM score s WHERE s.score_id = ?`;
+    const params = [scoreId];
+    const res = await this.getDetails(query, params, new Mapper.ScoreMapper());
+    const fetch = await this.fetch(res, r => this.fetchScore(r));
+    return fetch[0];
+  }
+
+  async getTeamDetails(teamId: number): Promise<Team>
+  {
+    const query =
+      `SELECT t.* FROM team t WHERE t.team_id = ?`;
+    const params = [teamId];
+    const res = await this.getDetails(query, params, new Mapper.TeamMapper());
+    const fetch = await this.fetch(res, r => this.fetchTeam(r));
+    return fetch[0];
+  }
+
+  async getUserAuth(email: string, password: string): Promise<User>
+  {
+    const query = `
+      SELECT u.* FROM user u 
+      WHERE u.email = ? AND u.password = ?`;
+    const params = [email, password];
+    const res = await this.getDetails(query, params, new Mapper.UserMapper());
+    return res[0];
+  }
+
+  async getUserDetails(userId: number): Promise<User>
+  {
+    const query =
+      `SELECT u.* FROM user u WHERE u.user_id = ?`;
+    const params = [userId];
+    const res = await this.getDetails(query, params, new Mapper.UserMapper());
+    return res[0];
   }
 
 

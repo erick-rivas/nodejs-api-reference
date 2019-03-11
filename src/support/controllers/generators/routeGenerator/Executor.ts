@@ -50,6 +50,42 @@ abstract class Executor extends ExecutorP
           this.queries["GET"][className] = params;
       }
     }
+
+    //SORT ENDPOINTS
+
+    for (let r of this.resources) {
+      let temp = [];
+      for (let e of this.endpoints[r]) {
+        let endpoint = e.split("|")[0];
+        let method = e.split("|")[1];
+        let args = endpoint.split("/")[2];
+        let value = 1000;
+        if (method == "POST") value = 100;
+        if (method == "PUT") value = 10;
+        if (method == "DELETE") value = 1;
+        if (args) {
+          if (args == ":id") value += 1;
+          else value += 2;
+        }
+        temp.push({
+          value: value,
+          data: e
+        });
+      }
+
+      temp.sort((a, b) =>
+      {
+        if (a.value > b.value)
+          return -1;
+        if (a.value < b.value)
+          return 1;
+        return 0;
+      });
+
+      this.endpoints[r] = [];
+      for (let t of temp)
+        this.endpoints[r].push(t.data);
+    }
   }
 }
 

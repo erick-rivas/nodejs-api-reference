@@ -21,8 +21,8 @@ class GenerateRepository extends Executor
       imports += `import ${cN} from "@lt/models/${cN}";\n`;
     }
 
-    content += `${this.getQueries("GET", this.queries["GET"])}\n`;
     content += `${this.getQueries("GET_LIST", this.queries["GET_LIST"])}\n`;
+    content += `${this.getQueries("GET", this.queries["GET"])}\n`;
     content += `${this.getQueries("POST", this.queries["POST"])}\n`;
     content += `${this.getQueries("PUT", this.queries["PUT"])}\n`;
     content += `${this.getQueries("DELETE", this.queries["DELETE"])}\n`;

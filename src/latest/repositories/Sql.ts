@@ -7,16 +7,16 @@ import { MType } from "@lt/models/helpers/Const";
 
 interface Sql
 {
+  getMatchList(teamId: number): Promise<Match[]>;
+  getPlayerList(teamId: number): Promise<Player[]>;
+  getTeamList(userId: number): Promise<Team[]>;
+
   getMatchDetails(matchId: number): Promise<Match>;
   getPlayerDetails(playerId: number): Promise<Player>;
   getScoreDetails(scoreId: number): Promise<Score>;
   getTeamDetails(teamId: number): Promise<Team>;
   getUserAuth(email: string, password: string): Promise<User>;
   getUserDetails(userId: number): Promise<User>;
-
-  getMatchList(teamId: number): Promise<Match[]>;
-  getPlayerList(teamId: number): Promise<Player[]>;
-  getTeamList(userId: number): Promise<Team[]>;
 
   fetchMatch(match: Match): Promise<Match>;
   fetchScore(score: Score): Promise<Score>;
