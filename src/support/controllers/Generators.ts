@@ -19,18 +19,20 @@ import GenerateDefaults from "@support/controllers/generators/defaultGenerator/G
 
 class Generators
 {
+
   async generateFiles(req: Request, res: Response)
   {
     await this.generate();
     let root = `${path.dirname(require.main.filename)}/../assets`;
     let source = `${root}/dev/gen`;
-    let output = `${root}/public/resources/gen.zip`
+    let output = `${root}/public/resources/gen.zip`;
     await this.zipDir(source, output);
     return Res.redirect(res, req, "/resources/gen.zip");
   }
 
   async generate()
   {
+    await this.restartDir();
     await new GenerateModels().execute();
     await new GenerateMocks().execute();
     await new GenerateConsts().execute();
@@ -41,6 +43,29 @@ class Generators
     await new GenerateRepository().execute();
     await new GenerateSource().execute();
     await new GenerateDefaults().execute();
+  }
+
+  async restartDir()
+  {
+    let root = `${path.dirname(require.main.filename)}/../assets`;
+    let dir = `${root}/dev/gen`;
+    await this.rmDir(dir);
+    await fs.mkdirSync(dir);
+  }
+
+  rmDir = (dir) =>
+  {
+    try { var files = fs.readdirSync(dir); }
+    catch (e) { return; }
+    if (files.length > 0)
+      for (var i = 0; i < files.length; i++) {
+        var filePath = dir + '/' + files[i];
+        if (fs.statSync(filePath).isFile())
+          fs.unlinkSync(filePath);
+        else
+          this.rmDir(filePath);
+      }
+    fs.rmdirSync(dir);
   }
 
   async zipDir(source, out): Promise<any>
