@@ -19,7 +19,7 @@
     "debug": "tsc && node dist/debug.js"
   },
   "dependencies": {
-    "archiver": "^3.0.0",
+    "archiver": "3.0.0",
     "bcrypt": "3.0.4",
     "body-parser": "1.18.3",
     "cookie-parser": "1.4.4",

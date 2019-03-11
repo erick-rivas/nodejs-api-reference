@@ -15,16 +15,18 @@ class Users
     this.sql = sql;
   }
 
+  async auth(req: Request, res: Response)
+  {
+    const { email, password } = req.query;
+    const result = await this.sql.getUserAuth(email, password);
+    return Res.sendModel(res, result);
+  }
+
   async getDetails(req: Request, res: Response)
   {
     const id = req.params.id;
     const result = await this.sql.getUserDetails(id);
     return Res.sendModel(res, result);
-  }
-
-  async auth(req: Request, res: Response)
-  {
-    return null;
   }
 }
 

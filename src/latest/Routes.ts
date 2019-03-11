@@ -37,8 +37,8 @@ class Routes
     this.router.post("/scores", (req, res) => this.scores.save(req, res));
     this.router.get("/teams/:id", (req, res) => this.teams.getDetails(req, res));
     this.router.get("/teams", (req, res) => this.teams.getList(req, res));
-    this.router.get("/users/:id", (req, res) => this.users.getDetails(req, res));
     this.router.get("/users/auth", (req, res) => this.users.auth(req, res));
+    this.router.get("/users/:id", (req, res) => this.users.getDetails(req, res));
 
     return this.router;
   }

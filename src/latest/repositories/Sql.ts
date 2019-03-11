@@ -11,16 +11,21 @@ interface Sql
   getPlayerDetails(playerId: number): Promise<Player>;
   getScoreDetails(scoreId: number): Promise<Score>;
   getTeamDetails(teamId: number): Promise<Team>;
+  getUserAuth(email: string, password: string): Promise<User>;
   getUserDetails(userId: number): Promise<User>;
 
   getMatchList(teamId: number): Promise<Match[]>;
   getPlayerList(teamId: number): Promise<Player[]>;
-  getTeamList(userId: number): Promise<Team[]>; 
-  
+  getTeamList(userId: number): Promise<Team[]>;
+
+  fetchMatch(match: Match): Promise<Match>;
+  fetchScore(score: Score): Promise<Score>;
+  fetchTeam(team: Team): Promise<Team>;
+
   saveMatch(match: Match): Promise<Match>;
   saveScore(score: Score): Promise<Score>;
 
-  setMatch(matchId: number, type: MType): Promise<Match>; 
+  setMatch(matchId: number, type: MType): Promise<Match>;
   setPlayer(playerId: number, teamId: number): Promise<Player>;
 
   deleteMatch(matchId: number): Promise<void>;

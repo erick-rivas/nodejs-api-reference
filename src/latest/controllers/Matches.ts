@@ -28,7 +28,7 @@ class Matches
     const { date, type, visitor_id, local_id } = req.body;
     const match = new Match(Generator.getId())
       .build(
-        date,
+        new Date(date),
         Match.getMType(type),
         new Team(visitor_id),
         new Team(local_id),

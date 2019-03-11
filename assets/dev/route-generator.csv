@@ -9,5 +9,5 @@ name,method,class,params
 /scores,POST,score,"min	match_id	player_id"
 /teams/:id,GET,team,
 /teams,GET,team,user_id
-/users/:id,GET,user,
 /users/auth,GET,user,
+/users/:id,GET,user,

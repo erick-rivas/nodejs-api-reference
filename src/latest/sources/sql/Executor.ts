@@ -108,6 +108,14 @@ class Executor
     });
   }
 
+  protected async fetch<T>(dataSet: T[], f: (input: T) => Promise<T>): Promise<T[]>
+  {
+    let result: T[] = [];
+    for (let data of dataSet)
+      result.push(await f(data));
+    return result;
+  }
+
   /**
    * Execute a save query.
    * Example:
