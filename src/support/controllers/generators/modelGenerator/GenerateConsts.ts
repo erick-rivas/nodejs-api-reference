@@ -1,6 +1,6 @@
 import Executor from './Executor';
 import Util from "@support/controllers/generators/Util"
-import { CONST_TEMPLATE } from "@support/controllers/generators/Templates"
+import { CONST_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates"
 
 class GenerateConsts extends Executor
 {
@@ -31,7 +31,7 @@ class GenerateConsts extends Executor
     res = res.replace(new RegExp('#content#', 'g'), content);
     res = res.replace(new RegExp('#defs#', 'g'), defs);
 
-    super.generateFile("", "Const.ts", res);
+    super.generateFile("/models/helpers", "Const.ts", res);
   }
 }
 

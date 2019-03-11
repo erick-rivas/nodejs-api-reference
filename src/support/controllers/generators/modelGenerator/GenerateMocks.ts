@@ -1,7 +1,7 @@
 import Executor from './Executor';
 import Generator from "@util/Generator"
 import Util from "@support/controllers/generators/Util"
-import { MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE } from "@support/controllers/generators/Templates";
+import { MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates";
 
 class GenerateMocks extends Executor
 {
@@ -39,7 +39,7 @@ class GenerateMocks extends Executor
   getMock(className: string, levels: any[], attributes: any[]): string
   {
     let res = MOCK_ITEM_TEMPLATE.toString().trim();
-    let it = Math.pow(2, +levels[className] + 3);
+    let it = Math.pow(2, +levels[className] + 2);
     let model = Util.iniToUpper(className);
     let data = "";
 

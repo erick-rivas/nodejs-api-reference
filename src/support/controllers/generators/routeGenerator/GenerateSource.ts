@@ -5,7 +5,7 @@ import
   SRC_TEMPLATE, SRC_GET_LIST_TEMPLATE,
   SRC_GET_DETAILS_TEMPLATE, SRC_SAVE_TEMPLATE,
   SRC_SET_TEMPLATE, SRC_DELETE_TEMPLATE
-} from "@support/controllers/generators/Templates"
+} from "@support/controllers/generators/routeGenerator/Templates"
 
 class GenerateRoutes extends Executor
 {
@@ -33,7 +33,8 @@ class GenerateRoutes extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("/sources", "Source.ts", res);
+    super.generateDir("/sources");
+    super.generateFile("/sources/sql", "Source.ts", res);
   }
 
   getQueries(method: string, query: any[])

@@ -1,6 +1,6 @@
 import Executor from './Executor';
 import Util from "@support/controllers/generators/Util"
-import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/controllers/generators/Templates"
+import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates"
 
 class GenerateMappers extends Executor
 {
@@ -26,7 +26,8 @@ class GenerateMappers extends Executor
     res = res.replace(new RegExp('#content#', 'g'), content);
     res = res.replace(new RegExp('#defs#', 'g'), defs);
 
-    super.generateFile("/sources", "Mappers.ts", res);
+    super.generateDir("/sources");
+    super.generateFile("/sources/sql", "Mappers.ts", res);
   }
 
   getMapper(className: string, attributes: any[], models: any[], consts: any[]): string

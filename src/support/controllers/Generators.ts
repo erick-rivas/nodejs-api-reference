@@ -14,11 +14,11 @@ import GenerateControllers from "@support/controllers/generators/routeGenerator/
 import GenerateFactory from "@support/controllers/generators/routeGenerator/GenerateFactory";
 import GenerateRepository from "@support/controllers/generators/routeGenerator/GenerateRepository";
 import GenerateSource from "@support/controllers/generators/routeGenerator/GenerateSource";
+import GenerateDefaults from "@support/controllers/generators/defaultGenerator/GenerateDefaults";
 
 
 class Generators
 {
-
   async generateFiles(req: Request, res: Response)
   {
     await this.generate();
@@ -40,6 +40,7 @@ class Generators
     await new GenerateFactory().execute();
     await new GenerateRepository().execute();
     await new GenerateSource().execute();
+    await new GenerateDefaults().execute();
   }
 
   async zipDir(source, out): Promise<any>

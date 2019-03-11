@@ -27,12 +27,18 @@ abstract class Executor
     });
   }
 
-  async generateFile(folder: string, fileName: string, data: string)
+  async generateDir(folder: string): Promise<string>
   {
     let root = `${path.dirname(require.main.filename)}/../assets/dev/gen`;
     let dir = `${root}${folder}`
     if (!fs.existsSync(dir))
       fs.mkdirSync(dir);
+    return dir;
+  }
+
+  async generateFile(folder: string, fileName: string, data: string)
+  {
+    let dir = await this.generateDir(folder);
     fs.writeFileSync(`${dir}/${fileName}`, data);
     return;
   }

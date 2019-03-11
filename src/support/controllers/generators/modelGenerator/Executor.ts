@@ -18,6 +18,8 @@ abstract class Executor extends ExecutorP
       let attribute = Util.snakeToCamel(data.attribute);
       let type = Util.snakeToCamel(data.type);
 
+      if (attribute == "id") continue;
+
       if (this.classes.indexOf(className) == -1) {
         this.classes.push(className);
         this.levels[className] = data.class_level;

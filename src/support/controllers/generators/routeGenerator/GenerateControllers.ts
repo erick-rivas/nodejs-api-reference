@@ -5,7 +5,7 @@ import
   CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_CUSTOM_TEMPLATE,
   CTRL_GET_DETAILS_TEMPLATE, CTRL_SAVE_TEMPLATE,
   CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE
-} from "@support/controllers/generators/Templates"
+} from "@support/controllers/generators/routeGenerator/Templates"
 
 class GenerateControllers extends Executor
 {

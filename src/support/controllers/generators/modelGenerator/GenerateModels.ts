@@ -1,6 +1,6 @@
 import Executor from './Executor';
 import Util from "@support/controllers/generators/Util"
-import { MODEL_TEMPLATE } from "@support/controllers/generators/Templates";
+import { MODEL_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates";
 
 class GenerateModels extends Executor
 {
@@ -33,7 +33,6 @@ class GenerateModels extends Executor
 
     for (let m in models)
       imports += `import ${m} from "@lt/models/${m}";\n`;
-
 
     let hasConst = false;
     for (let c in consts) {

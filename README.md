@@ -105,6 +105,16 @@ In general terms, the architecture uses the following structure:
  $ npm run-script debug
  ```
 
+ ### To generate model templates
+ 
+ * Modify *assets/dev/model-generator.csv* && *assets/dev/route-generator.csv* (See [instructions](./guides/bin.generator.md)).
+ * Generate templates.
+ ```bash
+ $ npm run-script generate
+ ```
+ * Copy requiered files from */assets/dev/gen* 
+
+
  ### To generate documentation
 
  * Install apidoc.

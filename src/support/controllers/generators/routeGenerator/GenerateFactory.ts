@@ -1,6 +1,6 @@
 import Util from "@support/controllers/generators/Util"
 import Executor from './Executor';
-import { FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE } from "@support/controllers/generators/Templates"
+import { FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE } from "@support/controllers/generators/routeGenerator/Templates"
 
 class GenerateFactory extends Executor
 {

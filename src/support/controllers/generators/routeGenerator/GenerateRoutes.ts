@@ -1,6 +1,6 @@
 import Util from "@support/controllers/generators/Util"
 import Executor from './Executor';
-import { ROUTES_TEMPLATE, ROUTES_ITEM_TEMPLATE } from "@support/controllers/generators/Templates"
+import { ROUTES_TEMPLATE, ROUTES_ITEM_TEMPLATE } from "@support/controllers/generators/routeGenerator/Templates"
 
 class GenerateRoutes extends Executor
 {

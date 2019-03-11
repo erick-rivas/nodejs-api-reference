@@ -5,7 +5,7 @@ import
   REPO_TEMPLATE, REPO_GET_LIST_TEMPLATE,
   REPO_GET_DETAILS_TEMPLATE, REPO_SAVE_TEMPLATE,
   REPO_SET_TEMPLATE, REPO_DELETE_TEMPLATE
-} from "@support/controllers/generators/Templates";
+} from "@support/controllers/generators/routeGenerator/Templates";
 
 class GenerateRepository extends Executor
 {
