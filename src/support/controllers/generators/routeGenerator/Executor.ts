@@ -1,3 +1,4 @@
+import Util from "@support/controllers/generators/Util"
 import ExecutorP from "@support/controllers/generators/Executor"
 
 abstract class Executor extends ExecutorP
@@ -18,7 +19,7 @@ abstract class Executor extends ExecutorP
 
       let resource = `${data.name.split("/")[1]}`;
       let endpoint = `${data.name}|${data.method}`;
-      let className = data.class;
+      let className = Util.camelToSnake(Util.iniToLower(data.class));
 
       if (this.resources.indexOf(resource) == -1) {
         this.resources.push(resource);
@@ -28,7 +29,12 @@ abstract class Executor extends ExecutorP
 
       if (this.endpoints[resource].indexOf(endpoint) == -1) {
         this.endpoints[resource].push(endpoint);
-        this.params[endpoint] = data.params.split("\t");
+        if (data.params.indexOf("\t") == -1)
+          this.params[endpoint] = data.params.split(",");
+        else
+          this.params[endpoint] = data.params.split("\t");
+        for (let p in this.params[endpoint])
+          this.params[endpoint][p] = this.params[endpoint][p].trim();
       }
 
       //QUERIES

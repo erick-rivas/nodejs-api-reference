@@ -21,7 +21,7 @@ export default XRepository;
 
 - [ ] All repositories only imports @models modules.
 - [ ] All repositories only have abstract methods.
--[ ] All repositories files only export one interface.
+- [ ] All repositories files only export one interface.
 - [ ] All repository **don't** have attributes.
 
 

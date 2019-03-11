@@ -15,6 +15,11 @@ class Util
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
+  static iniToLower(s: string): string
+  {
+    return s.charAt(0).toLowerCase() + s.slice(1);
+  }
+
   static sp(len: number): string
   {
     let res = "";

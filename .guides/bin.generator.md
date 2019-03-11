@@ -25,9 +25,9 @@
 
 3. Open assets/dev/route-generator.csv
 4. Modify generator contemplating the following rules
+  - class: Name of the resource related to the endpoint *(e.g Player)
   - name: Endpoint name *(e.g /players/:id)*
   - method: Endpoint method *(e.g GET, POST)*
-  - class: Name of the resource related to the endpoint *(e.g player)
   - params: Parameters of the endpoint
     > IMPORTANT: Use tabs (\t) to separate items (e.g a&nbsp;&nbsp;b&nbsp;&nbsp;c). <br/>
     It can be done coping excel columns inside one cell.
