@@ -3,13 +3,16 @@ import { Request, Response } from "express";
 import Sql from "@lt/repositories/Sql";
 import Res from "@util/http/responses";
 
+import Team from "@lt/models/Team";
+import Generator from "@util/Generator";
+
 class Teams
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   async getDetails(req: Request, res: Response)
@@ -22,7 +25,9 @@ class Teams
   async getList(req: Request, res: Response)
   {
     const { user_id } = req.query;
-    const result = await this.sql.getTeamList(user_id);
+    const result = await this.sql.getTeamList({
+      userId: user_id
+    });
     return Res.sendList(res, result);
   }
 }

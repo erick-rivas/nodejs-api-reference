@@ -10,9 +10,9 @@ class Players
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   async top(req: Request, res: Response)
@@ -23,7 +23,9 @@ class Players
   async getList(req: Request, res: Response)
   {
     const { team_id } = req.query;
-    const result = await this.sql.getPlayerList(team_id);
+    const result = await this.sql.getPlayerList({
+      teamId: team_id
+    });
     return Res.sendList(res, result);
   }
 
@@ -31,10 +33,9 @@ class Players
   {
     const id = req.params.id;
     const { team_id } = req.body;
-    const result = await this.sql.setPlayer(
-      id,
-      team_id
-    );
+    const result = await this.sql.setPlayer(id, {
+      teamId: team_id
+    });
     return Res.sendModel(res, result);
   }
 }

@@ -27,7 +27,7 @@ class GenerateModels extends Executor
     for (let a of attributes) {
       attrs += `${Util.sp(2)}${a.name}: ${a.type};\n`;
       args += `${a.name}: ${a.type}, `;
-      assigns += `${Util.sp(4)}this.${a.name} = ${a.name};\n`;
+      assigns += `${Util.sp(4)}this.${a.name} = attrs.${a.name};\n`;
       toJson += `${Util.sp(6)}${Util.camelToSnake(a.name)}: this.${a.name},\n`;
     }
 

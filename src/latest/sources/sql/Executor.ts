@@ -126,16 +126,25 @@ class Executor
    * @param  {any[]} params Params collection.
    */
 
-  protected save(query: string, params: any[]): Promise<void>
+  protected save(query: string, params: Pair[]): Promise<void>
   {
-    let values = " VALUES (";
-    for (let p of params) values += "?,";
-    values = params.length > 0 ? values.slice(0, -1) + ")" : values + ")";
-    query = query + values;
+    let columns = " (";
+    let values = [];
+    for (let p of params) {
+      columns += p.key + ",";
+      values.push(p.value);
+    }
+    columns = params.length > 0 ? columns.slice(0, -1) + ")" : columns + ")";
+
+    let templates = " VALUES (";
+    for (let p of params) templates += "?,";
+    templates = params.length > 0 ? templates.slice(0, -1) + ")" : templates + ")";
+
+    query = query + columns + templates;
 
     return new Promise((resolve, reject) =>
     {
-      this.sql.query(query, params, function (err, result)
+      this.sql.query(query, values, function (err, result)
       {
         if (err) return reject(err);
         resolve();

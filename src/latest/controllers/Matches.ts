@@ -5,36 +5,34 @@ import Res from "@util/http/responses";
 
 import Match from "@lt/models/Match";
 import Generator from "@util/Generator";
-import Team from "@lt/models/Team";
 
 class Matches
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   async getList(req: Request, res: Response)
   {
     const { team_id } = req.query;
-    const result = await this.sql.getMatchList(team_id);
+    const result = await this.sql.getMatchList({
+      teamId: team_id
+    });
     return Res.sendList(res, result);
   }
 
   async save(req: Request, res: Response)
   {
     const { date, type, visitor_id, local_id } = req.body;
-    const match = new Match(Generator.getId())
-      .build(
-        new Date(date),
-        Match.getMType(type),
-        new Team(visitor_id),
-        new Team(local_id),
-        []
-      );
-    const result = await this.sql.saveMatch(match);
+    const result = await this.sql.saveMatch({
+      date: date,
+      type: type,
+      visitorId: visitor_id,
+      localId: local_id
+    });
     return Res.sendModel(res, result);
   }
 
@@ -42,10 +40,9 @@ class Matches
   {
     const id = req.params.id;
     const { type } = req.body;
-    const result = await this.sql.setMatch(
-      id,
-      Match.getMType(type)
-    );
+    const result = await this.sql.setMatch(id, {
+      type: type
+    });
     return Res.sendModel(res, result);
   }
 

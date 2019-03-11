@@ -38,13 +38,13 @@ class GenerateMappers extends Executor
 
     for (let a of attributes) {
       if (a.type.endsWith("[]"))
-        attrs += `${Util.sp(8)}[],\n`;
+        attrs += `${Util.sp(8)}${a.name}: [],\n`;
       else if (a.description == "_MODEL")
-        attrs += `${Util.sp(8)}new ${a.type}(data.${Util.camelToSnake(a.type).toLowerCase()}_id), \n`;
+        attrs += `${Util.sp(8)}${a.name}: new ${a.type}(data.${Util.camelToSnake(a.type).toLowerCase()}_id), \n`;
       else if (a.description == "_CONST")
-        attrs += `${Util.sp(8)}${Util.iniToUpper(className)}.get${a.type}(data.${Util.camelToSnake(a.name)}), \n`;
+        attrs += `${Util.sp(8)}${a.name}: ${Util.iniToUpper(className)}.get${a.type}(data.${Util.camelToSnake(a.name)}), \n`;
       else
-        attrs += `${Util.sp(8)}data.${Util.camelToSnake(a.name)},\n`;
+        attrs += `${Util.sp(8)}${a.name}: data.${Util.camelToSnake(a.name)},\n`;
     }
 
     modelName = `${Util.iniToUpper(className)}`;

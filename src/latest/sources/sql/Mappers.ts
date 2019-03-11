@@ -22,13 +22,13 @@ class MatchMapper extends Mapper<Match>
   transform(data: any): Match  
   {
     return new Match(data.match_id)
-      .build(
-        data.date,
-        Match.getMType(data.type),
-        new Team(data.team_id),
-        new Team(data.team_id),
-        []
-      );
+      .build({
+        date: data.date,
+        type: Match.getMType(data.type),
+        visitor: new Team(data.team_id),
+        local: new Team(data.team_id),
+        scores: []
+      });
   }
 }
 
@@ -37,11 +37,11 @@ class PlayerMapper extends Mapper<Player>
   transform(data: any): Player  
   {
     return new Player(data.player_id)
-      .build(
-        data.name,
-        data.photo_url,
-        data.team_id
-      );
+      .build({
+        name: data.name,
+        photoUrl: data.photo_url,
+        teamId: data.team_id
+      });
   }
 }
 
@@ -50,11 +50,11 @@ class ScoreMapper extends Mapper<Score>
   transform(data: any): Score  
   {
     return new Score(data.score_id)
-      .build(
-        data.min,
-        data.match_id,
-        new Player(data.player_id)
-      );
+      .build({
+        min: data.min,
+        matchId: data.match_id,
+        player: new Player(data.player_id)
+      });
   }
 }
 
@@ -63,11 +63,11 @@ class TeamMapper extends Mapper<Team>
   transform(data: any): Team  
   {
     return new Team(data.team_id)
-      .build(
-        data.name,
-        data.logo_url,
-        []
-      );
+      .build({
+        name: data.name,
+        logoUrl: data.logo_url,
+        players: []
+      });
   }
 }
 
@@ -76,10 +76,10 @@ class UserMapper extends Mapper<User>
   transform(data: any): User  
   {
     return new User(data.user_id)
-      .build(
-        data.email,
-        data.password
-      );
+      .build({
+        email: data.email,
+        password: data.password
+      });
   }
 }
 

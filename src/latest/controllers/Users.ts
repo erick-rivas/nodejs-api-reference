@@ -10,9 +10,9 @@ class Users
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   async auth(req: Request, res: Response)

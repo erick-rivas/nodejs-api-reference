@@ -21,13 +21,13 @@ class Match extends Model
     this.id = id;
   }
 
-  build(date: Date, type: MType, visitor: Team, local: Team, scores: Score[]): Match
+  build(attrs: { date: Date, type: MType, visitor: Team, local: Team, scores: Score[] }): Match
   {
-    this.date = date;
-    this.type = type;
-    this.visitor = visitor;
-    this.local = local;
-    this.scores = scores;
+    this.date = attrs.date;
+    this.type = attrs.type;
+    this.visitor = attrs.visitor;
+    this.local = attrs.local;
+    this.scores = attrs.scores;
     return this;
   }
 

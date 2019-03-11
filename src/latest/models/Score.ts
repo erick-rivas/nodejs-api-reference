@@ -14,11 +14,11 @@ class Score extends Model
     this.id = id;
   }
 
-  build(min: number, matchId: number, player: Player): Score
+  build(attrs: { min: number, matchId: number, player: Player }): Score
   {
-    this.min = min;
-    this.matchId = matchId;
-    this.player = player;
+    this.min = attrs.min;
+    this.matchId = attrs.matchId;
+    this.player = attrs.player;
     return this;
   }
 

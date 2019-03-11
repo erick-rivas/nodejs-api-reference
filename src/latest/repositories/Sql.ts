@@ -7,9 +7,9 @@ import { MType } from "@lt/models/helpers/Const";
 
 interface Sql
 {
-  getMatchList(teamId: number): Promise<Match[]>;
-  getPlayerList(teamId: number): Promise<Player[]>;
-  getTeamList(userId: number): Promise<Team[]>;
+  getMatchList(fs: { teamId?: number }): Promise<Match[]>;
+  getPlayerList(fs: { teamId?: number }): Promise<Player[]>;
+  getTeamList(fs: { userId?: number }): Promise<Team[]>;
 
   getMatchDetails(matchId: number): Promise<Match>;
   getPlayerDetails(playerId: number): Promise<Player>;
@@ -22,11 +22,11 @@ interface Sql
   fetchScore(score: Score): Promise<Score>;
   fetchTeam(team: Team): Promise<Team>;
 
-  saveMatch(match: Match): Promise<Match>;
-  saveScore(score: Score): Promise<Score>;
+  saveMatch(args: { date: Date, type: MType, visitorId: number, localId: number }): Promise<Match>;
+  saveScore(args: { min: number, matchId: number, playerId: number }): Promise<Score>;
 
-  setMatch(matchId: number, type: MType): Promise<Match>;
-  setPlayer(playerId: number, teamId: number): Promise<Player>;
+  setMatch(matchId: number, args: { type?: MType }): Promise<Match>;
+  setPlayer(playerId: number, args: { teamId?: number }): Promise<Player>;
 
   deleteMatch(matchId: number): Promise<void>;
 }

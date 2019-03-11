@@ -50,14 +50,20 @@ class GenerateControllers extends Executor
         route = CTRL_DELETE_TEMPLATE;
 
       let args = "";
-      for (let p of this.params[e])
+      let assigns = "";
+      for (let p of this.params[e]) {
         args += `${p}, `;
+        assigns += `${Util.sp(6)}${Util.snakeToCamel(p)}: ${p},\n`;
+      }
       args = args.trim().slice(0, -1);
+      assigns = assigns.trim().slice(0, -1);
 
       route = route.trim();
       route = route.replace(new RegExp('#model#', 'g'), cn);
       route = route.replace(new RegExp('#Model#', 'g'), cN);
       route = route.replace(new RegExp('#args#', 'g'), args);
+      route = route.replace(new RegExp('#assigns#', 'g'), assigns);
+
 
       content += `  ${route}\n\n`;
     }

@@ -2,7 +2,7 @@ import Model from "@util/Model";
 import Player from "@lt/models/Player";
 
 class Team extends Model
-{
+{ 
   id: number;
   name: string;
   logoUrl: string;
@@ -14,11 +14,11 @@ class Team extends Model
     this.id = id;
   }
 
-  build(name: string, logoUrl: string, players: Player[]): Team
+  build(attrs: { name: string, logoUrl: string, players: Player[] }): Team
   {
-    this.name = name;
-    this.logoUrl = logoUrl;
-    this.players = players;
+    this.name = attrs.name;
+    this.logoUrl = attrs.logoUrl;
+    this.players = attrs.players;
     return this;
   }
 

@@ -2,7 +2,7 @@ import Model from "@util/Model";
 
 
 class User extends Model
-{
+{ 
   id: number;
   email: string;
   password: string;
@@ -13,10 +13,10 @@ class User extends Model
     this.id = id;
   }
 
-  build(email: string, password: string): User
+  build(attrs: { email: string, password: string }): User
   {
-    this.email = email;
-    this.password = password;
+    this.email = attrs.email;
+    this.password = attrs.password;
     return this;
   }
 

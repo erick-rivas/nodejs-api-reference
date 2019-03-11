@@ -42,7 +42,7 @@ class GenerateRoutes extends Executor
     for (let c in query) {
       let cn = Util.snakeToCamel(c);
       let params = this.queries[method][c];
-      let route = `${Util.sp(2)}${this.getQuery(method, cn, params)}\n`;
+      let route = `${Util.sp(2)}${this.getQuery(method, cn, params)}\n\n`;
       res += route;
     }
     return res;
@@ -55,7 +55,9 @@ class GenerateRoutes extends Executor
     let cN = Util.iniToUpper(cn);
     let c_n = Util.camelToSnake(cn);
     let ini = cn.charAt(0);
+    let args = "";
     let filters = "";
+    let attrs = "";
     let columns = "";
 
     if (method == "GET")
@@ -71,19 +73,31 @@ class GenerateRoutes extends Executor
 
     for (let p of params) {
       let pc = Util.snakeToCamel(p);
-      filters += `${Util.sp(4)}if (${pc}) filter.push(new Pair("${ini}.${p}", ${pc}));\n`;
-      columns += `${Util.sp(4)}if (${pc}) columns.push(new Pair("${p}", ${pc}));\n`;
+      filters += `${Util.sp(4)}if (fs.${pc}) filter.push(new Pair("${ini}.${p}", fs.${pc}));\n`;
+      attrs += `${Util.sp(4)}attrs.push(new Pair("${p}", args.${pc}));\n`;
+      columns += `${Util.sp(4)}if (args.${pc}) columns.push(new Pair("${p}", args.${pc}));\n`;
     }
 
     filters = filters.trim();
+    attrs = attrs.trim();
     columns = columns.trim();
+
+    for (let p of params) {
+      if (method == "POST")
+        args += `${Util.snakeToCamel(p)}, `;
+      else
+        args += `${Util.snakeToCamel(p)}?, `;
+    }
+    args = args.trim().slice(0, -1);
 
     res = res.trim();
     res = res.replace(new RegExp('#i#', 'g'), ini);
     res = res.replace(new RegExp('#Model#', 'g'), cN);
     res = res.replace(new RegExp('#model#', 'g'), cn);
     res = res.replace(new RegExp('#model_n#', 'g'), c_n);
+    res = res.replace(new RegExp('#args#', 'g'), args);
     res = res.replace(new RegExp('#filters#', 'g'), filters);
+    res = res.replace(new RegExp('#attrs#', 'g'), attrs);
     res = res.replace(new RegExp('#columns#', 'g'), columns);
 
     return res;

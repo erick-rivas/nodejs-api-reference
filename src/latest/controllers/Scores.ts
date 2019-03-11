@@ -5,28 +5,24 @@ import Res from "@util/http/responses";
 
 import Score from "@lt/models/Score";
 import Generator from "@util/Generator";
-import Player from "@lt/models/Player";
 
 class Scores
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   async save(req: Request, res: Response)
   {
     const { min, match_id, player_id } = req.body;
-    const score = new Score(Generator.getId())
-      .build(
-        min,
-        match_id,
-        new Player(player_id)
-      );
-
-    const result = await this.sql.saveScore(score);
+    const result = await this.sql.saveScore({
+      min: min,
+      matchId: match_id,
+      playerId: player_id
+    });
     return Res.sendModel(res, result);
   }
 }

@@ -5,14 +5,15 @@ import Player from "@lt/models/Player";
 import Score from "@lt/models/Score";
 import Team from "@lt/models/Team";
 import User from "@lt/models/User";
-import { MType } from "@lt/models/helpers/Const";
 
+import Generator from "@util/Generator";
 import Executor from "@lt/sources/sql/Executor";
 import * as Mapper from "@lt/sources/sql/Mappers";
+import { MType } from "@lt/models/helpers/Const";
 
 class Source extends Executor implements Repository
 {
-  async getMatchList(teamId: number): Promise<Match[]>
+  async getMatchList(fs: { teamId?: number }): Promise<Match[]> //CHECK ARGS TYPES
   {
     const query =
       `SELECT m.* FROM \`match\` m`;
@@ -22,26 +23,27 @@ class Source extends Executor implements Repository
     return this.fetch(res, r => this.fetchMatch(r));
   }
 
-  async getPlayerList(teamId: number): Promise<Player[]>
+  async getPlayerList(fs: { teamId?: number }): Promise<Player[]> //CHECK ARGS TYPES
   {
     const query =
       `SELECT p.* FROM player p`;
     const filter: Pair[] = [];
-    if (teamId) filter.push(new Pair("p.team_id", teamId));
+    if (fs.teamId) filter.push(new Pair("p.team_id", fs.teamId));
     const res = await this.get(query, filter, new Mapper.PlayerMapper());
     return res;
   }
 
-  async getTeamList(userId: number): Promise<Team[]>
+  async getTeamList(fs: { userId?: number }): Promise<Team[]> //CHECK ARGS TYPES
   {
     const query =
       `SELECT t.* FROM team t
        INNER JOIN user_team ut ON t.team_id = ut.team_id`;
     const filter: Pair[] = [];
-    if (userId) filter.push(new Pair("ut.user_id", userId));
+    if (fs.userId) filter.push(new Pair("ut.user_id", fs.userId));
     const res = await this.get(query, filter, new Mapper.TeamMapper());
     return this.fetch(res, r => this.fetchTeam(r));
   }
+
 
 
   async getMatchDetails(matchId: number): Promise<Match>
@@ -146,42 +148,55 @@ class Source extends Executor implements Repository
       });
   }
 
-  async saveMatch(match: Match): Promise<Match>
+
+
+  async saveMatch(args: { date: Date, type: MType, visitorId: number, localId: number }): Promise<Match> //CHECK ARGS TYPES
   {
-    const query =
-      "INSERT INTO \`match\` (match_id, date, type, visitor_id, local_id)";
-    const params = [match.id, match.date, match.type, match.visitor.id, match.local.id];
-    await this.save(query, params);
-    return this.getMatchDetails(match.id);
+    const matchId = Generator.getId();
+    const query = "INSERT INTO \`match\`";
+    const attrs: Pair[] = [];
+    attrs.push(new Pair("match_id", matchId));
+    attrs.push(new Pair("date", args.date));
+    attrs.push(new Pair("type", args.type));
+    attrs.push(new Pair("visitor_id", args.visitorId));
+    attrs.push(new Pair("local_id", args.localId));
+    await this.save(query, attrs);
+    return this.getMatchDetails(matchId);
   }
 
-  async saveScore(score: Score): Promise<Score>
+  async saveScore(args: { min: number, matchId: number, playerId: number }): Promise<Score> //CHECK ARGS TYPES
   {
-    const query =
-      "INSERT INTO \`score\` (score_id, min, player_id, match_id)";
-    const params = [score.id, score.min, score.player.id, score.matchId];
-    await this.save(query, params);
-    return this.getScoreDetails(score.id);
+    const scoreId = Generator.getId();
+    const query = "INSERT INTO score";
+    const attrs: Pair[] = [];
+    attrs.push(new Pair("score_id", scoreId));
+    attrs.push(new Pair("min", args.min));
+    attrs.push(new Pair("match_id", args.matchId));
+    attrs.push(new Pair("player_id", args.playerId));
+    await this.save(query, attrs);
+    return this.getScoreDetails(scoreId);
   }
 
 
-  async setMatch(matchId: number, type: MType): Promise<Match>
+
+  async setMatch(matchId: number, args: { type?: MType }): Promise<Match> //CHECK ARGS TYPES
   {
     const query = "UPDATE \`match\`";
     const columns: Pair[] = [];
-    if (type) columns.push(new Pair("type", type));
+    if (args.type) columns.push(new Pair("type", args.type));
     await this.set(query, columns, "match_id", matchId);
     return this.getMatchDetails(matchId);
   }
 
-  async setPlayer(playerId: number, teamId: number): Promise<Player>
+  async setPlayer(playerId: number, args: { teamId?: number }): Promise<Player> //CHECK ARGS TYPES
   {
     const query = "UPDATE player";
     const columns: Pair[] = [];
-    if (teamId) columns.push(new Pair("team_id", teamId));
+    if (args.teamId) columns.push(new Pair("team_id", args.teamId));
     await this.set(query, columns, "player_id", playerId);
     return this.getPlayerDetails(playerId);
   }
+
 
 
   async deleteMatch(matchId: number): Promise<void>

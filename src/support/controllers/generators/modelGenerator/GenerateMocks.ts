@@ -47,7 +47,7 @@ class GenerateMocks extends Executor
     for (let i = 0; i < it; i++) {
 
       let attrs = "";
-      data += `${Util.sp(6)}new ${className}(${Generator.getId()}).build(`;
+      data += `${Util.sp(6)}new ${className}(${Generator.getId()}).build({ `;
 
       //Attributes
 
@@ -57,7 +57,7 @@ class GenerateMocks extends Executor
 
         if (a.description == "_CONST") {
           let collection = a.collection.slice(1, -1).split(",");
-          attrs += `${a.type}.${collection[Generator.getNum(collection.length)]},`;
+          attrs += `${a.name}: ${a.type}.${collection[Generator.getNum(collection.length)]},`;
         }
 
         //Models
@@ -66,43 +66,43 @@ class GenerateMocks extends Executor
           let type = a.type.endsWith("[]") ? a.type.slice(0, -2) : a.type;
           let typeIts = Math.pow(2, +levels[type] + 3);
           if (a.type.endsWith("[]")) {
-            attrs += "[";
+            attrs += `${a.name}: [`;
             let numEle = Generator.getNum(2) + 1;
             for (let j = 0; j < numEle; j++)
               attrs += `this.${type}()[${Generator.getNum(typeIts)}], `;
             attrs = attrs.trim().slice(0, -1);
-            attrs += "], ";
+            attrs += `], `;
           } else
-            attrs += `this.${type}()[${Generator.getNum(typeIts)}], `;
+            attrs += `${a.name}: this.${type}()[${Generator.getNum(typeIts)}], `;
         }
 
         //Description
 
         else if (a.description) {
           if (a.description == "name")
-            attrs += `"${Generator.getName()}", `;
+            attrs += `${a.name}: "${Generator.getName()}", `;
           else if (a.description == "noun")
-            attrs += `"${Generator.getNoun()}", `;
+            attrs += `${a.name}: "${Generator.getNoun()}", `;
           else if (a.description == "email")
-            attrs += `"${Generator.getEmail()}", `;
+            attrs += `${a.name}: "${Generator.getEmail()}", `;
           else if (a.description == "imageUrl")
-            attrs += `"${Generator.getImageUrl()}", `;
+            attrs += `${a.name}: "${Generator.getImageUrl()}", `;
         }
 
         //Types (default)
 
         else {
           if (a.type == "string")
-            attrs += `"${Generator.getWord()}", `;
+            attrs += `${a.name}: "${Generator.getWord()}", `;
           else if (a.type == "number")
-            attrs += `${Generator.getNum(100)}, `;
+            attrs += `${a.name}: ${Generator.getNum(100)}, `;
           else if (a.type == "Date")
-            attrs += `new Date("${Generator.getDate()}"), `;
+            attrs += `${a.name}: new Date("${Generator.getDate()}"), `;
         }
       }
 
       attrs = attrs.trim().slice(0, -1);
-      data += `${attrs}),\n`;
+      data += `${attrs} }),\n`;
     }
 
     data = data.trim().slice(0, -1);

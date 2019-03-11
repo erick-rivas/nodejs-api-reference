@@ -28,9 +28,9 @@ class #Model#Mapper extends Mapper<#Model#>
   transform(data: any): #Model#  
   {
     return new #Model#(data.#model_id#)
-      .build(
+      .build({
         #attrs#
-      );
+      });
   }
 }
 `;
@@ -51,7 +51,7 @@ class #Model# extends Model
     this.id = id;
   }
 
-  build(#args#): #Model#
+  build(attrs: { #args# }): #Model#
   {
     #assigns#
     return this;
@@ -110,9 +110,9 @@ class #ClassName#
 {
   private sql: Sql;
 
-  constructor(sql: Sql)
+  constructor(p: { sql: Sql })
   {
-    this.sql = sql;
+    this.sql = p.sql;
   }
 
   #content#
@@ -144,8 +144,12 @@ const CTRL_GET_LIST_TEMPLATE =
   async getList(req: Request, res: Response)
   {
     const { #args# } = req.query;
-    // TODO CHECK FILTERS
-    const result = await this.sql.get#Model#List();
+    const result = await this.sql.get#Model#List({}); // TODO CHECK FILTERS
+    /* (suggestion)
+    const result = await this.sql.get#Model#List({
+      #assigns#
+    });
+    */
     return Res.sendList(res, result);
   }
 `;
@@ -155,10 +159,12 @@ const CTRL_SAVE_TEMPLATE =
   async save(req: Request, res: Response)
   {
     const { #args# } = req.body;
-    // TODO CHECK BUILD
-    const #model# = new #Model#(Generator.getId());
-
-    const result = await this.sql.save#Model#(#model#);
+    const result = await this.sql.save#Model#({}); // TODO CHECK ARGS
+    /* (suggestion)
+    const result = await this.sql.save#Model#({
+      #assigns#
+    });
+    */
     return Res.sendModel(res, result);
   }
 `;
@@ -169,10 +175,12 @@ const CTRL_UPDATE_TEMPLATE =
   {
     const id = req.params.id;
     const { #args# } = req.body;
-    //TODO CHECK ARGS
-    const result = await this.sql.set#Model#(
-      id
-    );
+    const result = await this.sql.set#Model#(id, {}) //TODO CHECK ARGS
+    /* (suggestion)
+    const result = await this.sql.set#Model#(id, {
+      #assigns#
+    });
+    */
     return Res.sendModel(res, result);
   }
 `;
@@ -204,9 +212,9 @@ const FACTORY_ITEM_TEMPLATE =
   `
   static create#Resource#()
   {
-    return new #Resource#(
-      Sql.getInstance()
-    );
+    return new #Resource#({
+      sql: Sql.getInstance()
+    });
   }
 `;
 
@@ -224,13 +232,9 @@ export default Sql;
 
 const REPO_GET_LIST_TEMPLATE =
   `
-  get#Model#List(): Promise<#Model#[]>; //TODO CHECK FILTERS
-  //(Suggestion) -> get#Model#List(#args#): Promise<#Model#[]>; //CHECK ARGS TYPES
+  get#Model#List(fs: {}): Promise<#Model#[]>; //TODO CHECK FILTERS
+  //(Suggestion) -> get#Model#List(fs: { #args# }): Promise<#Model#[]>; //CHECK ARGS TYPES
   `;
-
-const REPO_SUG_GET_LIST_TEMPLATE =
-  `
-`;
 
 const REPO_GET_DETAILS_TEMPLATE =
   `
@@ -239,13 +243,14 @@ const REPO_GET_DETAILS_TEMPLATE =
 
 const REPO_SAVE_TEMPLATE =
   `
-  save#Model#(#model#: #Model#): Promise<#Model#>;
+  save#Model#(args: {}): Promise<#Model#>; //TODO CHECK ARGS
+  //(Suggestion) -> save#Model#(args: { #args# }): Promise<#Model#>; //CHECK ARGS TYPES
 `;
 
 const REPO_SET_TEMPLATE =
   `
-  set#Model#(#model#Id: number): Promise<#Model#>; //TODO CHECK ARGS
-  //(Suggestion) -> set#Model#(#model#Id: number, #args#): Promise<#Model#[]>; //CHECK ARGS TYPES
+  set#Model#(#model#Id: number, args: {}): Promise<#Model#>; //TODO CHECK ARGS
+  //(Suggestion) -> set#Model#(#model#Id: number, args: { #args# }): Promise<#Model#>; //CHECK ARGS TYPES
 `;
 
 const REPO_DELETE_TEMPLATE =
@@ -302,6 +307,7 @@ import Repository from "@lt/repositories/Sql";
 import { Pair } from "@util/Util";
 #imports#
 
+import Generator from "@util/Generator";
 import Executor from "@lt/sources/sql/Executor";
 import * as Mapper from "@lt/sources/sql/Mappers";
 
@@ -319,14 +325,15 @@ export default Source;
 
 const SRC_GET_LIST_TEMPLATE =
   `
-  async get#Model#List(): Promise<#Model#[]>
+  async get#Model#List(fs: {}): Promise<#Model#[]>
+  //(Suggestion) -> async get#Model#List(fs: { #args# }): Promise<#Model#[]> //CHECK ARGS TYPES
   {
     const query =
       \`SELECT #i#.* FROM #model_n# #i#\`;
     const filter: Pair[] = [];
     //TODO ADD FILTERS
     /* (Suggestion)
-      #filters#
+    #filters#
     */
     const res = await this.get(query, filter, new Mapper.#Model#Mapper());
     //TODO CHECK FETCH
@@ -349,22 +356,32 @@ const SRC_GET_DETAILS_TEMPLATE =
 
 const SRC_SAVE_TEMPLATE =
   `
-  async save#Model#(#model#: #Model#): Promise<#Model#>
+  async save#Model#(args: {}): Promise<#Model#>
+  //(Suggestion) -> async save#Model#(args: { #args# }): Promise<#Model#> //CHECK ARGS TYPES
   {
-    //TODO
-    return null;
+    const #model#Id = Generator.getId();
+    const query = "INSERT INTO #model_n#";
+    const attrs: Pair[] = [];
+    attrs.push(new Pair("#model_n#_id", #model#Id));
+    //TODO ADD COLUMNS
+    /* (Suggestion)
+    #attrs#
+    */
+    await this.save(query, attrs);
+    return this.get#Model#Details(#model#Id);
   }
 `;
 
 const SRC_SET_TEMPLATE =
   `
-  async set#Model#(#model#Id: number): Promise<#Model#>
+  async set#Model#(#model#Id: number, args: {}): Promise<#Model#>
+  //(Suggestion) -> async set#Model#(#model#Id: number, args: { #args# }): Promise<#Model#> //CHECK ARGS TYPES
   {
     const query = "UPDATE #model_n#";
     const columns: Pair[] = [];
     //TODO ADD COLUMNS
     /* (Suggestion)
-      #columns#
+    #columns#
     */
     await this.set(query, columns, "#model_n#_id", #model#Id);
     return this.get#Model#Details(#model#Id);

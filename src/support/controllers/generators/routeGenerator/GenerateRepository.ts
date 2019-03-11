@@ -66,8 +66,12 @@ class GenerateRepository extends Executor
     else if (method == "DELETE")
       res = REPO_DELETE_TEMPLATE;
 
-    for (let p of params)
-      args += `${Util.snakeToCamel(p)}, `;
+    for (let p of params) {
+      if (method == "POST")
+        args += `${Util.snakeToCamel(p)}, `;
+      else
+        args += `${Util.snakeToCamel(p)}?, `;
+    }
     args = args.trim().slice(0, -1);
 
     res = res.trim();

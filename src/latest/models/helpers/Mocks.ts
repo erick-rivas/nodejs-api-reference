@@ -12,110 +12,110 @@ class Mocks
   static Match()
   {
     return [
-      new Match(1301123).build(new Date("Sat Mar 09 2019 04:33:42 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[14], this.Team()[8], [this.Score()[7], this.Score()[13]]),
-      new Match(1170890).build(new Date("Sat Mar 09 2019 10:47:36 GMT-0600 (Central Standard Time)"), MType.LEAGUE,this.Team()[15], this.Team()[9], [this.Score()[3]]),
-      new Match(7981845).build(new Date("Sat Mar 09 2019 23:21:45 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[13], this.Team()[1], [this.Score()[12], this.Score()[14]]),
-      new Match(4669384).build(new Date("Sat Mar 09 2019 18:14:53 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[4], this.Team()[0], [this.Score()[1]]),
-      new Match(6888289).build(new Date("Sat Mar 09 2019 06:40:22 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[4], this.Team()[8], [this.Score()[3], this.Score()[8]]),
-      new Match(7017493).build(new Date("Sun Mar 10 2019 00:08:49 GMT-0600 (Central Standard Time)"), MType.LEAGUE,this.Team()[8], this.Team()[13], [this.Score()[1]]),
-      new Match(6456477).build(new Date("Sat Mar 09 2019 23:27:05 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[10], this.Team()[13], [this.Score()[10]]),
-      new Match(4100007).build(new Date("Sat Mar 09 2019 06:44:51 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[13], this.Team()[6], [this.Score()[10]]),
-      new Match(6563947).build(new Date("Sat Mar 09 2019 15:29:03 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[8], this.Team()[14], [this.Score()[11]]),
-      new Match(9028217).build(new Date("Sat Mar 09 2019 17:34:37 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[15], this.Team()[10], [this.Score()[12]]),
-      new Match(8979556).build(new Date("Sat Mar 09 2019 18:15:30 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[2], this.Team()[3], [this.Score()[4], this.Score()[8]]),
-      new Match(4819321).build(new Date("Sat Mar 09 2019 02:43:38 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[6], this.Team()[12], [this.Score()[13], this.Score()[8]]),
-      new Match(4857368).build(new Date("Sat Mar 09 2019 22:20:24 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[13], this.Team()[11], [this.Score()[7]]),
-      new Match(1256668).build(new Date("Sat Mar 09 2019 06:19:00 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[11], this.Team()[15], [this.Score()[10]]),
-      new Match(450265).build(new Date("Sat Mar 09 2019 19:45:34 GMT-0600 (Central Standard Time)"), MType. CUP,this.Team()[14], this.Team()[12], [this.Score()[8], this.Score()[11]]),
-      new Match(3324504).build(new Date("Sat Mar 09 2019 19:19:48 GMT-0600 (Central Standard Time)"), MType. FRIENDLY,this.Team()[3], this.Team()[9], [this.Score()[14]])
+      new Match(8177539).build({ date: new Date("Sun Mar 10 2019 17:21:17 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[5], local: this.Team()[9], scores: [this.Score()[1]] }),
+      new Match(6277577).build({ date: new Date("Sun Mar 10 2019 01:03:22 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[4], local: this.Team()[1], scores: [this.Score()[11], this.Score()[14]] }),
+      new Match(9110491).build({ date: new Date("Sun Mar 10 2019 12:24:43 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[10], local: this.Team()[0], scores: [this.Score()[4]] }),
+      new Match(1337586).build({ date: new Date("Sun Mar 10 2019 02:12:34 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[9], local: this.Team()[2], scores: [this.Score()[6], this.Score()[5]] }),
+      new Match(6960122).build({ date: new Date("Sun Mar 10 2019 18:21:33 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[13], local: this.Team()[6], scores: [this.Score()[15], this.Score()[1]] }),
+      new Match(9480793).build({ date: new Date("Sun Mar 10 2019 19:32:35 GMT-0600 (Central Standard Time)"), type: MType.CUP, visitor: this.Team()[11], local: this.Team()[1], scores: [this.Score()[9]] }),
+      new Match(1950749).build({ date: new Date("Sun Mar 10 2019 20:59:27 GMT-0600 (Central Standard Time)"), type: MType.CUP, visitor: this.Team()[13], local: this.Team()[13], scores: [this.Score()[9], this.Score()[10]] }),
+      new Match(1732112).build({ date: new Date("Sun Mar 10 2019 08:40:37 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[6], local: this.Team()[8], scores: [this.Score()[14]] }),
+      new Match(7199503).build({ date: new Date("Sun Mar 10 2019 19:01:27 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[1], local: this.Team()[9], scores: [this.Score()[15], this.Score()[6]] }),
+      new Match(6140901).build({ date: new Date("Sun Mar 10 2019 21:16:46 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[13], local: this.Team()[7], scores: [this.Score()[7]] }),
+      new Match(1105531).build({ date: new Date("Sun Mar 10 2019 01:31:17 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[9], local: this.Team()[9], scores: [this.Score()[1], this.Score()[7]] }),
+      new Match(7232188).build({ date: new Date("Sun Mar 10 2019 22:17:18 GMT-0600 (Central Standard Time)"), type: MType.CUP, visitor: this.Team()[4], local: this.Team()[6], scores: [this.Score()[8]] }),
+      new Match(1619693).build({ date: new Date("Sun Mar 10 2019 01:00:38 GMT-0600 (Central Standard Time)"), type: MType.CUP, visitor: this.Team()[13], local: this.Team()[3], scores: [this.Score()[9]] }),
+      new Match(5703726).build({ date: new Date("Sun Mar 10 2019 11:26:47 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[5], local: this.Team()[14], scores: [this.Score()[9]] }),
+      new Match(9916244).build({ date: new Date("Sun Mar 10 2019 08:32:24 GMT-0600 (Central Standard Time)"), type: MType.LEAGUE, visitor: this.Team()[14], local: this.Team()[12], scores: [this.Score()[12]] }),
+      new Match(4280230).build({ date: new Date("Sun Mar 10 2019 15:12:59 GMT-0600 (Central Standard Time)"), type: MType.FRIENDLY, visitor: this.Team()[5], local: this.Team()[14], scores: [this.Score()[14], this.Score()[2]] })
     ];
   }
 
   static Player()
   {
     return [
-      new Player(8916623).build("Kade Thiel Sr.", "http://lorempixel.com/640/480", 72),
-      new Player(633976).build("Brice Beer", "http://lorempixel.com/640/480", 60),
-      new Player(8952671).build("Dejon Fay", "http://lorempixel.com/640/480", 18),
-      new Player(3155348).build("Josefa Wuckert", "http://lorempixel.com/640/480", 53),
-      new Player(6705350).build("Lou McKenzie", "http://lorempixel.com/640/480", 23),
-      new Player(3326628).build("Samantha Hessel", "http://lorempixel.com/640/480", 46),
-      new Player(260556).build("Dr. Libbie Ernser", "http://lorempixel.com/640/480", 69),
-      new Player(409962).build("Wilson Hettinger", "http://lorempixel.com/640/480", 28),
-      new Player(3350835).build("Anais Hackett", "http://lorempixel.com/640/480", 60),
-      new Player(1304103).build("Kristina Jenkins", "http://lorempixel.com/640/480", 22),
-      new Player(1101093).build("Garfield Weissnat", "http://lorempixel.com/640/480", 46),
-      new Player(3231047).build("Kiera Schneider", "http://lorempixel.com/640/480", 63),
-      new Player(8078320).build("Marilyne Anderson", "http://lorempixel.com/640/480", 12),
-      new Player(1554851).build("Coby Corwin", "http://lorempixel.com/640/480", 88),
-      new Player(746097).build("Theron Kautzer", "http://lorempixel.com/640/480", 79),
-      new Player(229084).build("Gonzalo Langosh", "http://lorempixel.com/640/480", 23)
+      new Player(1419258).build({ name: "Derrick Cassin", photoUrl: "http://lorempixel.com/640/480", teamId: 9 }),
+      new Player(7881197).build({ name: "Dr. Albin Schulist", photoUrl: "http://lorempixel.com/640/480", teamId: 86 }),
+      new Player(40290).build({ name: "Elsa Sanford", photoUrl: "http://lorempixel.com/640/480", teamId: 99 }),
+      new Player(5439859).build({ name: "Manley Kautzer", photoUrl: "http://lorempixel.com/640/480", teamId: 96 }),
+      new Player(9081328).build({ name: "Hulda Kertzmann", photoUrl: "http://lorempixel.com/640/480", teamId: 38 }),
+      new Player(6634079).build({ name: "Mrs. Collin Jenkins", photoUrl: "http://lorempixel.com/640/480", teamId: 53 }),
+      new Player(867235).build({ name: "Kayla Grimes IV", photoUrl: "http://lorempixel.com/640/480", teamId: 77 }),
+      new Player(5355055).build({ name: "Mr. Amparo Effertz", photoUrl: "http://lorempixel.com/640/480", teamId: 64 }),
+      new Player(8469144).build({ name: "Karlee Ziemann", photoUrl: "http://lorempixel.com/640/480", teamId: 89 }),
+      new Player(8284809).build({ name: "Bella Klein DDS", photoUrl: "http://lorempixel.com/640/480", teamId: 85 }),
+      new Player(6653953).build({ name: "Joany Schuppe", photoUrl: "http://lorempixel.com/640/480", teamId: 66 }),
+      new Player(7217409).build({ name: "Agustin Powlowski", photoUrl: "http://lorempixel.com/640/480", teamId: 55 }),
+      new Player(7367038).build({ name: "Miss Jewell Lubowitz", photoUrl: "http://lorempixel.com/640/480", teamId: 92 }),
+      new Player(3522584).build({ name: "Eileen Hermiston II", photoUrl: "http://lorempixel.com/640/480", teamId: 55 }),
+      new Player(3746969).build({ name: "Kris Bauch", photoUrl: "http://lorempixel.com/640/480", teamId: 80 }),
+      new Player(7083266).build({ name: "Miller Pollich", photoUrl: "http://lorempixel.com/640/480", teamId: 28 })
     ];
   }
 
   static Score()
   {
     return [
-      new Score(1085925).build(29, 29, this.Player()[5]),
-      new Score(3908934).build(32, 0, this.Player()[12]),
-      new Score(6911961).build(65, 48, this.Player()[6]),
-      new Score(258228).build(99, 29, this.Player()[0]),
-      new Score(7258925).build(14, 96, this.Player()[10]),
-      new Score(2491449).build(66, 1, this.Player()[5]),
-      new Score(9566074).build(11, 97, this.Player()[3]),
-      new Score(8213801).build(45, 84, this.Player()[8]),
-      new Score(3538963).build(65, 36, this.Player()[14]),
-      new Score(6312047).build(16, 91, this.Player()[11]),
-      new Score(117919).build(68, 10, this.Player()[13]),
-      new Score(8506284).build(96, 11, this.Player()[14]),
-      new Score(8504869).build(5, 63, this.Player()[0]),
-      new Score(5132677).build(95, 97, this.Player()[11]),
-      new Score(1751766).build(35, 99, this.Player()[7]),
-      new Score(8496390).build(67, 38, this.Player()[1])
+      new Score(584925).build({ min: 26, matchId: 93, player: this.Player()[8] }),
+      new Score(2971155).build({ min: 62, matchId: 32, player: this.Player()[2] }),
+      new Score(4175627).build({ min: 75, matchId: 7, player: this.Player()[4] }),
+      new Score(897816).build({ min: 54, matchId: 62, player: this.Player()[7] }),
+      new Score(9960920).build({ min: 20, matchId: 45, player: this.Player()[2] }),
+      new Score(4345514).build({ min: 82, matchId: 86, player: this.Player()[12] }),
+      new Score(1892643).build({ min: 8, matchId: 21, player: this.Player()[7] }),
+      new Score(4863936).build({ min: 50, matchId: 65, player: this.Player()[4] }),
+      new Score(9710325).build({ min: 71, matchId: 0, player: this.Player()[13] }),
+      new Score(1361840).build({ min: 42, matchId: 64, player: this.Player()[2] }),
+      new Score(1125445).build({ min: 15, matchId: 69, player: this.Player()[6] }),
+      new Score(3939918).build({ min: 4, matchId: 7, player: this.Player()[4] }),
+      new Score(6194620).build({ min: 71, matchId: 35, player: this.Player()[2] }),
+      new Score(136724).build({ min: 73, matchId: 20, player: this.Player()[10] }),
+      new Score(2838811).build({ min: 94, matchId: 27, player: this.Player()[6] }),
+      new Score(3313942).build({ min: 63, matchId: 16, player: this.Player()[13] })
     ];
   }
 
   static Team()
   {
     return [
-      new Team(863776).build("Douglas Borer", "http://lorempixel.com/640/480", [this.Player()[14]]),
-      new Team(8755061).build("Sandra Marks", "http://lorempixel.com/640/480", [this.Player()[12], this.Player()[12]]),
-      new Team(3779544).build("Estel Rippin", "http://lorempixel.com/640/480", [this.Player()[13], this.Player()[3]]),
-      new Team(934487).build("Christelle Boehm MD", "http://lorempixel.com/640/480", [this.Player()[4]]),
-      new Team(8283219).build("Hallie Reilly", "http://lorempixel.com/640/480", [this.Player()[13]]),
-      new Team(6359499).build("Icie Schaden", "http://lorempixel.com/640/480", [this.Player()[15]]),
-      new Team(9042676).build("Sallie O'Conner PhD", "http://lorempixel.com/640/480", [this.Player()[8]]),
-      new Team(8406713).build("Enoch Spinka", "http://lorempixel.com/640/480", [this.Player()[15]]),
-      new Team(9309719).build("Johann Ullrich", "http://lorempixel.com/640/480", [this.Player()[12]]),
-      new Team(677309).build("Eusebio Purdy", "http://lorempixel.com/640/480", [this.Player()[7]]),
-      new Team(6589528).build("Miss Misty Corwin", "http://lorempixel.com/640/480", [this.Player()[0]]),
-      new Team(9349051).build("Dr. Stephen Hane", "http://lorempixel.com/640/480", [this.Player()[3]]),
-      new Team(5786801).build("Ransom Koelpin", "http://lorempixel.com/640/480", [this.Player()[6], this.Player()[8]]),
-      new Team(7552883).build("Rosalyn Schuster", "http://lorempixel.com/640/480", [this.Player()[1]]),
-      new Team(7144385).build("Leon Gusikowski", "http://lorempixel.com/640/480", [this.Player()[2]]),
-      new Team(2283989).build("Nikolas Trantow", "http://lorempixel.com/640/480", [this.Player()[9]])
+      new Team(8822048).build({ name: "Jewell Haag", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[9]] }),
+      new Team(2782412).build({ name: "Miller Padberg", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[5], this.Player()[15]] }),
+      new Team(4195077).build({ name: "Litzy Kilback MD", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[3]] }),
+      new Team(1590106).build({ name: "Mallory Tremblay", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[8], this.Player()[12]] }),
+      new Team(5682326).build({ name: "Quinten Dickinson", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[5], this.Player()[3]] }),
+      new Team(5059450).build({ name: "Forrest Kutch", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[5], this.Player()[13]] }),
+      new Team(6552730).build({ name: "Shanie Kemmer", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[3], this.Player()[4]] }),
+      new Team(5214470).build({ name: "Stanton Mosciski", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[1]] }),
+      new Team(8088017).build({ name: "Dr. Monroe Cormier", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[1], this.Player()[2]] }),
+      new Team(2797931).build({ name: "Miss Santina Cremin", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[6], this.Player()[10]] }),
+      new Team(9400339).build({ name: "Mrs. Margaret Konopelski", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[3], this.Player()[8]] }),
+      new Team(5003297).build({ name: "Whitney Barrows", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[8]] }),
+      new Team(9963735).build({ name: "Sabrina Shanahan", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[9], this.Player()[15]] }),
+      new Team(1919433).build({ name: "Eldora Lindgren", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[10]] }),
+      new Team(9683173).build({ name: "Mrs. Ulices Conn", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[10], this.Player()[7]] }),
+      new Team(8786871).build({ name: "Piper Lubowitz", logoUrl: "http://lorempixel.com/640/480", players: [this.Player()[13], this.Player()[3]] })
     ];
   }
 
   static User()
   {
     return [
-      new User(395552).build("Eladio_Shields@hotmail.com", "ut"),
-      new User(8911365).build("Thelma13@hotmail.com", "aut"),
-      new User(9251439).build("Andreane13@hotmail.com", "perspiciatis"),
-      new User(5663187).build("Florine_White@hotmail.com", "quam"),
-      new User(9497620).build("Flossie49@yahoo.com", "sapiente"),
-      new User(9569075).build("Darrin_Dietrich@gmail.com", "est"),
-      new User(147992).build("Adella.Leuschke@gmail.com", "omnis"),
-      new User(1164895).build("Lamar66@hotmail.com", "unde"),
-      new User(9171529).build("Meda_Volkman@gmail.com", "in"),
-      new User(2590207).build("Kayleigh_Jerde26@hotmail.com", "excepturi"),
-      new User(4415183).build("Blanca.Rice@yahoo.com", "quibusdam"),
-      new User(1190169).build("Fredy10@hotmail.com", "voluptas"),
-      new User(4930298).build("Carolyne58@gmail.com", "voluptas"),
-      new User(8199923).build("Clement.Fisher14@gmail.com", "blanditiis"),
-      new User(4990782).build("Lina61@yahoo.com", "aut"),
-      new User(1965375).build("Allison5@yahoo.com", "nostrum")
+      new User(4864640).build({ email: "Wallace.Herzog32@hotmail.com", password: "minus" }),
+      new User(9336101).build({ email: "Virginia18@yahoo.com", password: "modi" }),
+      new User(6381172).build({ email: "Estelle_Kerluke@yahoo.com", password: "officia" }),
+      new User(4863997).build({ email: "Kolby_Hills@hotmail.com", password: "dolorum" }),
+      new User(1938238).build({ email: "Diamond69@gmail.com", password: "accusamus" }),
+      new User(6555057).build({ email: "Sincere.Rohan64@yahoo.com", password: "nostrum" }),
+      new User(1274495).build({ email: "Polly.Jacobson31@hotmail.com", password: "voluptate" }),
+      new User(6601885).build({ email: "Ebba.Welch82@gmail.com", password: "et" }),
+      new User(8657151).build({ email: "Helena_Kunde60@hotmail.com", password: "eum" }),
+      new User(6998553).build({ email: "Gerald13@hotmail.com", password: "quam" }),
+      new User(571414).build({ email: "Lyric_Hessel@hotmail.com", password: "ratione" }),
+      new User(590412).build({ email: "Maida_Howe1@gmail.com", password: "vitae" }),
+      new User(2372478).build({ email: "Meda_Sawayn@yahoo.com", password: "blanditiis" }),
+      new User(9384251).build({ email: "Lilyan_Casper41@yahoo.com", password: "non" }),
+      new User(6700886).build({ email: "Lou_Konopelski@gmail.com", password: "perspiciatis" }),
+      new User(3118639).build({ email: "Prince47@hotmail.com", password: "magnam" })
     ];
   }
 }

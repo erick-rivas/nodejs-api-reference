@@ -9,37 +9,37 @@ class Controllers
 {
   static createMatches()
   {
-    return new Matches(
-      Sql.getInstance()
-    );
+    return new Matches({
+      sql: Sql.getInstance()
+    });
   }
 
   static createPlayers()
   {
-    return new Players(
-      Sql.getInstance()
-    );
+    return new Players({
+      sql: Sql.getInstance()
+    });
   }
 
   static createScores()
   {
-    return new Scores(
-      Sql.getInstance()
-    );
+    return new Scores({
+      sql: Sql.getInstance()
+    });
   }
 
   static createTeams()
   {
-    return new Teams(
-      Sql.getInstance()
-    );
+    return new Teams({
+      sql: Sql.getInstance()
+    });
   }
 
   static createUsers()
   {
-    return new Users(
-      Sql.getInstance()
-    );
+    return new Users({
+      sql: Sql.getInstance()
+    });
   }
 }
 
