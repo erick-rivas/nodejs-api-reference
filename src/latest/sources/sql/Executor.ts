@@ -24,9 +24,9 @@ class Executor
   /**
    * Get a model collection based on filter conditions.
    * Example:
-   *  - Query: SELECT t.* FROM toys t
-   *  - Filters: [new Pair(t.pet_id, 1)]
-   *  - Mapper: ToyMapper
+   *  - Query: SELECT p.* FROM player p
+   *  - Filters: [new Pair(p.player_id, 1)]
+   *  - Mapper: PlayerMapper
    * 
    * @param  {string} query Base query.
    * @param  {Pair[]} filters Filter collection, equivalente to WHERE conditions.
@@ -60,9 +60,9 @@ class Executor
    * 
    * Get a model collection based on params conditions.
    * Example:
-   *  - Query: SELECT t.* FROM toys t WHERE t.pet_id = ?
+   *  - Query: SELECT p.* FROM player p WHERE p.player_id = ?
    *  - Filters: [1]
-   *  - Mapper: ToyMapper
+   *  - Mapper: PlayerMapper
    * 
    * @param  {string} query Base query.
    * @param  {any[]} params Params collection.
@@ -87,7 +87,7 @@ class Executor
   /**
    * Get a generic (non mapped) collection based on params conditions.
    * Example:
-   *  - Query: SELECT t.* FROM toys t WHERE t.pet_id = ?
+   *  - Query: SELECT p.* FROM player p WHERE p.player_id = ?
    *  - params: [1]
    * 
    * @param  {string} query Base query.
@@ -119,11 +119,11 @@ class Executor
   /**
    * Execute a save query.
    * Example:
-   *  - Query: INSERT INTO pet (pet_id, name)";
-   *  - Params: [1, 'tony']
+   *  - Query: INSERT INTO player";
+   *  - Params: [new Pair('id', '1')]
    * 
    * @param  {string} query Base query
-   * @param  {any[]} params Params collection.
+   * @param  {Pair[]} params Params collection.
    */
 
   protected save(query: string, params: Pair[]): Promise<void>
@@ -155,9 +155,9 @@ class Executor
   /**
    * Execute a set query.
    * Example:
-   *  - Query: UPDATE pet";
+   *  - Query: UPDATE player";
    *  - Columns: [new Pair('name', 'juan')]
-   *  - keyCol: pet_id
+   *  - keyCol: player_id
    *  - keyVal: 1
    * 
    * @param  {string} query Base query
@@ -192,7 +192,7 @@ class Executor
   /**
    * Execute a delete query.
    * Example:
-   *  - Query: DELETE FROM credential WHERE credential_id = ?";
+   *  - Query: DELETE FROM player WHERE player_id = ?";
    *  - Params: [1]
    * 
    * @param  {string} query Base query
@@ -215,7 +215,7 @@ class Executor
    * Execute a generic query.
    * Suggested use: modifications in the database schema.
    * Example:
-   *  - Query: DROP TABLE pets
+   *  - Query: DROP TABLE player
    * 
    * @param  {string} query Complete query.
    */

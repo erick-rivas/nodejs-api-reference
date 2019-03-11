@@ -24,8 +24,8 @@ class Source extends Executor implements Repository
 
 - Each source method must follow the following structure.
 ```typescript
-  async getXList: Promise<X[]>
-  async getXDetails: Promise<X>
+  async getXList() Promise<X[]>
+  async getXDetails(): Promise<X>
   async fetchX(): Promise<X[]
   async saveX(): Promise<X>
   async setX(): Promise<X>

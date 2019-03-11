@@ -11,8 +11,9 @@
 - Each controller only use responses.ts methods to handle responses *e.g sendModel(), sendOk()*.
 - Each controller **can only implement the following methods**.
 ```
-getList();
+other();
 getDetails();
+getList();
 save();
 update();
 delete();

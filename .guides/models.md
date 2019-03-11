@@ -36,10 +36,10 @@ export default XModel;
 ```
 - Each model **must have** a build() method to initialize all the variables, and must follow the following structure.
 ```typescript
-  build(attr1: type1, attr2: type2): XModel
+  build(attrs: { attr1: type1, attr2: type2 } ): XModel
   {
-    this.attr1 = attr1;
-    this.attr2 = attr2;
+    this.attr1 = attrs.attr1;
+    this.attr2 = attrs.attr2;
     return this;
   }
 ```
