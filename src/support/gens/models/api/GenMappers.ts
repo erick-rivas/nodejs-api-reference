@@ -1,10 +1,10 @@
-import Executor from './Executor';
-import Util from "@support/controllers/generators/Util"
-import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates"
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/models/Executor';
+import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/gens/models/api/Templates"
 
 class GenerateMappers extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = MAPPERS_TEMPLATE.toString().trim();
     let imports = "";

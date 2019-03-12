@@ -110,7 +110,7 @@ In general terms, the architecture uses the following structure:
  * Modify *assets/dev/model-generator.csv* && *assets/dev/route-generator.csv* (See [instructions](./guides/bin.generator.md)).
  * Generate templates.
  ```bash
- $ npm run-script generate
+ $ npm run-script gen-api
  ```
  * Copy requiered files from */assets/dev/gen* 
 

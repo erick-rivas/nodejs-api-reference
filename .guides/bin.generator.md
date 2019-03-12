@@ -34,7 +34,8 @@
 
 ### Generate files
 5. Open console and type
- ```bash
- $ npm run-script generate
- ```
+  - For api-generator
+  ```bash
+  $ npm run-script gen-api
+  ```
 6. Check generate files in **/assets/dev/gen**

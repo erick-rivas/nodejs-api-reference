@@ -1,15 +1,15 @@
-import Util from "@support/controllers/generators/Util"
-import Executor from './Executor';
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/routes/Executor';
 import
 {
   CTRL_TEMPLATE, CTRL_GET_LIST_TEMPLATE, CTRL_CUSTOM_TEMPLATE,
   CTRL_GET_DETAILS_TEMPLATE, CTRL_SAVE_TEMPLATE,
   CTRL_UPDATE_TEMPLATE, CTRL_DELETE_TEMPLATE
-} from "@support/controllers/generators/routeGenerator/Templates"
+} from "@support/gens/routes/api/Templates"
 
 class GenerateControllers extends Executor
 {
-  async generateTs()
+  async generate()
   {
     for (let r of this.resources) {
       let resName = Util.snakeToCamel(r);

@@ -1,10 +1,10 @@
-import Executor from './Executor';
-import Util from "@support/controllers/generators/Util"
-import { MODEL_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates";
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/models/Executor';
+import { MODEL_TEMPLATE } from "@support/gens/models/api/Templates";
 
 class GenerateModels extends Executor
 {
-  async generateTs()
+  async generate()
   {
     for (let c of this.classes) {
       let t = this.getTs(c, this.attrs[c], this.models[c], this.consts[c]);

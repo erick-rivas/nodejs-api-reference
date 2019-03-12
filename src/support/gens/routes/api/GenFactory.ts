@@ -1,10 +1,10 @@
-import Util from "@support/controllers/generators/Util"
-import Executor from './Executor';
-import { FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE } from "@support/controllers/generators/routeGenerator/Templates"
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/routes/Executor';
+import { FACTORY_TEMPLATE, FACTORY_ITEM_TEMPLATE } from "@support/gens/routes/api/Templates"
 
 class GenerateFactory extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = FACTORY_TEMPLATE.toString().trim();
     let imports = "";

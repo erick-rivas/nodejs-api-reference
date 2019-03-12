@@ -1,15 +1,15 @@
-import Util from "@support/controllers/generators/Util"
-import Executor from './Executor';
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/routes/Executor';
 import
 {
   SRC_TEMPLATE, SRC_GET_LIST_TEMPLATE,
   SRC_GET_DETAILS_TEMPLATE, SRC_SAVE_TEMPLATE,
   SRC_SET_TEMPLATE, SRC_DELETE_TEMPLATE
-} from "@support/controllers/generators/routeGenerator/Templates"
+} from "@support/gens/routes/api/Templates"
 
 class GenerateRoutes extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = SRC_TEMPLATE.toString().trim();
     let imports = "";

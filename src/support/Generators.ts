@@ -5,24 +5,23 @@ import * as path from "path";
 import { Request, Response } from "express";
 import Res from "@util/http/Responses";
 
-import GenerateModels from "@support/controllers/generators/modelGenerator/GenerateModels";
-import GenerateMocks from "@support/controllers/generators/modelGenerator/GenerateMocks";
-import GenerateConsts from "@support/controllers/generators/modelGenerator/GenerateConsts";
-import GenerateMappers from "@support/controllers/generators/modelGenerator/GenerateMappers";
-import GenerateRoutes from "@support/controllers/generators/routeGenerator/GenerateRoutes";
-import GenerateControllers from "@support/controllers/generators/routeGenerator/GenerateControllers";
-import GenerateFactory from "@support/controllers/generators/routeGenerator/GenerateFactory";
-import GenerateRepository from "@support/controllers/generators/routeGenerator/GenerateRepository";
-import GenerateSource from "@support/controllers/generators/routeGenerator/GenerateSource";
-import GenerateDefaults from "@support/controllers/generators/defaultGenerator/GenerateDefaults";
+import GenApiModels from "@support/gens/models/api/GenModels";
+import GenApiMocks from "@support/gens/models/api/GenMocks";
+import GenApiConsts from "@support/gens/models/api/GenConsts";
+import GenApiMappers from "@support/gens/models/api/GenMappers";
+import GenApiRoutes from "@support/gens/routes/api/GenRoutes";
+import GenApiControllers from "@support/gens/routes/api/GenControllers";
+import GenApiFactory from "@support/gens/routes/api/GenFactory";
+import GenApiRepository from "@support/gens/routes/api/GenRepository";
+import GenApiSource from "@support/gens/routes/api/GenSource";
+import GenApiDefaults from "@support/gens/defaults/api/GenDefaults";
 
 
 class Generators
 {
-
-  async generateFiles(req: Request, res: Response)
+  async api(req: Request, res: Response)
   {
-    await this.generate();
+    await this.generateApi();
     let root = `${path.dirname(require.main.filename)}/../assets`;
     let source = `${root}/dev/gen`;
     let output = `${root}/public/resources/gen.zip`;
@@ -30,19 +29,19 @@ class Generators
     return Res.redirect(res, req, "/resources/gen.zip");
   }
 
-  async generate()
+  async generateApi()
   {
     await this.restartDir();
-    await new GenerateModels().execute();
-    await new GenerateMocks().execute();
-    await new GenerateConsts().execute();
-    await new GenerateMappers().execute();
-    await new GenerateRoutes().execute();
-    await new GenerateControllers().execute();
-    await new GenerateFactory().execute();
-    await new GenerateRepository().execute();
-    await new GenerateSource().execute();
-    await new GenerateDefaults().execute();
+    await new GenApiModels().execute();
+    await new GenApiMocks().execute();
+    await new GenApiConsts().execute();
+    await new GenApiMappers().execute();
+    await new GenApiRoutes().execute();
+    await new GenApiControllers().execute();
+    await new GenApiFactory().execute();
+    await new GenApiRepository().execute();
+    await new GenApiSource().execute();
+    await new GenApiDefaults().execute();
   }
 
   async restartDir()

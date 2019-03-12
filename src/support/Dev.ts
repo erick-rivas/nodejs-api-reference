@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Debugs from "@support/controllers/Debugs";
-import Generators from "@support/controllers/Generators";
+import Generators from "@support/Generators";
 
 class Dev
 {
@@ -28,14 +28,14 @@ class Dev
     this.router.get("/init_db", (req, res) => this.debugs.initDb(req, res));
 
     /**
-    * @api {get} /generate_files Generate architecture templates
-    * @apiName GenerateTemplates
+    * @api {get} /generate/api Generate templates for api
+    * @apiName GenerateApi
     * @apiGroup Dev
     * @apiVersion 1.0.0
     * @apiSampleRequest off
     */
 
-    this.router.get("/generate_templates", (req, res) => this.generators.generateFiles(req, res));
+    this.router.get("/generate/api", (req, res) => this.generators.api(req, res));
     return this.router;
   }
 }

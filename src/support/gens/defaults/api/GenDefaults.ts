@@ -1,17 +1,17 @@
-import ExecutorP from "@support/controllers/generators/Executor"
+import ExecutorP from "@support/gens/Executor"
 import
 {
   MIDDLEWARES_TEMPLATE, MIDDLEWARE_AUTH_TEMPLATE,
   MIDDLEWARE_FACTORY_TEMPLATE, SQL_EXECUTOR_TEMPLATE
-} from "@support/controllers/generators/defaultGenerator/Templates"
+} from "@support/gens/defaults/api/Templates"
 
 class GenerateDefaults extends ExecutorP
 {
   protected genFile = "model-generator.csv";
 
-  async extractData() { }
+  async extract() { }
 
-  async generateTs()
+  async generate()
   {
     let mids = MIDDLEWARES_TEMPLATE.toString().trim();
     let midAuth = MIDDLEWARE_AUTH_TEMPLATE.toString().trim();

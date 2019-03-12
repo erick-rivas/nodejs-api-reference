@@ -1,5 +1,5 @@
-import Util from "@support/controllers/generators/Util"
-import ExecutorP from "@support/controllers/generators/Executor"
+import Util from "@support/gens/Util"
+import ExecutorP from "@support/gens/Executor"
 
 abstract class Executor extends ExecutorP
 {
@@ -10,7 +10,7 @@ abstract class Executor extends ExecutorP
   protected params = [];
   protected queries = [];
 
-  async extractData()
+  async extract()
   {
     this.queries["GET"] = [];
     for (let data of this.dataSet) {

@@ -1,11 +1,11 @@
-import Executor from './Executor';
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/models/Executor';
 import Generator from "@util/Generator"
-import Util from "@support/controllers/generators/Util"
-import { MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates";
+import { MOCK_TEMPLATE, MOCK_ITEM_TEMPLATE } from "@support/gens/models/api/Templates";
 
 class GenerateMocks extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = MOCK_TEMPLATE.toString().trim();
     let content = "";

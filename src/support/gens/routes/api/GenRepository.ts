@@ -1,15 +1,15 @@
-import Util from "@support/controllers/generators/Util"
-import Executor from './Executor';
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/routes/Executor';
 import
 {
   REPO_TEMPLATE, REPO_GET_LIST_TEMPLATE,
   REPO_GET_DETAILS_TEMPLATE, REPO_SAVE_TEMPLATE,
   REPO_SET_TEMPLATE, REPO_DELETE_TEMPLATE
-} from "@support/controllers/generators/routeGenerator/Templates";
+} from "@support/gens/routes/api/Templates"
 
 class GenerateRepository extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = REPO_TEMPLATE.toString().trim();
     let imports = "";

@@ -8,17 +8,17 @@ abstract class Executor
   protected genFile = "";
 
 
-  abstract async extractData();
-  abstract async generateTs();
+  abstract async extract();
+  abstract async generate();
 
   async execute()
   {
-    await this.loadData();
-    await this.extractData();
-    await this.generateTs();
+    await this.load();
+    await this.extract();
+    await this.generate();
   }
 
-  async loadData()
+  async load()
   {
     let dir = `${path.dirname(require.main.filename)}/../assets/dev`;
     let input = fs.readFileSync(`${dir}/${this.genFile}`, 'utf8');

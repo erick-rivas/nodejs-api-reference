@@ -1,10 +1,10 @@
-import Executor from './Executor';
-import Util from "@support/controllers/generators/Util"
-import { CONST_TEMPLATE } from "@support/controllers/generators/modelGenerator/Templates"
+import Util from "@support/gens/Util"
+import Executor from '@support/gens/models/Executor';
+import { CONST_TEMPLATE } from "@support/gens/models/api/Templates"
 
 class GenerateConsts extends Executor
 {
-  async generateTs()
+  async generate()
   {
     let res = CONST_TEMPLATE.toString().trim();
     let content = "";

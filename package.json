@@ -14,7 +14,7 @@
     ]
   },
   "scripts": {
-    "generate": "tsc && node ./bin/gen.js",
+    "gen-api": "tsc && node ./bin/gen-api.js",
     "start": "tsc && node ./bin/www",
     "debug": "tsc && node dist/debug.js"
   },
