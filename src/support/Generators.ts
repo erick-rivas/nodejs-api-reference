@@ -16,16 +16,26 @@ import GenApiRepository from "@support/gens/routes/api/GenRepository";
 import GenApiSource from "@support/gens/routes/api/GenSource";
 import GenApiDefaults from "@support/gens/defaults/api/GenDefaults";
 
+import GenReactModels from "@support/gens/models/react/GenModels";
+import GenReactMocks from "@support/gens/models/react/GenMocks";
+import GenReactConsts from "@support/gens/models/react/GenConsts";
+import GenReactMappers from "@support/gens/models/react/GenMappers";
+import GenReactRepository from "@support/gens/routes/react/GenRepository";
+import GenReactSource from "@support/gens/routes/react/GenSource";
 
 class Generators
 {
   async api(req: Request, res: Response)
   {
     await this.generateApi();
-    let root = `${path.dirname(require.main.filename)}/../assets`;
-    let source = `${root}/dev/gen`;
-    let output = `${root}/public/resources/gen.zip`;
-    await this.zipDir(source, output);
+    await this.compress();
+    return Res.redirect(res, req, "/resources/gen.zip");
+  }
+
+  async react(req: Request, res: Response)
+  {
+    await this.generateReact();
+    await this.compress();
     return Res.redirect(res, req, "/resources/gen.zip");
   }
 
@@ -42,6 +52,17 @@ class Generators
     await new GenApiRepository().execute();
     await new GenApiSource().execute();
     await new GenApiDefaults().execute();
+  }
+
+  async generateReact()
+  {
+    await this.restartDir();
+    await new GenReactModels().execute();
+    await new GenReactMocks().execute();
+    await new GenReactConsts().execute();
+    await new GenReactMappers().execute();
+    await new GenReactRepository().execute();
+    await new GenReactSource().execute();
   }
 
   async restartDir()
@@ -65,6 +86,14 @@ class Generators
           this.rmDir(filePath);
       }
     fs.rmdirSync(dir);
+  }
+
+  async compress()
+  {
+    let root = `${path.dirname(require.main.filename)}/../assets`;
+    let source = `${root}/dev/gen`;
+    let output = `${root}/public/resources/gen.zip`;
+    await this.zipDir(source, output);
   }
 
   async zipDir(source, out): Promise<any>

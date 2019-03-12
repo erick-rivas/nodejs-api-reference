@@ -38,4 +38,8 @@
   ```bash
   $ npm run-script gen-api
   ```
+  - For react-generator
+  ```bash
+  $ npm run-script gen-react
+  ```
 6. Check generate files in **/assets/dev/gen**

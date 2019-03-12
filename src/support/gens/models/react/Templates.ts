@@ -1,6 +1,6 @@
 const MODEL_TEMPLATE =
   `
-import Model from "@util/Model";
+import Model from "models/util/Model";
 #imports#
 class #Model# implements Model
 { #gets#
@@ -16,13 +16,6 @@ class #Model# implements Model
   {
     #assigns#
     return this;
-  }
-
-  toJSON()
-  {
-    return {
-      #toJSON#
-    };
   }
 }
 
@@ -55,10 +48,15 @@ export { Mapper, #defs#}
 const MAPPER_TEMPLATE =
   `
 class #Model#Mapper extends Mapper<#Model#>
-{
+{#mappers#
+  constructor()
+  {
+    super();#assigns#
+  }
+
   transform(data: any): #Model#  
   {
-    return new #Model#(data.#model_n#)
+    return new #Model#(data.id)
       .build({
         #attrs#
       });
@@ -68,14 +66,36 @@ class #Model#Mapper extends Mapper<#Model#>
 
 const CONST_TEMPLATE =
   `
+enum Lang
+{
+  EN = "EN",
+  ES = "ES"
+};
+
+/**
+ * Get enum value base on their respective value
+ * @param  {any} data Enum collection
+ * @param  {string} val Enum value
+ * @param  {any} def Default response (item)
+ */
+
+const getEnum = (data: any, val: string, def: any) =>
+{
+  if (val) val = val.toUpperCase();
+  for (let d in data)
+    if (data[d].toUpperCase() == val)
+      return d;
+  return def;
+}
+
 #content#
 
-export { #defs#}
+export { Lang, getEnum, #defs#}
 `;
 
 const MOCK_TEMPLATE =
   `
-import Generator from "@util/Generator";
+import Generator from "models/util/Generator";
 #imports#
 
 class Mocks

@@ -9,5 +9,5 @@ Player,/players/:id,PUT,team_id
 Score,/scores,POST,"min	match_id	player_id"
 Team,/teams/:id,GET,
 Team,/teams,GET,user_id
-Team,/users/auth,GET,"email	password"
-Team,/users/:id,GET,
+User,/users/auth,GET,"email	password"
+User,/users/:id,GET,

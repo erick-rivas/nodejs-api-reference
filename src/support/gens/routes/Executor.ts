@@ -9,6 +9,7 @@ abstract class Executor extends ExecutorP
   protected endpoints = [];
   protected params = [];
   protected queries = [];
+  protected queriesAllGet = true;
 
   async extract()
   {
@@ -52,8 +53,10 @@ abstract class Executor extends ExecutorP
         let params = [];
         if (data.params) params = data.params.split("\t");
         this.queries[queryType][className] = params;
-        if (this.queries["GET"].indexOf(className) == -1)
-          this.queries["GET"][className] = params;
+        if (this.queriesAllGet) {
+          if (this.queries["GET"].indexOf(className) == -1)
+            this.queries["GET"][className] = params;
+        }
       }
     }
 

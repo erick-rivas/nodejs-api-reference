@@ -36,6 +36,17 @@ class Dev
     */
 
     this.router.get("/generate/api", (req, res) => this.generators.api(req, res));
+
+    /**
+   * @api {get} /generate/react Generate templates for react
+   * @apiName GenerateReact
+   * @apiGroup Dev
+   * @apiVersion 1.0.0
+   * @apiSampleRequest off
+   */
+
+    this.router.get("/generate/react", (req, res) => this.generators.react(req, res));
+
     return this.router;
   }
 }

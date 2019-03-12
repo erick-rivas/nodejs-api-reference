@@ -1,6 +1,6 @@
 import Util from "@support/gens/Util"
 import Executor from '@support/gens/models/Executor';
-import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/gens/models/api/Templates"
+import { MAPPERS_TEMPLATE, MAPPER_TEMPLATE } from "@support/gens/models/react/Templates"
 
 class GenerateMappers extends Executor
 {
@@ -12,7 +12,7 @@ class GenerateMappers extends Executor
     let defs = "";
 
     for (let c of this.classes) {
-      imports += `import ${c} from "@lt/models/${c}";\n`;
+      imports += `import ${c} from "models/${c}";\n`;
       defs += `${Util.iniToUpper(c)}Mapper, `;
       let mapper = `${this.getMapper(c, this.attrs[c], this.models[c], this.consts[c])}\n\n`;
       content += mapper;
@@ -34,14 +34,27 @@ class GenerateMappers extends Executor
   {
     let res = MAPPER_TEMPLATE.toString().trim();
     let modelName = "";
-    let model_n = "";
+    let mappers = "";
+    let assigns = "";
     let attrs = "";
 
+    let hasMappers = false;
+    for (let m in models) {
+      let mod = Util.iniToLower(Util.snakeToCamel(m));
+      let moD = Util.iniToUpper(mod);
+      mappers += `${Util.sp(2)}private ${mod}Mapper: ${moD}Mapper;\n`;
+      assigns += `${Util.sp(4)}this.${mod}Mapper = new ${moD}Mapper();\n`;
+      hasMappers = true;
+    }
+
     for (let a of attributes) {
-      if (a.type.endsWith("[]"))
-        attrs += `${Util.sp(8)}${a.name}: [],\n`;
-      else if (a.description == "_MODEL")
-        attrs += `${Util.sp(8)}${a.name}: new ${a.type}(data.${Util.camelToSnake(a.type).toLowerCase()}_id), \n`;
+      if (a.description == "_MODEL") {
+
+        if (a.type.endsWith("[]"))
+          attrs += `${Util.sp(8)}${a.name}: this.${Util.iniToLower(a.type.slice(0, -2))}Mapper.transformList(data.${Util.camelToSnake(a.name)}),\n`;
+        else
+          attrs += `${Util.sp(8)}${a.name}: this.${Util.iniToLower(a.type)}Mapper.transform(data.${Util.camelToSnake(a.name)}),\n`;
+      }
       else if (a.description == "_CONST")
         attrs += `${Util.sp(8)}${a.name}: ${Util.iniToUpper(className)}.get${a.type}(data.${Util.camelToSnake(a.name)}), \n`;
       else
@@ -49,11 +62,18 @@ class GenerateMappers extends Executor
     }
 
     modelName = `${Util.iniToUpper(className)}`;
-    model_n = `${Util.camelToSnake(className).toLowerCase()}`;
+
+    mappers = mappers.trim();
+    assigns = assigns.trim();
+    if (hasMappers) {
+      mappers = `\n${Util.sp(2)}${mappers}\n`;
+      assigns = `\n${Util.sp(4)}${assigns}`;
+    }
     attrs = attrs.trim().slice(0, -1);
 
     res = res.replace(new RegExp('#Model#', 'g'), modelName);
-    res = res.replace(new RegExp('#model_n#', 'g'), model_n);
+    res = res.replace(new RegExp('#mappers#', 'g'), mappers);
+    res = res.replace(new RegExp('#assigns#', 'g'), assigns);
     res = res.replace(new RegExp('#attrs#', 'g'), attrs);
 
     return res;

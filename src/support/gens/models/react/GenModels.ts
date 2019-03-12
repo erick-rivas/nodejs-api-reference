@@ -1,6 +1,6 @@
 import Util from "@support/gens/Util"
 import Executor from '@support/gens/models/Executor';
-import { MODEL_TEMPLATE } from "@support/gens/models/api/Templates";
+import { MODEL_TEMPLATE } from "@support/gens/models/react/Templates";
 
 class GenerateModels extends Executor
 {
@@ -19,36 +19,31 @@ class GenerateModels extends Executor
     let attrs = "";
     let args = "";
     let assigns = "";
-    let toJson = "";
     let imports = "";
     let gets = "";
 
-    toJson += `${Util.sp(6)}id: this.id,\n`;
     for (let a of attributes) {
       attrs += `${Util.sp(2)}${a.name}: ${a.type};\n`;
       args += `${a.name}: ${a.type}, `;
       assigns += `${Util.sp(4)}this.${a.name} = attrs.${a.name};\n`;
-      toJson += `${Util.sp(6)}${Util.camelToSnake(a.name)}: this.${a.name},\n`;
     }
 
     for (let m in models)
-      imports += `import ${m} from "@lt/models/${m}";\n`;
+      imports += `import ${m} from "models/${m}";\n`;
 
     let hasConst = false;
     for (let c in consts) {
       let collection = consts[c].slice(1, -1).split(",");
-      imports += `import { ${c} } from "@lt/models/helpers/Const";\n`;
+      imports += `import { ${c} } from "models/util/Const";\n`;
       gets += `\n${Util.sp(2)}static get${c} = (val: string): ${c} => getEnum(${c}, val, ${c}.${collection[0]});\n`;
       hasConst = true;
     }
     if (hasConst)
-      imports += `import { getEnum } from "@util/Const";\n`;
-
+      imports += `import { getEnum } from "models/util/Const";\n`;
 
     attrs = attrs.trim();
     args = args.trim().slice(0, -1);
     assigns = assigns.trim();
-    toJson = toJson.trim().slice(0, -1);
     imports = imports.trim();
     if (imports != "") imports += "\n";
 
@@ -56,7 +51,6 @@ class GenerateModels extends Executor
     res = res.replace(new RegExp('#attrs#', 'g'), attrs);
     res = res.replace(new RegExp('#args#', 'g'), args);
     res = res.replace(new RegExp('#assigns#', 'g'), assigns);
-    res = res.replace(new RegExp('#toJSON#', 'g'), toJson);
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#gets#', 'g'), gets);
     return res;
