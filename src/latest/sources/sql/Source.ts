@@ -1,4 +1,4 @@
-import Repository from "@lt/repositories/Sql";
+import Repository from "@lt/sources/Sql";
 import { Pair } from "@util/Util";
 import Match from "@lt/models/Match";
 import Player from "@lt/models/Player";

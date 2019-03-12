@@ -1,7 +1,7 @@
 const CTRL_TEMPLATE =
   `
 import { Request, Response } from "express";
-import Sql from "@lt/repositories/Sql";
+import Sql from "@lt/sources/Sql";
 import Res from "@util/http/responses";
 
 import #Model# from "@lt/models/#Model#";
@@ -139,7 +139,7 @@ const REPO_DELETE_TEMPLATE =
 
 const SRC_TEMPLATE =
   `
-import Repository from "@lt/repositories/Sql";
+import Repository from "@lt/sources/Sql";
 import { Pair } from "@util/Util";
 #imports#
 

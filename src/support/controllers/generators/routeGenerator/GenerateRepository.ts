@@ -33,7 +33,7 @@ class GenerateRepository extends Executor
     res = res.replace(new RegExp('#imports#', 'g'), imports);
     res = res.replace(new RegExp('#content#', 'g'), content);
 
-    super.generateFile("/repositories", "Sql.ts", res);
+    super.generateFile("/sources", "Sql.ts", res);
   }
 
   getQueries(method: string, query: any[])
