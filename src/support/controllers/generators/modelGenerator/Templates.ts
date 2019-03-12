@@ -2,15 +2,13 @@ const MODEL_TEMPLATE =
   `
 import Model from "@util/Model";
 #imports#
-
-class #Model# extends Model
+class #Model# implements Model
 { #gets#
   id: number;
   #attrs#
 
   constructor(id: number)
   {
-    super();
     this.id = id;
   }
 

@@ -49,7 +49,7 @@ class GenerateModels extends Executor
     args = args.trim().slice(0, -1);
     assigns = assigns.trim();
     toJson = toJson.trim().slice(0, -1);
-    imports = imports.trim();
+    imports = imports.trim() + "\n";
 
     res = res.replace(new RegExp('#Model#', 'g'), modelName);
     res = res.replace(new RegExp('#attrs#', 'g'), attrs);

@@ -1,15 +1,13 @@
 import Model from "@util/Model";
 
-
-class User extends Model
-{ 
+class User implements Model
+{
   id: number;
   email: string;
   password: string;
 
   constructor(id: number)
   {
-    super();
     this.id = id;
   }
 

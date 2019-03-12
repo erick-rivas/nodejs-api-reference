@@ -1,6 +1,6 @@
-abstract class Model
+interface Model
 {
-  abstract toJSON(): any;
+  toJSON(): any;
 }
 
 export default Model;

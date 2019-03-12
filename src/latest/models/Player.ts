@@ -1,8 +1,7 @@
 import Model from "@util/Model";
 
-
-class Player extends Model
-{ 
+class Player implements Model
+{
   id: number;
   name: string;
   photoUrl: string;
@@ -10,7 +9,6 @@ class Player extends Model
 
   constructor(id: number)
   {
-    super();
     this.id = id;
   }
 

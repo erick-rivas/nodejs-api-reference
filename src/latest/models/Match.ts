@@ -4,7 +4,7 @@ import Score from "@lt/models/Score";
 import { MType } from "@lt/models/helpers/Const";
 import { getEnum } from "@util/Const";
 
-class Match extends Model
+class Match implements Model
 {
   static getMType = (val: string): MType => getEnum(MType, val, MType.LEAGUE);
 
@@ -17,7 +17,6 @@ class Match extends Model
 
   constructor(id: number)
   {
-    super();
     this.id = id;
   }
 

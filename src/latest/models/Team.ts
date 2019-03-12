@@ -1,7 +1,7 @@
 import Model from "@util/Model";
 import Player from "@lt/models/Player";
 
-class Team extends Model
+class Team implements Model
 { 
   id: number;
   name: string;
@@ -10,7 +10,6 @@ class Team extends Model
 
   constructor(id: number)
   {
-    super();
     this.id = id;
   }
 
