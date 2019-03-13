@@ -27,7 +27,7 @@ class GenerateMappers extends Executor
     res = res.replace(new RegExp('#defs#', 'g'), defs);
 
     super.generateDir("/sources");
-    super.generateFile("/sources/api", "Mappers.ts", res);
+    super.generateFile("/sources/sql", "Mappers.ts", res);
   }
 
   getMapper(className: string, attributes: any[], models: any[], consts: any[]): string
