@@ -9,6 +9,8 @@ import
 
 class GenerateRoutes extends Executor
 {
+  protected queriesAllGet = false;
+
   async generate()
   {
     let res = SRC_TEMPLATE.toString().trim();
