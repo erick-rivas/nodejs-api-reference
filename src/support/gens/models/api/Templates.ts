@@ -58,7 +58,7 @@ class #Model#Mapper extends Mapper<#Model#>
 {
   transform(data: any): #Model#  
   {
-    return new #Model#(data.#model_n#)
+    return new #Model#(data.#model_n#_id)
       .build({
         #attrs#
       });
