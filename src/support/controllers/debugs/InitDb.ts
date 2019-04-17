@@ -18,12 +18,26 @@ class DevSql
 
   constructor()
   {
-    this.sql = mysql.createConnection({
-      host: process.env.SQL_HOST,
-      user: process.env.SQL_USER,
-      password: process.env.SQL_PASSWORD,
-      multipleStatements: true
-    });
+    const isDebug = process.env.IS_DEBUG == null ||
+      process.env.IS_DEBUG.toLowerCase() == "true";
+
+    if (isDebug)
+      this.sql = mysql.createConnection({
+        host: process.env.SQL_HOST,
+        user: process.env.SQL_USER,
+        password: process.env.SQL_PASSWORD,
+        database: process.env.SQL_DATABASE,
+        multipleStatements: true
+      });
+    else
+      this.sql = mysql.createConnection({
+        host: process.env.RDS_HOSTNAME,
+        user: process.env.RDS_USERNAME,
+        password: process.env.RDS_PASSWORD,
+        database: process.env.RDS_DB_NAME,
+        port: process.env.RDS_PORT,
+        multipleStatements: true
+      });
   }
 
   public restartDb(): Promise<void>

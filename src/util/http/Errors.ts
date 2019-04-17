@@ -2,7 +2,7 @@ import { Response, Next } from "express";
 
 enum Code
 {
-  BAD_REQUEST = 402,
+  BAD_REQUEST = 400,
   UNAUTHORIZED = 403
 }
 
@@ -25,8 +25,8 @@ class Errors
 
   static sendError(res: Response, code: Code)
   {
-    res.status(Code[code]);
-    res.send(code.toLocaleString());
+    res.status(code);
+    res.send(`(${code}) ${Code[code].toLocaleString()}`);
   }
 
   /**
@@ -35,8 +35,26 @@ class Errors
 
   static sendErrorMessage(res: Response, code: Code, message: string)
   {
-    res.status(Code[code]);
-    res.send(code.toLocaleString() + ": " + message);
+    res.status(code);
+    res.send(`(${code}) ${Code[code].toLocaleString()} : ${message}`);
+  }
+
+  /**
+   * Send a bad request message
+   */
+
+  static sendBadRequest(res: Response, message: string)
+  {
+    this.sendErrorMessage(res, Code.BAD_REQUEST, message);
+  }
+
+  /**
+   * Send a unauthorized error
+   */
+
+  static sendUnauthorized(res: Response)
+  {
+    this.sendError(res, Code.UNAUTHORIZED);
   }
 }
 

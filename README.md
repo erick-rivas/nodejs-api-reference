@@ -141,6 +141,8 @@ In general terms, the architecture uses the following structure:
 
 * Install eb and configure credentials, See ([install](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html) & [credentials](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html))
 
+* Set .env variable IS_DEBUG to false
+
 * Init eb project
 ```bash
 $ eb init

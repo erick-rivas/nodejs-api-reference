@@ -1,5 +1,4 @@
-# General
-.env
+# General (include .env)
 dist
 debug.ts
 
