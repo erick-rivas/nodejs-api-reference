@@ -44,12 +44,19 @@ class DevSql
   {
     return new Promise(resolve =>
     {
+
       const dirname = path.dirname(require.main.filename) + "/../";
       const dbPath = "assets/dev/db.sql";
       fs.readFile(dirname + dbPath, "utf8", (err, content) =>
       {
-        const DATABASE = process.env.SQL_DATABASE;
-        const query = `DROP DATABASE IF EXISTS ${DATABASE}; ${content}`;
+        const isDebug = process.env.IS_DEBUG == null ||
+          process.env.IS_DEBUG.toLowerCase() == "true";
+
+        const DEBUG_DATABASE = process.env.SQL_DATABASE;
+        const PROD_DATABASE = process.env.RDS_DB_NAME;
+        const DATABASE = isDebug ? DEBUG_DATABASE : PROD_DATABASE;
+        const exec = content.replace(new RegExp(DEBUG_DATABASE, 'g'), DATABASE);
+        const query = `DROP DATABASE IF EXISTS ${DATABASE}; ${exec}`;
         this.execute(query).then(() => resolve());
       });
     });
