@@ -20,6 +20,8 @@
     "debug": "tsc && node dist/debug.js"
   },
   "dependencies": {
+    "@types/node": "11.13.6",
+    "@types/request": "2.48.1",
     "archiver": "3.0.0",
     "bcrypt": "3.0.6",
     "body-parser": "1.18.3",
@@ -34,14 +36,12 @@
     "helmet": "3.16.0",
     "i": "0.3.6",
     "log": "6.0.0",
+    "module-alias": "2.2.0",
     "morgan": "1.9.1",
     "multer": "1.4.1",
     "mysql": "2.17.1",
     "request": "2.88.0",
     "serve-favicon": "2.5.0",
-    "@types/node": "11.13.6",
-    "@types/request": "2.48.1",
-    "module-alias": "2.2.0",
     "typescript": "3.4.4"
   },
   "_moduleAliases": {
