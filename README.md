@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Check [Node.js API datasource](https://github.com/erick-rivas/nodejs-api-datasource)
+
 # Node.js API
 
 This repository holds the source code of a **reference** for the development of a **Node.js api** written mainly in typescript.
