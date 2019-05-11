@@ -185,8 +185,6 @@ $ sudo ./certbot-auto certonly --debug
 
 ### Deploy
 
-* Set .env variable IS_DEBUG to false
-
  * Deploy to aws
 ```bash
 $ eb deploy
